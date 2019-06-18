@@ -3,26 +3,25 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 /**
+ * Componentes de función Square
  *
- *
- * @class Square
- * @extends {React.Component}
+ * @param {Object} p
+ * @returns
  */
-class Square extends React.Component {
-    /**
-     *
-     *
-     * @returns
-     * @memberof Square
-     */
-    render() {
-        return (
-            <button
-                className="square"
-                onClick={() => this.props.onClick()}>
-                    {this.props.value}
-            </button>
-        );
+function Square(p) {
+    return (
+        <button
+            className="square"
+            onClick={p.onClick}>
+                {p.value}
+        </button>
+    );
+}
+
+class Symbol {
+    constructor(s = "", next = true){
+        this.s = s;
+        this.next = next;
     }
 }
 
@@ -37,8 +36,9 @@ class BoardState {
      * @param {Array} [squares=Array(9).fill(null)]
      * @memberof BoardState
      */
-    constructor(squares = Array(9).fill(null)) {
+    constructor(squares = Array(9).fill(null), xIsNext = true) {
         this.squares = squares;
+        this.xIsNext = xIsNext;
     }
 }
 
@@ -51,12 +51,13 @@ class BoardState {
 class Board extends React.Component {
     /**
      * Creates an instance of Board.
-     * @param {Object} props
+     * @param {Object} p
      * @memberof Board
      */
-    constructor(props){
-        super(props);
+    constructor(p){
+        super(p);
         this.state = new BoardState();
+        this.symbols = Array(2).fill(new Symbol("X"), new Symbol("O", false));
     }
 
     /**
@@ -66,7 +67,8 @@ class Board extends React.Component {
      * @memberof Board
      */
     handleClick(i) {
-        this.setState(new BoardState(this.state.squares.map((e, j) => e = ((j === i) || (e === "X")) ? "X" : null)));
+        const next = this.symbols.filter(e => e.next === this.state.xIsNext);
+        this.setState(new BoardState(this.state.squares.map((e, j) => e = ((j === i) || (e === next)) ? next : null), !this.state.xIsNext));
     }
 
     /**
