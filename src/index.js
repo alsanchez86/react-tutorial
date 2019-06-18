@@ -18,13 +18,6 @@ function Square(p) {
     );
 }
 
-class Symbol {
-    constructor(s = "", next = true){
-        this.s = s;
-        this.next = next;
-    }
-}
-
 /**
  *
  *
@@ -57,7 +50,7 @@ class Board extends React.Component {
     constructor(p){
         super(p);
         this.state = new BoardState();
-        this.symbols = Array(2).fill(new Symbol("X"), new Symbol("O", false));
+        this.marks = ["X","O"];
     }
 
     /**
@@ -67,8 +60,9 @@ class Board extends React.Component {
      * @memberof Board
      */
     handleClick(i) {
-        const next = this.symbols.filter(e => e.next === this.state.xIsNext);
-        this.setState(new BoardState(this.state.squares.map((e, j) => e = ((j === i) || (e === next)) ? next : null), !this.state.xIsNext));
+        const mark = this.state.xIsNext ? this.marks[0] : this.marks[1];
+        this.setState(new BoardState(this.state.squares.map((e, j) => e = ((j === i) || (e !== null)) ? mark : null), !this.state.xIsNext));
+        // this.setState(new BoardState(this.state.squares.map((e, j) => e = ((j === i) || (this.marks.filter(e => e === mark).length > 0)) ? mark : null), !this.state.xIsNext));
     }
 
     /**
