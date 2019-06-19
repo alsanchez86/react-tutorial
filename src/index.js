@@ -1,22 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-
-/**
- * Componentes de función Square
- *
- * @param {Object} p
- * @returns
- */
-function Square(p) {
-    return (
-        <button
-            className="square"
-            onClick={p.onClick}>
-                {p.value}
-        </button>
-    );
-}
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
 
 /**
  *
@@ -50,7 +34,18 @@ class Board extends React.Component {
     constructor(p){
         super(p);
         this.state = new BoardState();
-        this.marks = ["X","O"];
+        this.marks = ["X", "O"];
+    }
+
+    /**
+     *
+     *
+     * @param {Boolean} xIsNext
+     * @returns {String}
+     * @memberof Board
+     */
+    getNextMark(xIsNext){
+        return xIsNext ? this.marks[0] : this.marks[1];
     }
 
     /**
@@ -60,9 +55,7 @@ class Board extends React.Component {
      * @memberof Board
      */
     handleClick(i) {
-        const mark = this.state.xIsNext ? this.marks[0] : this.marks[1];
-        this.setState(new BoardState(this.state.squares.map((e, j) => e = ((j === i) || (e !== null)) ? mark : null), !this.state.xIsNext));
-        // this.setState(new BoardState(this.state.squares.map((e, j) => e = ((j === i) || (this.marks.filter(e => e === mark).length > 0)) ? mark : null), !this.state.xIsNext));
+        this.setState(new BoardState(this.state.squares.map((e, j) => e = (e !== null) ? e : ((i === j) ? this.getNextMark(this.state.xIsNext) : null)), !this.state.xIsNext));
     }
 
     /**
@@ -88,7 +81,8 @@ class Board extends React.Component {
      * @memberof Board
      */
     render() {
-        const status = 'Next player: X';
+        const winner = calculateWinner(this.state.squares);
+        let status = (winner !== null) ? ('Winner: ' + winner) : ('Next player: ' + this.getNextMark(this.state.xIsNext));
         return (
             <div>
                 <div className="status">
@@ -143,4 +137,44 @@ class Game extends React.Component {
 }
 
 // RENDER
-ReactDOM.render(<Game/>, document.getElementById('root'));
+ReactDOM.render(<Game/>, document.getElementById("root"));
+
+/**
+ * Componentes de función Square
+ *
+ * @param {Object} p
+ * @returns
+ */
+function Square(p) {
+    return (
+        <button
+            className="square"
+            onClick={p.onClick}>
+                {p.value}
+        </button>
+    );
+}
+
+/**
+ *
+ *
+ * @param {Array} squares
+ * @returns {String | Null}
+ */
+function calculateWinner(squares) {
+    return [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6],
+    ].filter(e => {
+        let map = e.map(a => squares[a]);
+        let notNull = (map.indexOf(null) === -1);
+        let equals = map.every((e, i, a) => e === a[0]);
+        return (notNull && equals);
+    }).map(e => e.map(a => squares[a]).reduce(e => e))[0] || null;
+}
