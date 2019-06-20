@@ -10,10 +10,10 @@ import "./index.css";
 class BoardState {
     /**
      * Creates an instance of BoardState.
-     * @param {Array} [squares=Array(9).fill(null)]
+     * @param {Array} [squares=Array(9).fill("")]
      * @memberof BoardState
      */
-    constructor(squares = Array(9).fill(null), xIsNext = true) {
+    constructor(squares = Array(9).fill(""), xIsNext = true) {
         this.squares = squares;
         this.xIsNext = xIsNext;
     }
@@ -55,7 +55,7 @@ class Board extends React.Component {
      * @memberof Board
      */
     handleClick(i) {
-        this.setState(new BoardState(this.state.squares.map((e, j) => e = (e !== null) ? e : ((i === j) ? this.getNextMark(this.state.xIsNext) : null)), !this.state.xIsNext));
+        this.setState(new BoardState(this.state.squares.map((e, j) => e = (e !== "") ? e : ((i === j) ? this.getNextMark(this.state.xIsNext) : "")), !this.state.xIsNext));
     }
 
     /**
@@ -82,7 +82,7 @@ class Board extends React.Component {
      */
     render() {
         const winner = calculateWinner(this.state.squares);
-        let status = (winner !== null) ? ('Winner: ' + winner) : ('Next player: ' + this.getNextMark(this.state.xIsNext));
+        let status = (winner !== "") ? ('Winner: ' + winner) : ('Next player: ' + this.getNextMark(this.state.xIsNext));
         return (
             <div>
                 <div className="status">
@@ -116,7 +116,7 @@ class Board extends React.Component {
  */
 class Game extends React.Component {
     /**
-     *
+     * Root react component
      *
      * @returns
      * @memberof Game
@@ -156,7 +156,7 @@ function Square(p) {
 }
 
 /**
- *
+ * Calculate if there is a winner combination on current squares state
  *
  * @param {Array} squares
  * @returns {String | Null}
@@ -173,8 +173,8 @@ function calculateWinner(squares) {
         [2, 4, 6],
     ].filter(e => {
         let map = e.map(a => squares[a]);
-        let notNull = (map.indexOf(null) === -1);
+        let notNull = (map.indexOf("") === -1);
         let equals = map.every((e, i, a) => e === a[0]);
         return (notNull && equals);
-    }).map(e => e.map(a => squares[a]).reduce(e => e))[0] || null;
+    }).map(e => e.map(a => squares[a]).reduce(e => e)).toString() || "";
 }
