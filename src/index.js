@@ -13,9 +13,10 @@ class BoardState {
      * @param {Array} [squares=Array(9).fill("")]
      * @memberof BoardState
      */
-    constructor(squares = Array(9).fill(""), xIsNext = true) {
+    constructor(squares = Array(9).fill(""), xIsNext = true, winner = "") {
         this.squares = squares;
         this.xIsNext = xIsNext;
+        this.winner = winner;
     }
 }
 
@@ -55,7 +56,10 @@ class Board extends React.Component {
      * @memberof Board
      */
     handleClick(i) {
-        this.setState(new BoardState(this.state.squares.map((e, j) => e = (e !== "") ? e : ((i === j) ? this.getNextMark(this.state.xIsNext) : "")), !this.state.xIsNext));
+        if (this.state.winner === ""){
+            this.setState(new BoardState(this.state.squares.map((e, j) => e = (e !== "") ? e : ((i === j) ? this.getNextMark(this.state.xIsNext) : "")), !this.state.xIsNext, this.state.winner),
+            () => console.log("State updated:", this.state));
+        }
     }
 
     /**
@@ -81,8 +85,9 @@ class Board extends React.Component {
      * @memberof Board
      */
     render() {
-        const winner = calculateWinner(this.state.squares);
-        let status = (winner !== "") ? ('Winner: ' + winner) : ('Next player: ' + this.getNextMark(this.state.xIsNext));
+        let status = "";
+        this.state.winner = calculateWinner(this.state.squares);
+        status = (this.state.winner !== "") ? ('Winner: ' + this.state.winner) : ('Next player: ' + this.getNextMark(this.state.xIsNext));
         return (
             <div>
                 <div className="status">
@@ -109,14 +114,13 @@ class Board extends React.Component {
 }
 
 /**
- *
+ * Root react component
  *
  * @class Game
  * @extends {React.Component}
  */
 class Game extends React.Component {
     /**
-     * Root react component
      *
      * @returns
      * @memberof Game
