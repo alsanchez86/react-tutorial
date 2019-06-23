@@ -56,9 +56,10 @@ class Board extends React.Component {
      * @memberof Board
      */
     handleClick(i) {
+        const squares = this.state.squares.map((e, j) => e = (e !== "") ? e : ((i === j) ? this.getNextMark(this.state.xIsNext) : ""));
+        const winner = calculateWinner(squares);
         if (this.state.winner === ""){
-            this.setState(new BoardState(this.state.squares.map((e, j) => e = (e !== "") ? e : ((i === j) ? this.getNextMark(this.state.xIsNext) : "")), !this.state.xIsNext, this.state.winner),
-            () => console.log("State updated:", this.state));
+            this.setState(new BoardState(squares, !this.state.xIsNext, winner), () => console.log("State updated:", this.state));
         }
     }
 
@@ -85,9 +86,7 @@ class Board extends React.Component {
      * @memberof Board
      */
     render() {
-        let status = "";
-        this.state.winner = calculateWinner(this.state.squares);
-        status = (this.state.winner !== "") ? ('Winner: ' + this.state.winner) : ('Next player: ' + this.getNextMark(this.state.xIsNext));
+        let status = (this.state.winner !== "") ? ('Winner: ' + this.state.winner) : ('Next player: ' + this.getNextMark(this.state.xIsNext));
         return (
             <div>
                 <div className="status">
