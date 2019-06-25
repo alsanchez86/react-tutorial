@@ -56,9 +56,11 @@ class Board extends React.Component {
      * @memberof Board
      */
     handleClick(i) {
-        const squares = this.state.squares.map((e, j) => e = (e !== "") ? e : ((i === j) ? this.getNextMark(this.state.xIsNext) : ""));
-        const winner = calculateWinner(squares);
-        if (this.state.winner === ""){
+        let squares;
+        let winner;
+        if ((this.state.squares.filter(e => e === "").length > 0) && (this.state.winner === "")){
+            squares = this.state.squares.map((e, j) => e = (e !== "") ? e : ((i === j) ? this.getNextMark(this.state.xIsNext) : ""));
+            winner = calculateWinner(squares);
             this.setState(new BoardState(squares, !this.state.xIsNext, winner), () => console.log("State updated:", this.state));
         }
     }
@@ -86,7 +88,7 @@ class Board extends React.Component {
      * @memberof Board
      */
     render() {
-        let status = (this.state.winner !== "") ? ('Winner: ' + this.state.winner) : ('Next player: ' + this.getNextMark(this.state.xIsNext));
+        const status = ((this.state.squares.filter(e => e === "").length === 0) && (this.state.winner === "")) ? "Draw" : ((this.state.winner !== "") ? ('Winner: ' + this.state.winner) : ('Next player: ' + this.getNextMark(this.state.xIsNext)));
         return (
             <div>
                 <div className="status">
@@ -179,5 +181,5 @@ function calculateWinner(squares) {
         let notNull = (map.indexOf("") === -1);
         let equals = map.every((e, i, a) => e === a[0]);
         return (notNull && equals);
-    }).map(e => e.map(a => squares[a]).reduce(e => e)).toString() || "";
+    }).map(e => e.map(a => squares[a]).reduce(e => e))[0] || "";
 }
