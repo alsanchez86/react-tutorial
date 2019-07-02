@@ -10,15 +10,35 @@ import "./index.css";
 class History {
     /**
      * Creates an instance of History.
+     *
      * @param {String} [id=""]
      * @param {String} [text=""]
-     * @param {Object<GameState>} [state=new GameState()]
+     * @param {Object<State>} [state=new State()]
      * @memberof History
      */
-    constructor(id = "", text = "", state = new GameState()) {
+    constructor(id = "", text = "", state = new State()) {
         this.id = id;
         this.text = text;
         this.state = state;
+    }
+}
+
+/**
+ * Uniq state app (Flux).
+ * Musnt have states on childrens components.
+ *
+ * @class State
+ */
+class State {
+    /**
+     * Creates an instance of State.
+     * @param {Array} [squares=Array(9).fill("")]
+     * @memberof State
+     */
+    constructor(squares = Array(9).fill(""), xIsNext = true, winner = "") {
+        this.squares = squares;
+        this.xIsNext = xIsNext;
+        this.winner = winner;
     }
 }
 
@@ -33,18 +53,19 @@ class GameHistory {
      * @memberof GameHistory
      */
     constructor() {
-        this.history = [];
+        this.history = new Array(); // Private array of Histories
+        this.add(); // Add a History on the start of the game for go back to the start
     }
 
     /**
      * Add state to history
      *
-     * @param {Object<GameState>} state
+     * @param {Object<State>} state
      * @memberof GameHistory
      */
-    add(state = new GameState()){
+    add(state = new State()){
         const id = (+new Date()).toString(36);
-        const text = (this.history.length > 0) ? "Go to move #" + this.history.length : "Go to game start";
+        const text = (this.history.length > 0) ? ("Go to move #" + this.history.length) : "Go to game start";
         this.history.push(new History(id, text, state));
     }
 
@@ -61,32 +82,14 @@ class GameHistory {
     /**
      *
      *
-     * @param {number} [m=0]
-     * @returns
+     * @returns {string}
      * @memberof GameHistory
      */
-    backward(m = 0){
-        return this.history.indexOf(m);
+    getLastHistoryId(){
+        return this.history.slice(-1).pop().id;
     }
 }
 
-/**
- *
- *
- * @class GameState
- */
-class GameState {
-    /**
-     * Creates an instance of GameState.
-     * @param {Array} [squares=Array(9).fill("")]
-     * @memberof GameState
-     */
-    constructor(squares = Array(9).fill(""), xIsNext = true, winner = "") {
-        this.squares = squares;
-        this.xIsNext = xIsNext;
-        this.winner = winner;
-    }
-}
 
 /**
  * Root react component
@@ -102,8 +105,9 @@ class Game extends React.Component {
      */
     constructor(p){
         super(p);
-        this.state = new GameState();
+        this.state = new State();
         this.history = new GameHistory();
+        this.disabled = false;
     }
 
     /**
@@ -119,6 +123,7 @@ class Game extends React.Component {
 
     /**
      * Handle click on square component
+     * TODO: Comprobar que la casilla clicada no está ya ocupada
      *
      * @param {Number} i
      * @memberof Game
@@ -127,12 +132,36 @@ class Game extends React.Component {
         const notWinnerYet = (this.state.squares.filter(e => e === "").length > 0) && (this.state.winner === "");
         let squares;
         let winner;
+        let state;
 
-        if (notWinnerYet){
+        if (notWinnerYet && !this.disabled){
             squares = this.state.squares.map((e, j) => e = (e !== "") ? e : ((i === j) ? this.getNextMark(this.state.xIsNext) : ""));
             winner = calculateWinner(squares);
-            this.setState(new GameState(squares, !this.state.xIsNext, winner), () => this.history.add(this.state));
+            state = new State(squares, !this.state.xIsNext, winner);
+            this.history.add(state);
+            this.setState(state);
         }
+    }
+
+    /**
+     *
+     *
+     * @memberof Game
+     */
+    jumpTo(id = ""){
+        this.disabled = (this.history.getLastHistoryId() !== id);
+        this.setState(this.history.get().filter(e => id === e.id)[0].state);
+    }
+
+    /**
+     *
+     *
+     * @param {number} [i=0]
+     * @returns {string}
+     * @memberof Game
+     */
+    getButtonClass(id = ""){
+        return (this.history.getLastHistoryId() === id) ? "last-history" : "";
     }
 
     /**
@@ -147,8 +176,10 @@ class Game extends React.Component {
         const moves = this.history.get().map(e => {
             return (
                 <li key={e.id}>
-                    <button>
-                        {e.text}
+                    <button
+                        className={this.getButtonClass(e.id)}
+                        onClick={() => this.jumpTo(e.id)}>
+                            {e.text}
                     </button>
                 </li>
             );
@@ -159,6 +190,7 @@ class Game extends React.Component {
                 <div className="game-board">
                     <Board
                         squares={this.state.squares}
+                        disabled={this.disabled}
                         onClick={(i) => this.handleClick(i)}
                     />
                 </div>
@@ -208,7 +240,7 @@ class Board extends React.Component {
      */
     render() {
         return (
-            <div>
+            <div className={"board " + (this.props.disabled ? "disabled" : "")}>
                 <div className="board-row">
                     {this.renderSquare(0)}
                     {this.renderSquare(1)}
