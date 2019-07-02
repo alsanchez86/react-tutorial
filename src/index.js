@@ -130,11 +130,13 @@ class Game extends React.Component {
      */
     handleClick(i = 0) {
         const notWinnerYet = (this.state.squares.filter(e => e === "").length > 0) && (this.state.winner === "");
+        const notOcupped = (this.state.squares[i] === "");
+        const notDisabled = !this.disabled;
         let squares;
         let winner;
         let state;
 
-        if (notWinnerYet && !this.disabled){
+        if (notDisabled && notOcupped && notWinnerYet){
             squares = this.state.squares.map((e, j) => e = (e !== "") ? e : ((i === j) ? this.getNextMark(this.state.xIsNext) : ""));
             winner = calculateWinner(squares);
             state = new State(squares, !this.state.xIsNext, winner);
@@ -195,11 +197,9 @@ class Game extends React.Component {
                     />
                 </div>
                 <div className="game-info">
-                    {/* status */}
                     <div className="status">
                         {status}
                     </div>
-                    {/* history */}
                     <ol>
                         {moves}
                     </ol>

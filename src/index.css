@@ -9,13 +9,13 @@ ul {
 }
 
 .board {
-    border: 1px solid red;
-    background-color: #fff;
+    border: 1px solid blue;
+    background-color: #FFF;
 }
 
 .board.disabled {
     opacity: 0.5;
-    background-color: #999;
+    background-color: #FEFEFE;
 }
 
 .board-row:after {
@@ -30,7 +30,7 @@ ul {
 
 .square {
     background: none;
-    border: 1px solid red;
+    border: 1px solid blue;
     float: left;
     font-size: 24px;
     font-weight: bold;
