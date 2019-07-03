@@ -66,7 +66,6 @@ class GameHistory {
      */
     constructor() {
         this.history = new Array(); // Private array of Histories
-        this.add(); // Add a History on the start of the game for go back to the start
     }
 
     /**
@@ -76,7 +75,7 @@ class GameHistory {
      * @memberof GameHistory
      */
     add(state = new State()){
-        const id = (+new Date()).toString(36); // Watched on https://stackoverflow.com/questions/8012002/create-a-unique-number-with-javascript-time/28918947
+        const id = Math.random().toString(36).substring(2);
         const text = (this.history.length > 0) ? ("Go to move #" + this.history.length) : "Go to game start";
         this.history.push(new History(id, text, state));
     }
@@ -109,7 +108,6 @@ class GameHistory {
      */
     clean(){
         this.history = new Array();
-        this.add();
     }
 }
 
@@ -162,6 +160,9 @@ class Game extends React.Component {
             squares = this.state.squares.map((e, j) => e = (e !== "") ? e : ((i === j) ? this.getNextMark(this.state.xIsNext) : ""));
             winner = calculateWinner(squares);
             state = new State(squares, !this.state.xIsNext, winner);
+            if (this.history.get().length === 0){
+                this.history.add();
+            }
             this.setState(state);
             this.history.add(state);
         }
