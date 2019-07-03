@@ -253,6 +253,16 @@ class Game extends React.Component {
  * @extends {React.Component}
  */
 class Board extends React.Component {
+    renderRow(from = 0, to = 0){
+        const length = ((to - from) + 1);
+        const squares = Array.from(Array(length), (e, i) => (from + i)).map(e => this.renderSquare(e));
+        return (
+            <div className="board-row">
+                {squares}
+            </div>
+        );
+    }
+
     /**
      * Return render square component
      *
@@ -263,6 +273,7 @@ class Board extends React.Component {
     renderSquare(i = 0) {
         return (
             <Square
+                key={i}
                 value={this.props.squares[i]}
                 onClick={() => this.props.onClick(i)}
             />
@@ -278,21 +289,9 @@ class Board extends React.Component {
     render() {
         return (
             <div className={"board " + (this.props.disabled ? "disabled" : "")}>
-                <div className="board-row">
-                    {this.renderSquare(0)}
-                    {this.renderSquare(1)}
-                    {this.renderSquare(2)}
-                </div>
-                <div className="board-row">
-                    {this.renderSquare(3)}
-                    {this.renderSquare(4)}
-                    {this.renderSquare(5)}
-                </div>
-                <div className="board-row">
-                    {this.renderSquare(6)}
-                    {this.renderSquare(7)}
-                    {this.renderSquare(8)}
-                </div>
+                {this.renderRow(0, 2)}
+                {this.renderRow(3, 5)}
+                {this.renderRow(6, 8)}
             </div>
         );
     }
