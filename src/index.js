@@ -1,15 +1,22 @@
+/**
+ * TODO:
+ * 1.- Separar los componentes en archivos independientes
+ * 2.- Usar sass en lugar de css
+ *
+*/
+
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 
 /**
- *
+ * History prototype
  *
  * @class History
  */
 class History {
     /**
-     * Creates an instance of History.
+     * Creates an instance of History
      *
      * @param {String} [id=""]
      * @param {String} [text=""]
@@ -24,15 +31,19 @@ class History {
 }
 
 /**
- * Uniq state app (Flux).
- * Musnt have states on childrens components.
+ * State prototype
+ * Unique state app (Flux) on the main component (Game)
+ * Musnt have states on childrens components
  *
  * @class State
  */
 class State {
     /**
      * Creates an instance of State.
-     * @param {Array} [squares=Array(9).fill("")]
+     *
+     * @param {string} [squares=Array(9).fill("")]
+     * @param {boolean} [xIsNext=true]
+     * @param {string} [winner=""]
      * @memberof State
      */
     constructor(squares = Array(9).fill(""), xIsNext = true, winner = "") {
@@ -49,7 +60,8 @@ class State {
  */
 class GameHistory {
     /**
-     * Creates an instance of GameHistory.
+     * Creates an instance of GameHistory
+     *
      * @memberof GameHistory
      */
     constructor() {
@@ -64,15 +76,15 @@ class GameHistory {
      * @memberof GameHistory
      */
     add(state = new State()){
-        const id = (+new Date()).toString(36);
+        const id = (+new Date()).toString(36); // Watched on https://stackoverflow.com/questions/8012002/create-a-unique-number-with-javascript-time/28918947
         const text = (this.history.length > 0) ? ("Go to move #" + this.history.length) : "Go to game start";
         this.history.push(new History(id, text, state));
     }
 
     /**
+     * Get history private array
      *
-     *
-     * @returns
+     * @returns {object}
      * @memberof GameHistory
      */
     get(){
@@ -80,16 +92,26 @@ class GameHistory {
     }
 
     /**
-     *
+     * Get the id of the last history added
      *
      * @returns {string}
      * @memberof GameHistory
      */
     getLastHistoryId(){
-        return this.history.slice(-1).pop().id;
+        let sliced = this.history.slice(-1).pop();
+        return sliced ? sliced.id : "";
+    }
+
+    /**
+     * Reset history private array
+     *
+     * @memberof GameHistory
+     */
+    clean(){
+        this.history = new Array();
+        this.add();
     }
 }
-
 
 /**
  * Root react component
@@ -99,7 +121,8 @@ class GameHistory {
  */
 class Game extends React.Component {
     /**
-     * Creates an instance of Game.
+     * Creates an instance of Game
+     *
      * @param {Object} p
      * @memberof Game
      */
@@ -111,7 +134,7 @@ class Game extends React.Component {
     }
 
     /**
-     *
+     * Get the next player mark
      *
      * @param {Boolean} xIsNext
      * @returns {String}
@@ -123,7 +146,6 @@ class Game extends React.Component {
 
     /**
      * Handle click on square component
-     * TODO: Comprobar que la casilla clicada no está ya ocupada
      *
      * @param {Number} i
      * @memberof Game
@@ -140,19 +162,31 @@ class Game extends React.Component {
             squares = this.state.squares.map((e, j) => e = (e !== "") ? e : ((i === j) ? this.getNextMark(this.state.xIsNext) : ""));
             winner = calculateWinner(squares);
             state = new State(squares, !this.state.xIsNext, winner);
-            this.history.add(state);
             this.setState(state);
+            this.history.add(state);
         }
     }
 
     /**
+     * Set a State existing on history private array
      *
-     *
+     * @param {string} [id=""]
      * @memberof Game
      */
     jumpTo(id = ""){
         this.disabled = (this.history.getLastHistoryId() !== id);
         this.setState(this.history.get().filter(e => id === e.id)[0].state);
+    }
+
+    /**
+     * Restart game (all private neccesary properties)
+     *
+     * @memberof Game
+     */
+    restart(){
+        this.disabled = false;
+        this.history.clean();
+        this.setState(new State());
     }
 
     /**
@@ -194,6 +228,9 @@ class Game extends React.Component {
                         squares={this.state.squares}
                         disabled={this.disabled}
                         onClick={(i) => this.handleClick(i)}
+                    />
+                    <ResetButton
+                        onClick={() => this.restart()}
                     />
                 </div>
                 <div className="game-info">
@@ -276,6 +313,22 @@ function Square(p) {
             className="square"
             onClick={p.onClick}>
                 {p.value}
+        </button>
+    );
+}
+
+/**
+ *
+ *
+ * @param {object} p
+ * @returns
+ */
+function ResetButton(p){
+    return (
+        <button
+            className="restart-button"
+            onClick={p.onClick}>
+                Restart
         </button>
     );
 }

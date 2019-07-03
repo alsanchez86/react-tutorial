@@ -9,6 +9,7 @@ ul {
 }
 
 .board {
+    margin-bottom: 1rem;
     border: 1px solid blue;
     background-color: #FFF;
 }
@@ -61,4 +62,8 @@ ul {
 button.last-history {
     background-color: green;
     color: #fff;
+}
+
+button.restart-button {
+    width: 100%;
 }
