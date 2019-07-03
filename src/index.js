@@ -75,7 +75,7 @@ class GameHistory {
      * @memberof GameHistory
      */
     add(state = new State()){
-        const id = Math.random().toString(36).substring(2);
+        const id = getRamdonId();
         const text = (this.history.length > 0) ? ("Go to move #" + this.history.length) : "Go to game start";
         this.history.push(new History(id, text, state));
     }
@@ -355,4 +355,13 @@ function calculateWinner(squares = []) {
         let equals = map.every((e, i, a) => e === a[0]);
         return (notNull && equals);
     }).map(e => e.map(a => squares[a]).reduce(e => e))[0] || "";
+}
+
+/**
+ * Returns a random string
+ *
+ * @returns {string}
+ */
+function getRamdonId(){
+    return (Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15));
 }
