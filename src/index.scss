@@ -5,24 +5,26 @@ body {
 
 ol,
 ul {
-    padding-left: 30px;
+    padding-left: 35px;
 }
 
 .board {
     margin-bottom: 1rem;
     border: 1px solid blue;
     background-color: #FFF;
+
+    &.disabled {
+        opacity: 0.5;
+        background-color: #FEFEFE;
+    }
 }
 
-.board.disabled {
-    opacity: 0.5;
-    background-color: #FEFEFE;
-}
-
-.board-row:after {
-    clear: both;
-    content: "";
-    display: table;
+.board-row {
+    &:after{
+        clear: both;
+        content: "";
+        display: table;
+    }
 }
 
 .status {
@@ -42,12 +44,16 @@ ul {
     width: 34px;
 }
 
-.square:focus {
-    outline: none;
+.square {
+    &:focus{
+        outline: none;
+    }
 }
 
-.kbd-navigation .square:focus {
-    background: #ddd;
+.kbd-navigation .square {
+    &:focus{
+        background: #ddd;
+    }
 }
 
 .game {
@@ -59,11 +65,12 @@ ul {
     margin-left: 20px;
 }
 
-button.last-history {
-    background-color: green;
-    color: #fff;
-}
-
-button.restart-button {
-    width: 100%;
+button {
+    &.last-history {
+        background-color: green;
+        color: #fff;
+    }
+    &.restart-button {
+        width: 100%;
+    }
 }

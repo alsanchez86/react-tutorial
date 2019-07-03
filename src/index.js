@@ -1,13 +1,12 @@
 /**
  * TODO:
  * 1.- Separar los componentes en archivos independientes
- * 2.- Usar sass en lugar de css
  *
 */
 
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
+import "./index.scss";
 
 /**
  * History prototype
