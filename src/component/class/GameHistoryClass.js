@@ -16,7 +16,7 @@ export default class GameHistoryClass {
      * @memberof GameHistoryClass
      */
     constructor() {
-        this.history = new Array(); // Private array of Histories
+        this.history = []; // Private array of Histories
         this.helper = new HelperClass();
     }
 
@@ -59,6 +59,6 @@ export default class GameHistoryClass {
      * @memberof GameHistoryClass
      */
     clean(){
-        this.history = new Array();
+        this.history = [];
     }
 }

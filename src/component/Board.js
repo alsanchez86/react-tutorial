@@ -22,7 +22,7 @@ export default class BoardComponent extends Component {
     renderSquare(i = 0) {
         return (
             <SquareJsx
-                key={i}
+                key={i.toString()}
                 value={this.props.squares[i]}
                 onClick={() => this.props.onClick(i)}
             />
@@ -35,7 +35,7 @@ export default class BoardComponent extends Component {
 
         return (
             <RowJsx
-                key={from}
+                key={from.toString()}
                 squares={squares}
             />
         );

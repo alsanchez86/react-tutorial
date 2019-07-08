@@ -1,10 +1,11 @@
-// React
+// Import React library
 import React, { Component } from "react";
 import { createStore } from "redux";
-// Class
+import devToolsEnhancer from "remote-redux-devtools";
+// Import classes used on Game component
 import StateClass from "./class/StateClass";
 import GameHistoryClass from "./class/GameHistoryClass";
-// Component
+// Import childs components
 import Board from "./Board";
 // JSX
 import ResetButtonJsx from "./template/ResetButtonJsx";
@@ -38,7 +39,7 @@ export default class GameComponent extends Component {
                 default:
                     return state;
             }
-        });
+        }, devToolsEnhancer());
     }
 
     /**
