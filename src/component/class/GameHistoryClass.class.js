@@ -1,39 +1,42 @@
 // Class
-import State from "./State.class";
-import History from "./History.class";
+import StateClass from "./StateClass.class";
+import HistoryClass from "./HistoryClass.class";
+import HelperClass from "./HelperClass.class";
 
 /**
  * Class to manage the history of the game
  *
- * @class GameHistory
+ * @export
+ * @class GameHistoryClass
  */
-export default class GameHistory {
+export default class GameHistoryClass {
     /**
-     * Creates an instance of GameHistory
+     * Creates an instance of GameHistoryClass.
      *
-     * @memberof GameHistory
+     * @memberof GameHistoryClass
      */
     constructor() {
         this.history = new Array(); // Private array of Histories
+        this.helper = new HelperClass();
     }
 
     /**
      * Add state to history
      *
-     * @param {Object<State>} state
-     * @memberof GameHistory
+     * @param {StateClass} state
+     * @memberof GameHistoryClass
      */
-    add(state = new State()){
-        const id = getRamdonId();
+    add(state = new StateClass()){
+        const id = this.helper.getRamdonId();
         const text = (this.history.length > 0) ? ("Go to move #" + this.history.length) : "Go to game start";
-        this.history.push(new History(id, text, state));
+        this.history.push(new HistoryClass(id, text, state));
     }
 
     /**
      * Get history private array
      *
      * @returns {object}
-     * @memberof GameHistory
+     * @memberof GameHistoryClass
      */
     get(){
         return this.history;
@@ -43,7 +46,7 @@ export default class GameHistory {
      * Get the id of the last history added
      *
      * @returns {string}
-     * @memberof GameHistory
+     * @memberof GameHistoryClass
      */
     getLastHistoryId(){
         let sliced = this.history.slice(-1).pop();
@@ -53,18 +56,9 @@ export default class GameHistory {
     /**
      * Reset history private array
      *
-     * @memberof GameHistory
+     * @memberof GameHistoryClass
      */
     clean(){
         this.history = new Array();
     }
-}
-
-/**
- * Returns a random string
- *
- * @returns {string}
- */
-function getRamdonId(){
-    return (Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15));
 }

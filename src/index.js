@@ -1,10 +1,11 @@
 // Style
 import "bootstrap/dist/css/bootstrap.css";
-import "./style/custom.scss";
+import "./style/index.scss";
 // React
 import React from "react";
 import ReactDOM from "react-dom";
 // Component
-import Game from "./class/Game.class";
-// RENDER
-ReactDOM.render(<Game/>, document.getElementById("root"));
+import GameComponent from "./component/GameComponent.component";
+
+// Render root app component
+ReactDOM.render(<GameComponent/>, document.getElementById("root"));

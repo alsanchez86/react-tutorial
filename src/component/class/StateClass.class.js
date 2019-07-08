@@ -1,18 +1,18 @@
 /**
- * State prototype
+ * StateClass prototype
  * Unique state app (Flux) on the main component (Game)
  * Musnt have states on childrens components
  *
- * @class State
+ * @class StateClass
  */
-export default class State {
+export default class StateClass {
     /**
      * Creates an instance of State.
      *
      * @param {string} [squares=Array(9).fill("")]
      * @param {boolean} [xIsNext=true]
      * @param {string} [winner=""]
-     * @memberof State
+     * @memberof StateClass
      */
     constructor(squares = Array(9).fill(""), xIsNext = true, winner = "") {
         this.squares = squares;
