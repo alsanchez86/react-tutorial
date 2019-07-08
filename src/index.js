@@ -1,3 +1,9 @@
+/**
+ * TODO:
+ * - Meter flux para el control de estado de la APP
+ * - Probar https://github.com/reactstrap/reactstrap
+*/
+
 // Style
 import "bootstrap/dist/css/bootstrap.css";
 import "./style/index.scss";

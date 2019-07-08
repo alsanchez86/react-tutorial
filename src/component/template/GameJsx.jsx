@@ -8,19 +8,22 @@ import React from "react";
  * @returns
  */
 const GameJsx = (p) => (
-    <div className="game">
-        <div className="game-board">
-            {p.board}
-            {p.resetButton}
-        </div>
-
-        <div className="game-info">
-            <div className="status">
-                {p.status}
+    <div className="container">
+        <div className="row">
+            <div className="col-6">
+                {p.board}
             </div>
-            <ol>
-                {p.moves}
-            </ol>
+
+            <div className="col-6">
+                {p.resetButton}
+
+                <div className="status">
+                    {p.status}
+                </div>
+                <ol>
+                    {p.moves}
+                </ol>
+            </div>
         </div>
     </div>
 );
