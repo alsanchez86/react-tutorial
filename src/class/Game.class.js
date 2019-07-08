@@ -1,10 +1,10 @@
 // React
 import React from "react";
 // Class
-import State from "../class/State.class";
-import GameHistory from "../class/GameHistory.class";
+import State from "./State.class";
+import GameHistory from "./GameHistory.class";
 // Component
-import Board from "./Board.component";
+import Board from "./Board.class";
 
 /**
  * Root react component

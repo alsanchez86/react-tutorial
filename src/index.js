@@ -2,7 +2,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 // Component
-import Game from "./component/Game.component";
+import Game from "./class/Game.class";
 // Style
 import "./style/index.scss";
 // RENDER
