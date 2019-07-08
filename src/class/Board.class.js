@@ -1,13 +1,13 @@
 // React
-import React from "react";
+import React, { Component } from 'react';
 
 /**
  *
  *
  * @class Board
- * @extends {React.Component}
+ * @extends {Component}
  */
-export default class Board extends React.Component {
+export default class Board extends Component {
     renderRow(from = 0, to = 0){
         const length = ((to - from) + 1);
         const squares = Array.from(Array(length), (e, i) => (from + i)).map(e => this.renderSquare(e));

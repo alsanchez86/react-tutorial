@@ -1,5 +1,5 @@
 // React
-import React from "react";
+import React, { Component } from 'react';
 // Class
 import State from "./State.class";
 import GameHistory from "./GameHistory.class";
@@ -10,9 +10,9 @@ import Board from "./Board.class";
  * Root react component
  *
  * @class Game
- * @extends {React.Component}
+ * @extends {Component}
  */
-export default class Game extends React.Component {
+export default class Game extends Component {
     /**
      * Creates an instance of Game
      *
@@ -93,7 +93,7 @@ export default class Game extends React.Component {
      * @memberof Game
      */
     getButtonClass(id = ""){
-        return (this.history.getLastHistoryId() === id) ? "last-history" : "";
+        return (this.history.getLastHistoryId() === id) ? "btn-success" : "btn-secondary";
     }
 
     /**
@@ -109,7 +109,8 @@ export default class Game extends React.Component {
             return (
                 <li key={e.id}>
                     <button
-                        className={this.getButtonClass(e.id)}
+                        type="button"
+                        className={`btn btn-sm ${this.getButtonClass(e.id)}`}
                         onClick={() => this.jumpTo(e.id)}>
                             {e.text}
                     </button>
@@ -151,7 +152,8 @@ export default class Game extends React.Component {
 function ResetButton(p){
     return (
         <button
-            className="restart-button"
+            type="button"
+            className="btn btn-primary btn-sm restart-button"
             onClick={p.onClick}>
                 Restart
         </button>
