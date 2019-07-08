@@ -1,16 +1,14 @@
 // React
-import React, {
-    Component
-} from "react";
+import React, { Component } from "react";
 // Class
-import StateClass from "./class/StateClass.class";
-import GameHistoryClass from "./class/GameHistoryClass.class";
+import StateClass from "./class/StateClass";
+import GameHistoryClass from "./class/GameHistoryClass";
 // Component
-import BoardComponent from "./BoardComponent.component";
+import Board from "./Board";
 // JSX
-import ResetButtonJsx from "./template/ResetButtonJsx.template";
-import MoveJsx from "./template/MoveJsx.template";
-import GameJsx from "./template/GameJsx.template";
+import ResetButtonJsx from "./template/ResetButtonJsx";
+import MoveJsx from "./template/MoveJsx";
+import GameJsx from "./template/GameJsx";
 
 /**
  * Root React App Component
@@ -136,7 +134,7 @@ export default class GameComponent extends Component {
         const won = (this.state.winner !== "");
         const status = draw ? "Draw" : (won ? ('Winner: ' + this.state.winner) : ('Next player: ' + this.getNextMark(this.state.xIsNext)));
         const board = (
-            <BoardComponent
+            <Board
                 squares={this.state.squares}
                 disabled={this.disabled}
                 onClick={(i) => this.squareClick(i)}

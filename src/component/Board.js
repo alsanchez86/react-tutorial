@@ -1,9 +1,9 @@
 // React
 import React, { Component } from "react";
 // JSX
-import SquareJsx from "./template/SquareJsx.template";
-import BoardJsx from "./template/BoardJsx.template";
-import RowJsx from "./template/RowJsx.template";
+import SquareJsx from "./template/SquareJsx";
+import BoardJsx from "./template/BoardJsx";
+import RowJsx from "./template/RowJsx";
 
 /**
  *

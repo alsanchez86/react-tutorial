@@ -1,5 +1,5 @@
 // Class
-import StateClass from "./StateClass.class";
+import StateClass from "./StateClass";
 
 /**
  * HistoryClass prototype

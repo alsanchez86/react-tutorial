@@ -1,7 +1,7 @@
 // Class
-import StateClass from "./StateClass.class";
-import HistoryClass from "./HistoryClass.class";
-import HelperClass from "./HelperClass.class";
+import StateClass from "./StateClass";
+import HistoryClass from "./HistoryClass";
+import HelperClass from "./HelperClass";
 
 /**
  * Class to manage the history of the game

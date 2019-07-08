@@ -5,7 +5,7 @@ import "./style/index.scss";
 import React from "react";
 import ReactDOM from "react-dom";
 // Component
-import GameComponent from "./component/GameComponent.component";
+import Game from "./component/Game";
 
 // Render root app component
-ReactDOM.render(<GameComponent/>, document.getElementById("root"));
+ReactDOM.render(<Game/>, document.getElementById("root"));
