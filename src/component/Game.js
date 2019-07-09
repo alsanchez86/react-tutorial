@@ -1,7 +1,5 @@
 // Import React library
 import React, { Component } from "react";
-import { createStore } from "redux";
-import devToolsEnhancer from "remote-redux-devtools";
 // Import classes used on Game component
 import StateClass from "./class/StateClass";
 import GameHistoryClass from "./class/GameHistoryClass";
@@ -30,16 +28,6 @@ export default class GameComponent extends Component {
         this.state = new StateClass();
         this.history = new GameHistoryClass();
         this.disabled = false;
-        this.store = createStore((state = 0, action) => {
-            switch (action.type) {
-                case 'INCREMENT':
-                    return state + 1;
-                case 'DECREMENT':
-                    return state - 1;
-                default:
-                    return state;
-            }
-        }, devToolsEnhancer());
     }
 
     /**
