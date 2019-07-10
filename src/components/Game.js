@@ -1,27 +1,30 @@
 // Import React library
 import React, { Component } from "react";
+// Impurt redux actions
+import { connect } from "react-redux";
+import { addTodo } from "../actions";
 // Import classes used on Game component
 import StateClass from "./class/StateClass";
 import GameHistoryClass from "./class/GameHistoryClass";
 // Import childs components
 import Board from "./Board";
 // JSX
-import ResetButtonJsx from "./template/ResetButtonJsx";
-import MoveJsx from "./template/MoveJsx";
-import GameJsx from "./template/GameJsx";
+import ResetButtonJsx from "./templates/ResetButtonJsx";
+import MoveJsx from "./templates/MoveJsx";
+import GameJsx from "./templates/GameJsx";
 
 /**
  * Root React App Component
  *
  * @export
- * @class GameComponent
+ * @class Game
  * @extends {Component}
  */
-export default class GameComponent extends Component {
+export default class Game extends Component {
     /**
-     * Creates an instance of GameComponent.
+     * Creates an instance of Game.
      * @param {*} p
-     * @memberof GameComponent
+     * @memberof Game
      */
     constructor(p) {
         super(p);

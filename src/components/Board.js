@@ -1,17 +1,17 @@
 // React
 import React, { Component } from "react";
 // JSX
-import SquareJsx from "./template/SquareJsx";
-import BoardJsx from "./template/BoardJsx";
-import RowJsx from "./template/RowJsx";
+import SquareJsx from "./templates/SquareJsx";
+import BoardJsx from "./templates/BoardJsx";
+import RowJsx from "./templates/RowJsx";
 
 /**
- *
+ * Board component
  *
  * @class Board
  * @extends {Component}
  */
-export default class BoardComponent extends Component {
+export default class Board extends Component {
     /**
      * Return render square component
      *
