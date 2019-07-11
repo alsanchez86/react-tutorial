@@ -3,13 +3,14 @@ import React, { Component } from "react";
 // Import classes used on Game component
 import StateClass from "./class/StateClass";
 import GameHistoryClass from "./class/GameHistoryClass";
-// Import childs components
+// Import children components
 import Board from "./Board";
-// JSX
+// Import Jsx templates
 import ResetButtonJsx from "./templates/ResetButtonJsx";
 import MoveJsx from "./templates/MoveJsx";
 import GameJsx from "./templates/GameJsx";
-// Reactstrap
+import StatusJsx from "./templates/StatusJsx";
+// Import reactstrap components
 import { Alert } from "reactstrap";
 
 /**
@@ -21,8 +22,9 @@ import { Alert } from "reactstrap";
  */
 export default class Game extends Component {
     /**
-     * Creates an instance of Game.
-     * @param {*} p
+     * Creates an instance of Game
+     *
+     * @param {object} p
      * @memberof Game
      */
     constructor(p) {
@@ -35,8 +37,8 @@ export default class Game extends Component {
     /**
      * Get the next player mark
      *
-     * @param {Boolean} xIsNext
-     * @returns {String}
+     * @param {boolean} xIsNext
+     * @returns {string}
      * @memberof Game
      */
     getNextMark(xIsNext = false) {
@@ -46,7 +48,7 @@ export default class Game extends Component {
     /**
      * Handle click on square component
      *
-     * @param {Number} i
+     * @param {number} i
      * @memberof Game
      */
     squareClick(i = 0) {
@@ -127,7 +129,7 @@ export default class Game extends Component {
     }
 
     /**
-     * TODO: Disparar un alert de reactstrap cuando se haya terminado la partida con el resultado de la misma: draw o winner.
+     *
      *
      * @returns
      * @memberof Game
@@ -135,52 +137,36 @@ export default class Game extends Component {
     render() {
         const draw = (this.state.squares.filter(e => e === "").length === 0) && (this.state.winner === "");
         const won = (this.state.winner !== "");
-        const current = draw ? "Draw" : (won ? ('Winner: ' + this.state.winner) : ('Next player: ' + this.getNextMark(this.state.xIsNext)));
-        const board = (
-            <Board
-                squares={this.state.squares}
-                disabled={this.disabled}
-                onClick={(i) => this.squareClick(i)}
-            />
-        );
-        const resetButton = (
-            <ResetButtonJsx
-                onClick={() => this.restart()}
-            />
-        );
-        const moves = this.history.get().map(e =>
-            <MoveJsx
-                key = {e.id}
-                text={e.text}
-                className={this.getButtonClass(e.id)}
-                onClick={() => this.jumpTo(e.id)}
-            />
-        );
-        const alert = (status = {}) => {
-            if (draw || won){
-                return (
-                    <Alert color="success">
-                        {status}
-                    </Alert>
-                );
-            }
-        };
-        const status = (status = {}) => {
-            if (!draw && !won){
-                return (
-                    <div className="status">
-                        {status}
-                    </div>
-                );
-            }
-        };
+        const status = draw ? "Draw" : (won ? ('Winner: ' + this.state.winner) : ('Next player: ' + this.getNextMark(this.state.xIsNext)));
+
         return (
             <GameJsx
-                board={board}
-                resetButton={resetButton}
-                moves={moves}
-                status={status(current)}
-                alert={alert(current)}
+                resetButton={<ResetButtonJsx onClick={() => this.restart()}/>}
+                status={<StatusJsx value={status}/>}
+                board={
+                    <Board
+                        squares={this.state.squares}
+                        disabled={this.disabled}
+                        onClick={(i) => this.squareClick(i)}
+                    />
+                }
+                moves={
+                    this.history.get().map(e =>
+                        <MoveJsx
+                            key={e.id}
+                            text={e.text}
+                            className={this.getButtonClass(e.id)}
+                            onClick={() => this.jumpTo(e.id)}
+                        />
+                    )
+                }
+                alert={
+                    (draw || won) ?
+                        <Alert color="success">
+                            {status}
+                        </Alert>
+                    : null
+                }
             />
         );
     }

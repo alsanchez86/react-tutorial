@@ -1,8 +1,9 @@
 /**
  * TODO:
- * - Probar https://github.com/reactstrap/reactstrap.
+ * - Probar componentes de https://github.com/reactstrap/reactstrap.
  * - Probar un router de reactjs para el manejo de rutas en la SPA.
  * - Hacer una request a una API pública para probar los services de react: https://github.com/axios/axios
+ * - Usar Rambda o Lodash para la programación funcional.
  * - Meter Redux(flux) para el control de estado de la APP.
  * - Usar inmutable.js para mantener la inmutabilidad del estado.
  * - https://es.redux.js.org/docs/introduccion/herencia.html#rx
