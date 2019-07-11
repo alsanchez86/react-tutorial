@@ -1,6 +1,6 @@
-// React
+// Import React library
 import React, { Component } from "react";
-// JSX
+// Import Jsx templates
 import SquareJsx from "./templates/SquareJsx";
 import BoardJsx from "./templates/BoardJsx";
 import RowJsx from "./templates/RowJsx";

@@ -1,7 +1,7 @@
 /**
  * TODO:
  * - Probar componentes de https://github.com/reactstrap/reactstrap. -> OK
- * - Probar un router de reactjs para el manejo de rutas en la SPA. -> https://es.redux.js.org/docs/avanzado/uso-con-react-router.html
+ * - Probar un router de reactjs para el manejo de rutas en la SPA. -> https://es.redux.js.org/docs/avanzado/uso-con-react-router.html, https://medium.com/@dvenegas/empezando-con-react-router-v4-2b8c31c7eb11
  * - Hacer una request a una API pública para probar los services de react: https://github.com/axios/axios
  * - Usar Rambda o Lodash para la programación funcional.
  * - Probar Typescript para ver que nos aporta.
@@ -13,10 +13,16 @@
 // Import styles
 import "bootstrap/dist/css/bootstrap.css";
 import "./style/index.scss";
-// Import React library
+// Import React library and plugins
 import React from "react";
 import { render } from "react-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 // Import root component
-import Game from "./components/Game";
+import App from "./components/App";
 // Render APP
-render(<Game/>, document.getElementById("root"), () => console.info("App rendered."));
+render(
+    <Router>
+        <App/>
+    </Router>,
+    document.getElementById("root"), () => console.info("App rendered.")
+);
