@@ -1,8 +1,5 @@
 // Import React library
 import React, { Component } from "react";
-// Impurt redux actions
-import { connect } from "react-redux";
-import { addTodo } from "../actions";
 // Import classes used on Game component
 import StateClass from "./class/StateClass";
 import GameHistoryClass from "./class/GameHistoryClass";

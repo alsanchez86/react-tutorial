@@ -8,22 +8,11 @@
 */
 
 // Import styles
-import "bootstrap/dist/css/bootstrap.css";
 import "./style/index.scss";
 // Import React library
 import React from "react";
 import { render } from "react-dom";
-// Import Redux utils
-import { createStore } from "redux";
 // Import root component
 import Game from "./components/Game";
-// Import root reducer
-import reducer from "./reducers";
-// Create root store redux
-const store = createStore(reducer);
-// Init APP: Render root app component
-const reactRender = () => render(<Game/>, document.getElementById("root"), () => console.info("App rendered."));
 // Render APP
-reactRender();
-// Subscribe store to react render
-store.subscribe(reactRender);
+render(<Game/>, document.getElementById("root"), () => console.info("App rendered."));
