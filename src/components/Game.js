@@ -7,11 +7,10 @@ import GameHistoryClass from "./class/GameHistoryClass";
 import Board from "./Board";
 // Import Jsx templates
 import ResetButtonJsx from "./templates/ResetButtonJsx";
-import MoveJsx from "./templates/MoveJsx";
 import GameJsx from "./templates/GameJsx";
 import StatusJsx from "./templates/StatusJsx";
 // Import reactstrap components
-import { Alert } from "reactstrap";
+import { Alert, Button } from "reactstrap";
 
 /**
  * Root React App Component
@@ -100,8 +99,8 @@ export default class Game extends Component {
      * @returns {string}
      * @memberof Game
      */
-    getButtonClass(id = "") {
-        return (this.history.getLastHistoryId() === id) ? "btn-success" : "btn-secondary";
+    getButtonColor(id = "") {
+        return (this.history.getLastHistoryId() === id) ? "success" : "secondary";
     }
 
     /**
@@ -141,8 +140,16 @@ export default class Game extends Component {
 
         return (
             <GameJsx
-                resetButton={<ResetButtonJsx onClick={() => this.restart()}/>}
-                status={<StatusJsx value={status}/>}
+                resetButton={
+                    (this.history.get().length > 0) ?
+                        <ResetButtonJsx onClick={() => this.restart()}/>
+                    : null
+                }
+                status={
+                    (!draw && !won) ?
+                        <StatusJsx value={status}/>
+                    : null
+                }
                 board={
                     <Board
                         squares={this.state.squares}
@@ -152,12 +159,13 @@ export default class Game extends Component {
                 }
                 moves={
                     this.history.get().map(e =>
-                        <MoveJsx
-                            key={e.id}
-                            text={e.text}
-                            className={this.getButtonClass(e.id)}
-                            onClick={() => this.jumpTo(e.id)}
-                        />
+                        <Button
+                            size="sm"
+                            key={e.id.toString()}
+                            color={this.getButtonColor(e.id)}
+                            onClick={() => this.jumpTo(e.id)}>
+                                {e.text}
+                        </Button>
                     )
                 }
                 alert={

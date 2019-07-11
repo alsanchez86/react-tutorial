@@ -1,4 +1,5 @@
 import React from "react";
+import { ButtonGroup } from "reactstrap";
 
 export default (p) =>
 
@@ -6,15 +7,18 @@ export default (p) =>
     <div className="row">
         <div className="col-6">
             {p.board}
+            {p.status}
             {p.alert}
         </div>
 
         <div className="col-6">
             {p.resetButton}
-            {p.status}
-            <ol>
-                {p.moves}
-            </ol>
+
+            <ButtonGroup
+                vertical
+                size="sm">
+                    {p.moves}
+            </ButtonGroup>
         </div>
     </div>
 </div>
