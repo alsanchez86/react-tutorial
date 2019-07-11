@@ -4,7 +4,7 @@ import React, { Component } from "react";
 import StateClass from "./class/StateClass";
 import GameHistoryClass from "./class/GameHistoryClass";
 // Import children components
-import Board from "./Board";
+// import Board from "./Board";
 // Import Jsx templates
 import ResetButtonJsx from "./templates/ResetButtonJsx";
 import GameJsx from "./templates/GameJsx";
@@ -139,24 +139,20 @@ export default class Game extends Component {
         const status = draw ? "Draw" : (won ? ('Winner: ' + this.state.winner) : ('Next player: ' + this.getNextMark(this.state.xIsNext)));
 
         return (
+            // TODO: LLevarse los componentes a la plantilla GameJsx.jsx. No pasar componentes como propiedades a GameJsx.jsx
+
             <GameJsx
                 resetButton={
                     (this.history.get().length > 0) ?
                         <ResetButtonJsx onClick={() => this.restart()}/>
                     : null
                 }
-                status={
-                    (!draw && !won) ?
-                        <StatusJsx value={status}/>
-                    : null
-                }
-                board={
-                    <Board
-                        squares={this.state.squares}
-                        disabled={this.disabled}
-                        onClick={(i) => this.squareClick(i)}
-                    />
-                }
+                status={status}
+                draw={draw}
+                won={won}
+                squares={this.state.squares}
+                disabled={this.disabled}
+                squareClick={(i) => this.squareClick(i)}
                 moves={
                     this.history.get().map(e =>
                         <Button
