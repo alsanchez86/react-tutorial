@@ -1,5 +1,7 @@
 // React
 import React from "react";
+// Reacstrap
+import { Button } from "reactstrap";
 
 /**
  * Reset button JSX template
@@ -8,12 +10,12 @@ import React from "react";
  * @returns
  */
 const ResetButtonJsx = (p) => (
-    <button
-        type="button"
-        className="btn btn-primary btn-sm restart-button"
+    <Button
+        color="danger"
+        size="sm"
         onClick={p.onClick}>
             Restart
-    </button>
+    </Button>
 );
 
 export default ResetButtonJsx;
