@@ -9,6 +9,8 @@ import Board from "./Board";
 import ResetButtonJsx from "./templates/ResetButtonJsx";
 import MoveJsx from "./templates/MoveJsx";
 import GameJsx from "./templates/GameJsx";
+// Reactstrap
+import { Alert } from "reactstrap";
 
 /**
  * Root React App Component
@@ -125,6 +127,7 @@ export default class Game extends Component {
     }
 
     /**
+     * TODO: Disparar un alert de reactstrap cuando se haya terminado la partida con el resultado de la misma: draw o winner.
      *
      * @returns
      * @memberof Game
@@ -132,7 +135,7 @@ export default class Game extends Component {
     render() {
         const draw = (this.state.squares.filter(e => e === "").length === 0) && (this.state.winner === "");
         const won = (this.state.winner !== "");
-        const status = draw ? "Draw" : (won ? ('Winner: ' + this.state.winner) : ('Next player: ' + this.getNextMark(this.state.xIsNext)));
+        const current = draw ? "Draw" : (won ? ('Winner: ' + this.state.winner) : ('Next player: ' + this.getNextMark(this.state.xIsNext)));
         const board = (
             <Board
                 squares={this.state.squares}
@@ -145,22 +148,39 @@ export default class Game extends Component {
                 onClick={() => this.restart()}
             />
         );
-        const moves = this.history.get().map(e => {
-            return (
-                <MoveJsx
-                    key = {e.id}
-                    text={e.text}
-                    className={this.getButtonClass(e.id)}
-                    onClick={() => this.jumpTo(e.id)}
-                />
-            );
-        });
+        const moves = this.history.get().map(e =>
+            <MoveJsx
+                key = {e.id}
+                text={e.text}
+                className={this.getButtonClass(e.id)}
+                onClick={() => this.jumpTo(e.id)}
+            />
+        );
+        const alert = (status = {}) => {
+            if (draw || won){
+                return (
+                    <Alert color="success">
+                        {status}
+                    </Alert>
+                );
+            }
+        };
+        const status = (status = {}) => {
+            if (!draw && !won){
+                return (
+                    <div className="status">
+                        {status}
+                    </div>
+                );
+            }
+        };
         return (
             <GameJsx
                 board={board}
                 resetButton={resetButton}
-                status={status}
                 moves={moves}
+                status={status(current)}
+                alert={alert(current)}
             />
         );
     }

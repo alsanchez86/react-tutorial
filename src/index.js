@@ -1,10 +1,10 @@
 /**
  * TODO:
- * - Meter Redux(flux) para el control de estado de la APP
  * - Probar https://github.com/reactstrap/reactstrap.
- * - Usar inmutable.js para mantener la inmutabilidad del estado.
+ * - Probar un router de reactjs para el manejo de rutas en la SPA.
  * - Hacer una request a una API pública para probar los services de react: https://github.com/axios/axios
- * - Probar un router de reactjs para el manejo de rutas en la SPA
+ * - Meter Redux(flux) para el control de estado de la APP.
+ * - Usar inmutable.js para mantener la inmutabilidad del estado.
  * - https://es.redux.js.org/docs/introduccion/herencia.html#rx
 */
 
