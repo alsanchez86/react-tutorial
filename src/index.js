@@ -8,6 +8,7 @@
  * - Meter Redux(flux) para el control de estado de la APP. -> https://www.youtube.com/watch?v=OXWn4XiDUmw
  * - Usar inmutable.js para mantener la inmutabilidad del estado.
  * - https://es.redux.js.org/docs/introduccion/herencia.html#rx
+ * - Ver testing con reactjs.
 */
 
 // Import styles

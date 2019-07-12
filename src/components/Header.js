@@ -11,6 +11,6 @@ export default class Header extends Component {
      * @memberof App
      */
     render() {
-        return <HeaderJsx></HeaderJsx>;
+        return (<HeaderJsx/>);
     }
 }

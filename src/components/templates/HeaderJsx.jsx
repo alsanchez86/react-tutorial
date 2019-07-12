@@ -3,7 +3,9 @@ import React from "react";
 
 export default (p) =>
 
-<div></div>
+<div>
+    Header
+</div>
 
 {/* <header>
     <nav>
