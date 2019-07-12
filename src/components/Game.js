@@ -3,14 +3,8 @@ import React, { Component } from "react";
 // Import classes used on Game component
 import StateClass from "./class/StateClass";
 import GameHistoryClass from "./class/GameHistoryClass";
-// Import children components
-// import Board from "./Board";
 // Import Jsx templates
-import ResetButtonJsx from "./templates/ResetButtonJsx";
 import GameJsx from "./templates/GameJsx";
-import StatusJsx from "./templates/StatusJsx";
-// Import reactstrap components
-import { Alert, Button } from "reactstrap";
 
 /**
  * Root React App Component
@@ -139,38 +133,17 @@ export default class Game extends Component {
         const status = draw ? "Draw" : (won ? ('Winner: ' + this.state.winner) : ('Next player: ' + this.getNextMark(this.state.xIsNext)));
 
         return (
-            // TODO: LLevarse los componentes a la plantilla GameJsx.jsx. No pasar componentes como propiedades a GameJsx.jsx
-
             <GameJsx
-                resetButton={
-                    (this.history.get().length > 0) ?
-                        <ResetButtonJsx onClick={() => this.restart()}/>
-                    : null
-                }
-                status={status}
                 draw={draw}
                 won={won}
+                status={status}
                 squares={this.state.squares}
                 disabled={this.disabled}
                 squareClick={(i) => this.squareClick(i)}
-                moves={
-                    this.history.get().map(e =>
-                        <Button
-                            size="sm"
-                            key={e.id.toString()}
-                            color={this.getButtonColor(e.id)}
-                            onClick={() => this.jumpTo(e.id)}>
-                                {e.text}
-                        </Button>
-                    )
-                }
-                alert={
-                    (draw || won) ?
-                        <Alert color="success">
-                            {status}
-                        </Alert>
-                    : null
-                }
+                resetButtonClick={() => this.restart()}
+                history={this.history.get()}
+                getButtonColor={(id) => this.getButtonColor(id)}
+                jumpTo={(id) => this.jumpTo(id)}
             />
         );
     }

@@ -1,7 +1,12 @@
+// Import React library
 import React from "react";
-import { ButtonGroup } from "reactstrap";
+// Import children components
 import Board from "../Board";
+// Import Jsx templates
 import StatusJsx from "./StatusJsx";
+import ResetButtonJsx from "./ResetButtonJsx";
+// Import reactstrap components
+import { Alert, Button, ButtonGroup } from "reactstrap";
 
 export default (p) =>
 
@@ -13,21 +18,33 @@ export default (p) =>
                 disabled={p.disabled}
                 onClick={p.squareClick}
             />
-            {
-                (!p.draw && !p.won) ?
-                    <StatusJsx value={p.status}/>
-                : null
-            }
-            {p.alert}
+
+            {(!p.draw && !p.won) ?
+                <StatusJsx value={p.status}/>
+            : null}
+
+            {(p.draw || p.won) ?
+                <Alert color="success">
+                    {p.status}
+                </Alert>
+            : null}
         </div>
 
         <div className="col-6">
-            {p.resetButton}
+            {(p.history.length > 0) ?
+                <ResetButtonJsx onClick={p.resetButtonClick}/>
+            : null}
 
-            <ButtonGroup
-                vertical
-                size="sm">
-                    {p.moves}
+            <ButtonGroup vertical size="sm">
+                {p.history.map(e =>
+                    <Button
+                        size="sm"
+                        key={e.id.toString()}
+                        color={p.getButtonColor(e.id)}
+                        onClick={() => p.jumpTo(e.id)}>
+                            {e.text}
+                    </Button>
+                )}
             </ButtonGroup>
         </div>
     </div>
