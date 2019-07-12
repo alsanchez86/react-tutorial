@@ -10,17 +10,16 @@ import BoardJsx from "./templates/BoardJsx";
  * @extends {Component}
  */
 export default class Board extends Component {
+    /**
+     * Return an array with "from" and "to" values in ASC order
+     *
+     * @param {number} [from=0]
+     * @param {number} [to=0]
+     * @returns
+     * @memberof Board
+     */
     getRowArray(from = 0, to = 0){
         return Array.from(Array(((to - from) + 1)), (e, i) => (from + i));
-
-        // return (
-        //     <RowJsx
-        //         key={from.toString()}
-        //         squares={this.props.squares}
-        //         rowSquares={rowSquares}
-        //         squareClick={(i) => this.props.onClick(i)}
-        //     />
-        // );
     }
 
     /**
