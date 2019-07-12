@@ -1,5 +1,6 @@
 /**
  * TODO:
+ * - Iluminar la línea ganadora en el caso de que se produzca.
  * - Probar componentes de https://github.com/reactstrap/reactstrap. -> OK
  * - Probar un router de reactjs para el manejo de rutas en la SPA. -> https://es.redux.js.org/docs/avanzado/uso-con-react-router.html, https://medium.com/@dvenegas/empezando-con-react-router-v4-2b8c31c7eb11
  * - Hacer una request a una API pública para probar los services de react: https://github.com/axios/axios

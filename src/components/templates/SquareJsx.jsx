@@ -8,6 +8,7 @@ export default (p) =>
 <Button
     color="primary"
     className="square"
+    active={p.value !== ""}
     onClick={p.onClick}>
         {p.value}
 </Button>

@@ -11,17 +11,16 @@
     }
 }
 
-.square {
+button.square {
     height: $square;
     width: $square;
     padding: 0;
-    float: left;
-    line-height: $square;
+    line-height: $square - $squareDiff;
 
     background: none;
     border: 1px solid blue;
-    font-size: $square - 10;
-    font-weight: bold;
+    border-radius: 0;
+    font-size: $square - $squareDiff;
     text-align: center;
 
     &:focus{
