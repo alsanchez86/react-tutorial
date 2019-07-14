@@ -1,10 +1,10 @@
 // Import React library
 import React, { Component } from "react";
 // Import classes used on Game component
-import StateClass from "./class/StateClass";
-import GameHistoryClass from "./class/GameHistoryClass";
+import StateClass from "./StateClass";
+import GameHistoryClass from "./GameHistoryClass";
 // Import Jsx templates
-import GameJsx from "./templates/GameJsx";
+import GameJsx from "./Game";
 
 /**
  * Root React App Component

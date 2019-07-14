@@ -1,9 +1,16 @@
 // Import React library
 import React, { Component } from "react";
 // Import Jsx templates
-import HeaderJsx from "./templates/HeaderJsx";
+import AppJsx from "./App";
 
-export default class Header extends Component {
+/**
+ *
+ *
+ * @export
+ * @class App
+ * @extends {Component}
+ */
+export default class App extends Component {
     /**
      *
      *
@@ -11,6 +18,6 @@ export default class Header extends Component {
      * @memberof App
      */
     render() {
-        return (<HeaderJsx/>);
+        return (<AppJsx/>);
     }
 }

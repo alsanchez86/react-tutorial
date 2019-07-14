@@ -14,13 +14,12 @@
 
 // Import styles
 import "bootstrap/dist/css/bootstrap.css";
-import "./style/index.scss";
 // Import React library and plugins
 import React from "react";
 import { render } from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
 // Import root component
-import App from "./components/App";
+import App from "./app/components/App/";
 // Render APP
 render(
     <Router>
