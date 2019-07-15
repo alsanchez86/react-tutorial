@@ -21,7 +21,7 @@ import React from "react";
 import { render } from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
 // Import root component
-import App from "./app/components/App/";
+import App from "./components/App/";
 // Render APP
 render(
     <Router>
