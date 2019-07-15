@@ -1,7 +1,7 @@
 // Import React library
 import React, { Component } from "react";
 // Import Jsx template
-import HeaderJsx from "./Header";
+import HeaderJsx from "./templates/Header";
 
 /**
  *

@@ -1,7 +1,7 @@
 // Import React library
 import React, { Component } from "react";
 // Import Jsx template
-import BoardJsx from "./Board";
+import BoardJsx from "./templates/Board";
 
 /**
  *

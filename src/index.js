@@ -1,6 +1,7 @@
 /**
  * TODO:
  * - https://medium.com/devschile/c%C3%B3mo-estructurar-proyectos-react-ba6fac658ac5
+ * - Solamente propagar el estado en la jerarquía de componentes, no propagar el estado en propiedades independientes.
  * - Iluminar la línea ganadora en el caso de que se produzca.
  * - Probar componentes de https://github.com/reactstrap/reactstrap. -> OK
  * - Probar un router de reactjs para el manejo de rutas en la SPA. -> https://es.redux.js.org/docs/avanzado/uso-con-react-router.html, https://medium.com/@dvenegas/empezando-con-react-router-v4-2b8c31c7eb11

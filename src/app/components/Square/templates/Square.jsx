@@ -1,5 +1,5 @@
 // Import component style
-import "./Square.scss";
+import "./style/Square.scss";
 // Import React library
 import React from "react";
 // Import reactstrap components

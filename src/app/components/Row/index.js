@@ -1,7 +1,7 @@
 // Import React library
 import React, { Component } from "react";
 // Import Jsx templates
-import RowJsx from "./Row";
+import RowJsx from "./templates/Row";
 
 /**
  *

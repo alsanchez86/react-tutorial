@@ -7,7 +7,7 @@ export default (p) =>
     Header
 </div>
 
-{/* <header>
+/* <header>
     <nav>
         <ul>
             <li>
@@ -21,4 +21,4 @@ export default (p) =>
             </li>
         </ul>
     </nav>
-</header> */}
+</header> */

@@ -1,8 +1,7 @@
 // Import React library
 import React, { Component } from "react";
 // Import Jsx template
-import AppJsx from "./App";
-
+import AppJsx from "./templates/App";
 
 /**
  *
@@ -12,7 +11,6 @@ import AppJsx from "./App";
  * @extends {Component}
  */
 export default class App extends Component {
-
     /**
      *
      *
@@ -20,6 +18,8 @@ export default class App extends Component {
      * @memberof App
      */
     render() {
-        return (<AppJsx/>);
+        return (
+            <AppJsx/>
+        );
     }
 }

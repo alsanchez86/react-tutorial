@@ -1,5 +1,5 @@
 // Class
-import HelperClass from "../../utils/HelperClass";
+import { getRamdonId } from "../../../utils/functions";
 import StateClass from "./StateClass";
 import HistoryClass from "./HistoryClass";
 
@@ -17,7 +17,7 @@ export default class GameHistoryClass {
      */
     constructor() {
         this.history = []; // Private array of Histories
-        this.helper = new HelperClass();
+        // this.helper = new HelperClass();
     }
 
     /**
@@ -27,7 +27,7 @@ export default class GameHistoryClass {
      * @memberof GameHistoryClass
      */
     add(state = new StateClass()){
-        const id = this.helper.getRamdonId();
+        const id = getRamdonId();
         const text = (this.history.length > 0) ? ("Go to move #" + this.history.length) : "Go to game start";
         this.history.push(new HistoryClass(id, text, state));
     }
