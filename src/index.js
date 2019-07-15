@@ -12,6 +12,7 @@
  * - Usar inmutable.js para mantener la inmutabilidad del estado.
  * - https://es.redux.js.org/docs/introduccion/herencia.html#rx
  * - Ver testing con reactjs.
+ * - Si un componente solamente es una plantilla para su representación, está justificado la existencia de ese componente? o se puede fusionar con otro componente que si tenga cierta lógica en su "controlador".
 */
 
 // Import styles
@@ -20,6 +21,8 @@ import "bootstrap/dist/css/bootstrap.css";
 import React from "react";
 import { render } from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
+// Import redux
+import { Provider } from "react-redux";
 // Import root component
 import App from "./components/App/";
 // Render APP

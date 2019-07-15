@@ -27,8 +27,8 @@ export default (p) =>
                 <NavLink tag={() =>
                     <Link to="/dummy" className="nav-link">
                         Dummy
-                    </Link>}
-                />
+                    </Link>
+                }/>
             </NavItem>
         </Nav>
     </Navbar>
