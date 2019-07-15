@@ -21,14 +21,18 @@ import "bootstrap/dist/css/bootstrap.css";
 import React from "react";
 import { render } from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
-// Import redux
+// Import react-redux
 import { Provider } from "react-redux";
+// Import store
+import store from "./redux/store";
 // Import root component
 import App from "./components/App/";
 // Render APP
 render(
-    <Router>
-        <App/>
-    </Router>,
+    <Provider store={store}>
+        <Router>
+            <App/>
+        </Router>
+    </Provider>,
     document.getElementById("root"), () => console.info("App rendered.")
 );
