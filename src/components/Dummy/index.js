@@ -1,25 +1,25 @@
 // Import React library
 import React, { Component } from "react";
 // Import Jsx template
-import HeaderJsx from "./templates/Header";
+import DummyJsx from "./templates/Dummy";
 
 /**
  *
  *
  * @export
- * @class Header
+ * @class Dummy
  * @extends {Component}
  */
-export default class Header extends Component {
+export default class Dummy extends Component {
     /**
      *
      *
      * @returns
-     * @memberof Header
+     * @memberof Dummy
      */
     render() {
         return (
-            <HeaderJsx/>
+            <DummyJsx/>
         );
     }
 }
