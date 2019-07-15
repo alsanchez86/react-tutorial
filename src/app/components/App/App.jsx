@@ -1,6 +1,6 @@
 // Import React library
 import React from "react";
-// Import Jsx templates
+// Import components
 import Header from "../Header";
 import Game from "../Game";
 

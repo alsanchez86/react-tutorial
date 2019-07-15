@@ -3,7 +3,20 @@ import React, { Component } from "react";
 // Import Jsx templates
 import RowJsx from "./Row";
 
+/**
+ *
+ *
+ * @export
+ * @class Row
+ * @extends {Component}
+ */
 export default class Row extends Component {
+    /**
+     *
+     *
+     * @returns
+     * @memberof Row
+     */
     render() {
         return (
             <RowJsx

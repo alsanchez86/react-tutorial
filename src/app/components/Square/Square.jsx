@@ -1,9 +1,9 @@
+// Import component style
+import "./Square.scss";
 // Import React library
 import React from "react";
 // Import reactstrap components
 import { Button } from "reactstrap";
-// Import component style
-import "./Square.scss";
 
 export default (p) =>
 

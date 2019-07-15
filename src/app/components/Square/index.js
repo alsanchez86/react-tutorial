@@ -1,9 +1,22 @@
 // Import React library
 import React, { Component } from "react";
-// Import Jsx templates
+// Import Jsx template
 import SquareJsx from "./Square";
 
+/**
+ *
+ *
+ * @export
+ * @class Square
+ * @extends {Component}
+ */
 export default class Square extends Component {
+    /**
+     *
+     *
+     * @returns
+     * @memberof Square
+     */
     render() {
         return (
             <SquareJsx

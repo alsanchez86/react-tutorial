@@ -1,6 +1,6 @@
 // Import React library
 import React from "react";
-// Import children components
+// Import components
 import Board from "../Board";
 // Import reactstrap components
 import { Alert, Button, ButtonGroup } from "reactstrap";

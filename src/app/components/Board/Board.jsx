@@ -1,9 +1,9 @@
+// Import component style
+import "./Board.scss";
 // Import React library
 import React from "react";
-// Import Jsx templates
+// Import components
 import Row from "../Row";
-// Import component styles
-import "./Board.scss";
 
 export default (p) =>
 

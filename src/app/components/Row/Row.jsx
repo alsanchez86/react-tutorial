@@ -1,6 +1,6 @@
 // Import React library
 import React from "react";
-// Import Jsx templates
+// Import Jsx template
 import Square from "../Square";
 
 export default (p) =>

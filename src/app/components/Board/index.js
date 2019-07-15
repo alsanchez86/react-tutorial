@@ -1,11 +1,12 @@
 // Import React library
 import React, { Component } from "react";
-// Import Jsx templates
+// Import Jsx template
 import BoardJsx from "./Board";
 
 /**
- * Board component
  *
+ *
+ * @export
  * @class Board
  * @extends {Component}
  */
@@ -25,7 +26,7 @@ export default class Board extends Component {
     /**
      *
      *
-     * @returns {ReactDOM}
+     * @returns
      * @memberof Board
      */
     render() {

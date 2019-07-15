@@ -3,7 +3,7 @@ import React, { Component } from "react";
 // Import classes used on Game component
 import StateClass from "./StateClass";
 import GameHistoryClass from "./GameHistoryClass";
-// Import Jsx templates
+// Import Jsx template
 import GameJsx from "./Game";
 
 /**
@@ -40,6 +40,7 @@ export default class Game extends Component {
 
     /**
      * Handle click on square component
+     * TODO: Ver si este método nos lo podemos llevar al componente Square para no tener que ir propagándolo componente a componente en la jerarquía.
      *
      * @param {number} i
      * @memberof Game
