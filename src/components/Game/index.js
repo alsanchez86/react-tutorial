@@ -1,5 +1,9 @@
 // Import React library
 import React, { Component } from "react";
+// Import react redux
+import { connect } from "react-redux";
+// Import redux actions
+import setDisabled from "../../redux/actions/setDisabled"
 // Import classes used on Game component
 import StateClass from "./class/StateClass";
 import GameHistoryClass from "./class/GameHistoryClass";
@@ -13,7 +17,7 @@ import GameJsx from "./templates/Game";
  * @class Game
  * @extends {Component}
  */
-export default class Game extends Component {
+class Game extends Component {
     /**
      * Creates an instance of Game
      *
@@ -87,6 +91,10 @@ export default class Game extends Component {
         this.setState(new StateClass());
     }
 
+    onPruebaClick (){
+        this.props.setDisabled(true);
+    }
+
     /**
      *
      *
@@ -133,6 +141,10 @@ export default class Game extends Component {
         const won = (this.state.winner !== "");
         const status = draw ? "Draw" : (won ? ('Winner: ' + this.state.winner) : ('Next player: ' + this.getNextMark(this.state.xIsNext)));
 
+        const {
+            setDisabled
+        } = this.props;
+
         return (
             <GameJsx
                 draw={draw}
@@ -145,7 +157,23 @@ export default class Game extends Component {
                 history={this.history.get()}
                 getButtonColor={(id) => this.getButtonColor(id)}
                 jumpTo={(id) => this.jumpTo(id)}
+                onPruebaClick={() => this.onPruebaClick()}
             />
         );
     }
 }
+
+export default connect(
+    // mapStateToProps
+    state => {
+        return {
+            disabled: state.disabled
+        }
+    },
+    // mapDispatchToProps
+    dispatch => {
+        return {
+            setDisabled: () => dispatch(setDisabled(true))
+        }
+    }
+)(Game);

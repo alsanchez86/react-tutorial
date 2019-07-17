@@ -8,6 +8,8 @@ import { Alert, Button, ButtonGroup } from "reactstrap";
 export default (p) =>
 
 <div className="container">
+    disabled: { p.disabled.toString() }
+
     <div className="row">
         <div className="col-6">
             <Board
@@ -38,6 +40,10 @@ export default (p) =>
                         Restart
                 </Button>
             : null}
+
+            <Button onClick={() => p.onPruebaClick()}>
+                xxxx
+            </Button>
 
             <ButtonGroup vertical size="sm">
                 {p.history.map(e =>
