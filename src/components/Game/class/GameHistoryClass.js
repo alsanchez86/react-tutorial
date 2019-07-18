@@ -17,7 +17,6 @@ export default class GameHistoryClass {
      */
     constructor() {
         this.history = []; // Private array of Histories
-        // this.helper = new HelperClass();
     }
 
     /**

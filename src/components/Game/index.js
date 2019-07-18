@@ -3,7 +3,7 @@ import React, { Component } from "react";
 // Import react redux
 import { connect } from "react-redux";
 // Import redux actions
-import setDisabled from "../../redux/actions/setDisabled"
+import { setDisabled } from "../../redux/actions/setDisabled"
 // Import classes used on Game component
 import StateClass from "./class/StateClass";
 import GameHistoryClass from "./class/GameHistoryClass";
@@ -91,10 +91,6 @@ class Game extends Component {
         this.setState(new StateClass());
     }
 
-    onPruebaClick (){
-        this.props.setDisabled(true);
-    }
-
     /**
      *
      *
@@ -141,10 +137,6 @@ class Game extends Component {
         const won = (this.state.winner !== "");
         const status = draw ? "Draw" : (won ? ('Winner: ' + this.state.winner) : ('Next player: ' + this.getNextMark(this.state.xIsNext)));
 
-        const {
-            setDisabled
-        } = this.props;
-
         return (
             <GameJsx
                 draw={draw}
@@ -157,7 +149,7 @@ class Game extends Component {
                 history={this.history.get()}
                 getButtonColor={(id) => this.getButtonColor(id)}
                 jumpTo={(id) => this.jumpTo(id)}
-                onPruebaClick={() => this.onPruebaClick()}
+                onPruebaClick={() => this.props.onPruebaClick()}
             />
         );
     }
@@ -165,15 +157,11 @@ class Game extends Component {
 
 export default connect(
     // mapStateToProps
-    state => {
-        return {
-            disabled: state.disabled
-        }
-    },
+    state => ({
+        disabled: state.disabled
+    }),
     // mapDispatchToProps
-    dispatch => {
-        return {
-            setDisabled: () => dispatch(setDisabled(true))
-        }
-    }
+    dispatch => ({
+        onPruebaClick: () => dispatch(setDisabled(true))
+    })
 )(Game);
