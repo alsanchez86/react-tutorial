@@ -1,6 +1,6 @@
 export default (state = false, {type, value}) => {
     switch(type){
-        case "toggleDisabled":
+        case "TOGGLE_DISABLED":
             return !state;
         default:
             return state;

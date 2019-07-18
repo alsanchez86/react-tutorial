@@ -22,7 +22,6 @@ export default class Row extends Component {
             <RowJsx
                 squares={this.props.squares}
                 rowSquares={this.props.rowSquares}
-                squareClick={(e) => this.props.squareClick(e)}
             />
         );
     }

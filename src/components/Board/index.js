@@ -34,7 +34,6 @@ export default class Board extends Component {
             <BoardJsx
                 disabled={this.props.disabled}
                 squares={this.props.squares}
-                squareClick={(i) => this.props.onClick(i)}
                 rows={[
                     this.getRowArray(0, 2),
                     this.getRowArray(3, 5),

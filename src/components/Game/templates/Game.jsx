@@ -15,7 +15,6 @@ export default (p) =>
             <Board
                 squares={p.squares}
                 disabled={p.disabled}
-                onClick={p.squareClick}
             />
 
             {(!p.draw && !p.won) ?

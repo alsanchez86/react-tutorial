@@ -1,3 +1,3 @@
 export const toggleDisabled = () => ({
-    type: "toggleDisabled"
+    type: "TOGGLE_DISABLED"
 });

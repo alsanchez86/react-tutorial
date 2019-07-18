@@ -5,8 +5,8 @@ import { connect } from "react-redux";
 // Import redux actions
 import { toggleDisabled } from "../../redux/actions/toggleDisabled";
 // Import classes used on Game component
-import StateClass from "./class/StateClass";
-import GameHistoryClass from "./class/GameHistoryClass";
+// import StateClass from "./class/StateClass";
+// import GameHistoryClass from "./class/GameHistoryClass";
 // Import Jsx template
 import GameJsx from "./templates/Game";
 
@@ -24,12 +24,12 @@ class Game extends Component {
      * @param {object} p
      * @memberof Game
      */
-    constructor(p) {
-        super(p);
-        this.state = new StateClass();
-        // this.history = new GameHistoryClass();
-        // this.disabled = false;
-    }
+    // constructor(p) {
+    //     super(p);
+    //     // this.state = new StateClass();
+    //     // this.history = new GameHistoryClass();
+    //     // this.disabled = false;
+    // }
 
     /**
      * Get the next player mark
@@ -40,33 +40,6 @@ class Game extends Component {
      */
     getNextMark(xIsNext = false) {
         return xIsNext ? "X" : "O";
-    }
-
-    /**
-     * Handle click on square component
-     * TODO: Ver si este método nos lo podemos llevar al componente Square para no tener que ir propagándolo componente a componente en la jerarquía.
-     *
-     * @param {number} i
-     * @memberof Game
-     */
-    squareClick(i = 0) {
-        const notWinnerYet = (this.props.squares.filter(e => e === "").length > 0) && (this.state.winner === "");
-        const notOcupped = (this.props.squares[i] === "");
-        const notDisabled = !this.props.disabled;
-        let squares;
-        let winner;
-        let state;
-
-        if (notDisabled && notOcupped && notWinnerYet) {
-            // squares = this.state.squares.map((e, j) => e = (e !== "") ? e : ((i === j) ? this.getNextMark(this.state.xIsNext) : ""));
-            // winner = this.calculateWinner(squares);
-            // state = new StateClass(squares, !this.state.xIsNext, winner);
-            // if (this.history.get().length === 0) {
-            //     this.history.add();
-            // }
-            // this.setState(state);
-            // this.history.add(state);
-        }
     }
 
     /**
@@ -88,7 +61,7 @@ class Game extends Component {
     restart() {
         // this.disabled = false;
         // this.history.clean();
-        this.setState(new StateClass());
+        // this.setState(new StateClass());
     }
 
     /**
@@ -134,12 +107,9 @@ class Game extends Component {
      * @memberof Game
      */
     render() {
-        // const draw = (this.props.squares.filter(e => e === "").length === 0) && (this.state.winner === "");
-        // const won = (this.state.winner !== "");
-        // const status = draw ? "Draw" : (won ? ('Winner: ' + this.state.winner) : ('Next player: ' + this.getNextMark(this.state.xIsNext)));
-        const draw = false;
-        const won = false;
-        const status = "----";
+        const draw = (this.props.squares.filter(e => e === "").length === 0) && (this.props.winner === "");
+        const won = (this.props.winner !== "");
+        const status = draw ? "Draw" : (won ? ('Winner: ' + this.props.winner) : ('Next player: ' + this.getNextMark(this.props.xIsNext)));
 
         return (
             <GameJsx
@@ -148,8 +118,6 @@ class Game extends Component {
                 status={status}
                 squares={this.props.squares}
                 disabled={this.props.disabled}
-
-                // squareClick={(i) => this.squareClick(i)}
                 // resetButtonClick={() => this.restart()}
                 // history={this.history.get()}
                 // getButtonColor={(id) => this.getButtonColor(id)}
@@ -163,8 +131,10 @@ class Game extends Component {
 export default connect(
     // mapStateToProps
     state => ({
-        disabled: state.disabled,
-        squares: state.squares
+        squares: state.squares,
+        xIsNext: state.xIsNext,
+        winner: state.winner,
+        disabled: state.disabled
     }),
     // mapDispatchToProps
     dispatch => ({

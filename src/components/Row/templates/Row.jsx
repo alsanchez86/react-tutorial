@@ -9,8 +9,8 @@ export default (p) =>
     {p.rowSquares.map(e =>
         <Square
             key={e.toString()}
+            index={e}
             value={p.squares[e]}
-            onClick={() => p.squareClick(e)}
         />
     )}
 </div>

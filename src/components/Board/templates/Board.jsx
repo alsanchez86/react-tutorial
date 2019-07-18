@@ -13,7 +13,6 @@ export default (p) =>
             key={i.toString()}
             squares={p.squares}
             rowSquares={e}
-            squareClick={(e) => p.squareClick(e)}
         />
     )}
 </div>
