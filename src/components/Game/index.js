@@ -143,7 +143,7 @@ class Game extends Component {
                 won={won}
                 status={status}
                 squares={this.state.squares}
-                disabled={this.disabled}
+                disabled={this.props.disabled}
                 squareClick={(i) => this.squareClick(i)}
                 resetButtonClick={() => this.restart()}
                 history={this.history.get()}
