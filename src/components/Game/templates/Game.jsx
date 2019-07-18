@@ -32,20 +32,20 @@ export default (p) =>
         </div>
 
         <div className="col-6">
-            {(p.history.length > 0) ?
+            {/* {(p.history.length > 0) ?
                 <Button
                     color="danger"
                     size="sm"
                     onClick={p.resetButtonClick}>
                         Restart
                 </Button>
-            : null}
+            : null} */}
 
-            <Button onClick={() => p.onPruebaClick()}>
+            <Button onClick={() => p.disableClick()}>
                 xxxx
             </Button>
 
-            <ButtonGroup vertical size="sm">
+            {/* <ButtonGroup vertical size="sm">
                 {p.history.map(e =>
                     <Button
                         size="sm"
@@ -55,7 +55,7 @@ export default (p) =>
                             {e.text}
                     </Button>
                 )}
-            </ButtonGroup>
+            </ButtonGroup> */}
         </div>
     </div>
 </div>

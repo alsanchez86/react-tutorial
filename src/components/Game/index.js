@@ -3,7 +3,7 @@ import React, { Component } from "react";
 // Import react redux
 import { connect } from "react-redux";
 // Import redux actions
-import { setDisabled } from "../../redux/actions/setDisabled"
+import { toggleDisabled } from "../../redux/actions/toggleDisabled";
 // Import classes used on Game component
 import StateClass from "./class/StateClass";
 import GameHistoryClass from "./class/GameHistoryClass";
@@ -27,8 +27,8 @@ class Game extends Component {
     constructor(p) {
         super(p);
         this.state = new StateClass();
-        this.history = new GameHistoryClass();
-        this.disabled = false;
+        // this.history = new GameHistoryClass();
+        // this.disabled = false;
     }
 
     /**
@@ -50,22 +50,22 @@ class Game extends Component {
      * @memberof Game
      */
     squareClick(i = 0) {
-        const notWinnerYet = (this.state.squares.filter(e => e === "").length > 0) && (this.state.winner === "");
-        const notOcupped = (this.state.squares[i] === "");
-        const notDisabled = !this.disabled;
+        const notWinnerYet = (this.props.squares.filter(e => e === "").length > 0) && (this.state.winner === "");
+        const notOcupped = (this.props.squares[i] === "");
+        const notDisabled = !this.props.disabled;
         let squares;
         let winner;
         let state;
 
         if (notDisabled && notOcupped && notWinnerYet) {
-            squares = this.state.squares.map((e, j) => e = (e !== "") ? e : ((i === j) ? this.getNextMark(this.state.xIsNext) : ""));
-            winner = this.calculateWinner(squares);
-            state = new StateClass(squares, !this.state.xIsNext, winner);
-            if (this.history.get().length === 0) {
-                this.history.add();
-            }
-            this.setState(state);
-            this.history.add(state);
+            // squares = this.state.squares.map((e, j) => e = (e !== "") ? e : ((i === j) ? this.getNextMark(this.state.xIsNext) : ""));
+            // winner = this.calculateWinner(squares);
+            // state = new StateClass(squares, !this.state.xIsNext, winner);
+            // if (this.history.get().length === 0) {
+            //     this.history.add();
+            // }
+            // this.setState(state);
+            // this.history.add(state);
         }
     }
 
@@ -76,8 +76,8 @@ class Game extends Component {
      * @memberof Game
      */
     jumpTo(id = "") {
-        this.disabled = (this.history.getLastHistoryId() !== id);
-        this.setState(this.history.get().filter(e => id === e.id)[0].state);
+        // this.disabled = (this.history.getLastHistoryId() !== id);
+        // this.setState(this.history.get().filter(e => id === e.id)[0].state);
     }
 
     /**
@@ -86,8 +86,8 @@ class Game extends Component {
      * @memberof Game
      */
     restart() {
-        this.disabled = false;
-        this.history.clean();
+        // this.disabled = false;
+        // this.history.clean();
         this.setState(new StateClass());
     }
 
@@ -99,7 +99,8 @@ class Game extends Component {
      * @memberof Game
      */
     getButtonColor(id = "") {
-        return (this.history.getLastHistoryId() === id) ? "success" : "secondary";
+        // return (this.history.getLastHistoryId() === id) ? "success" : "secondary";
+        return "secondary";
     }
 
     /**
@@ -133,23 +134,27 @@ class Game extends Component {
      * @memberof Game
      */
     render() {
-        const draw = (this.state.squares.filter(e => e === "").length === 0) && (this.state.winner === "");
-        const won = (this.state.winner !== "");
-        const status = draw ? "Draw" : (won ? ('Winner: ' + this.state.winner) : ('Next player: ' + this.getNextMark(this.state.xIsNext)));
+        // const draw = (this.props.squares.filter(e => e === "").length === 0) && (this.state.winner === "");
+        // const won = (this.state.winner !== "");
+        // const status = draw ? "Draw" : (won ? ('Winner: ' + this.state.winner) : ('Next player: ' + this.getNextMark(this.state.xIsNext)));
+        const draw = false;
+        const won = false;
+        const status = "----";
 
         return (
             <GameJsx
                 draw={draw}
                 won={won}
                 status={status}
-                squares={this.state.squares}
+                squares={this.props.squares}
                 disabled={this.props.disabled}
-                squareClick={(i) => this.squareClick(i)}
-                resetButtonClick={() => this.restart()}
-                history={this.history.get()}
-                getButtonColor={(id) => this.getButtonColor(id)}
-                jumpTo={(id) => this.jumpTo(id)}
-                onPruebaClick={() => this.props.onPruebaClick()}
+
+                // squareClick={(i) => this.squareClick(i)}
+                // resetButtonClick={() => this.restart()}
+                // history={this.history.get()}
+                // getButtonColor={(id) => this.getButtonColor(id)}
+                // jumpTo={(id) => this.jumpTo(id)}
+                disableClick={() => this.props.disableGame()}
             />
         );
     }
@@ -158,10 +163,11 @@ class Game extends Component {
 export default connect(
     // mapStateToProps
     state => ({
-        disabled: state.disabled
+        disabled: state.disabled,
+        squares: state.squares
     }),
     // mapDispatchToProps
     dispatch => ({
-        onPruebaClick: () => dispatch(setDisabled(true))
+        disableGame: () => dispatch(toggleDisabled())
     })
 )(Game);
