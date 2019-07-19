@@ -1,5 +1,4 @@
 /**
- * TODO:
  * - https://medium.com/devschile/c%C3%B3mo-estructurar-proyectos-react-ba6fac658ac5
  * - Solamente propagar el estado en la jerarquía de componentes, no propagar el estado en propiedades independientes.
  * - Iluminar la línea ganadora en el caso de que se produzca.
@@ -13,6 +12,7 @@
  * - https://es.redux.js.org/docs/introduccion/herencia.html#rx
  * - Ver testing con reactjs.
  * - Si un componente solamente es una plantilla para su representación, está justificado la existencia de ese componente? o se puede fusionar con otro componente que si tenga cierta lógica en su "controlador".
+ * - Mirar lo de "Action creators"
 */
 
 // Import styles
