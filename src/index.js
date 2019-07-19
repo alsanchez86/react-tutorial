@@ -13,6 +13,7 @@
  * - Ver testing con reactjs.
  * - Si un componente solamente es una plantilla para su representación, está justificado la existencia de ese componente? o se puede fusionar con otro componente que si tenga cierta lógica en su "controlador".
  * - Mirar lo de "Action creators"
+ * - https://medium.com/@jorgeucano/30-d%C3%ADas-con-rxjs-d%C3%ADa-1-e911e68f6063
 */
 
 // Import styles
