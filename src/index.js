@@ -1,18 +1,18 @@
 /**
- * - https://medium.com/devschile/c%C3%B3mo-estructurar-proyectos-react-ba6fac658ac5
- * - Solamente propagar el estado en la jerarquía de componentes, no propagar el estado en propiedades independientes.
- * - Iluminar la línea ganadora en el caso de que se produzca.
+ * - Solamente propagar el estado en la jerarquía de componentes, no propagar el estado en propiedades independientes. -> No aplica con redux
  * - Probar componentes de https://github.com/reactstrap/reactstrap. -> OK
- * - Probar un router de reactjs para el manejo de rutas en la SPA. -> https://es.redux.js.org/docs/avanzado/uso-con-react-router.html, https://medium.com/@dvenegas/empezando-con-react-router-v4-2b8c31c7eb11
+ * - Probar un router de reactjs para el manejo de rutas en la SPA. -> https://es.redux.js.org/docs/avanzado/uso-con-react-router.html, https://medium.com/@dvenegas/empezando-con-react-router-v4-2b8c31c7eb11 -> OK
+ * - https://medium.com/devschile/c%C3%B3mo-estructurar-proyectos-react-ba6fac658ac5 -> OK
+ * - Meter Redux(flux) para el control de estado de la APP. -> https://www.youtube.com/watch?v=OXWn4XiDUmw -> En curso
+ * - Usar inmutable.js para mantener la inmutabilidad del estado.
+ * - Mirar lo de "Action creators"
+ *
+ * - Iluminar la línea ganadora en el caso de que se produzca.
  * - Hacer una request a una API pública para probar los services de react: https://github.com/axios/axios
  * - Usar Rambda o Lodash para la programación funcional.
  * - Probar Typescript para ver que nos aporta.
- * - Meter Redux(flux) para el control de estado de la APP. -> https://www.youtube.com/watch?v=OXWn4XiDUmw
- * - Usar inmutable.js para mantener la inmutabilidad del estado.
  * - https://es.redux.js.org/docs/introduccion/herencia.html#rx
  * - Ver testing con reactjs.
- * - Si un componente solamente es una plantilla para su representación, está justificado la existencia de ese componente? o se puede fusionar con otro componente que si tenga cierta lógica en su "controlador".
- * - Mirar lo de "Action creators"
  * - https://medium.com/@jorgeucano/30-d%C3%ADas-con-rxjs-d%C3%ADa-1-e911e68f6063
 */
 
