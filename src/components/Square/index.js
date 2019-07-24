@@ -42,6 +42,11 @@ class Square extends Component {
     //     }
     // }
 
+    onClick(index = 0){
+        const mark = this.props.xIsNext ? "X" : "O";
+        this.props.onClick(index, mark);
+    }
+
     /**
      *
      *
@@ -53,7 +58,7 @@ class Square extends Component {
             <SquareJsx
                 index={this.props.index}
                 value={this.props.value}
-                onClick={(i) => this.props.onClick(i)}
+                onClick={(index) => this.onClick(index)}
             />
         );
     }
@@ -62,13 +67,13 @@ class Square extends Component {
 export default connect(
     // mapStateToProps
     state => ({
+        xIsNext: state.xIsNext,
     //     squares: state.squares,
-    //     xIsNext: state.xIsNext,
     //     winner: state.winner,
     //     disabled: state.disabled
     }),
     // mapDispatchToProps
     dispatch => ({
-        onClick: (i) => dispatch(markSquare(i))
+        onClick: (index, mark) => dispatch(markSquare(index, mark))
     })
 )(Square);

@@ -1,7 +1,7 @@
-export const markSquare = (i = 0, m = "X") => ({
+export const markSquare = (index = 0, mark = "X") => ({
     type: "MARK_SQUARE",
     value: {
-        index: i,
-        mark: m
+        index,
+        mark
     }
 });
