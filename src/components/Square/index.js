@@ -67,10 +67,7 @@ class Square extends Component {
 export default connect(
     // mapStateToProps
     state => ({
-        xIsNext: state.xIsNext,
-    //     squares: state.squares,
-    //     winner: state.winner,
-    //     disabled: state.disabled
+        xIsNext: state.xIsNext
     }),
     // mapDispatchToProps
     dispatch => ({

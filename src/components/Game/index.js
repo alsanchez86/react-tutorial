@@ -117,7 +117,6 @@ class Game extends Component {
                 won={won}
                 status={status}
                 squares={this.props.squares}
-                disabled={this.props.disabled}
                 // resetButtonClick={() => this.restart()}
                 // history={this.history.get()}
                 // getButtonColor={(id) => this.getButtonColor(id)}
@@ -133,8 +132,7 @@ export default connect(
     state => ({
         squares: state.squares,
         xIsNext: state.xIsNext,
-        winner: state.winner,
-        disabled: state.disabled
+        winner: state.winner
     }),
     // mapDispatchToProps
     dispatch => ({

@@ -8,14 +8,9 @@ import { Alert, Button, ButtonGroup } from "reactstrap";
 export default (p) =>
 
 <div className="container">
-    disabled: { p.disabled.toString() }
-
     <div className="row">
         <div className="col-6">
-            <Board
-                squares={p.squares}
-                disabled={p.disabled}
-            />
+            <Board squares={p.squares}/>
 
             {(!p.draw && !p.won) ?
                 <div className="status">
