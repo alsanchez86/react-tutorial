@@ -19,9 +19,9 @@ export default class Board extends Component {
      * @returns
      * @memberof Board
      */
-    getRowArray(from = 0, to = 0){
-        return Array.from(Array(((to - from) + 1)), (e, i) => (from + i));
-    }
+    // getRowArray(from = 0, to = 0){
+    //     return Array.from(Array(((to - from) + 1)), (e, i) => (from + i));
+    // }
 
     /**
      *
@@ -34,11 +34,12 @@ export default class Board extends Component {
             <BoardJsx
                 disabled={this.props.disabled}
                 squares={this.props.squares}
-                rows={[
-                    this.getRowArray(0, 2),
-                    this.getRowArray(3, 5),
-                    this.getRowArray(6, 8)
-                ]}
+                dimensions={[3, 3]}
+                // rows={[
+                //     this.getRowArray(0, 2),
+                //     this.getRowArray(3, 5),
+                //     this.getRowArray(6, 8)
+                // ]}
             />
         );
     }

@@ -6,11 +6,11 @@ import Square from "../../Square";
 export default (p) =>
 
 <div className="board-row">
-    {p.rowSquares.map(e =>
+    {p.rowSquares.map(index =>
         <Square
-            key={e.toString()}
-            index={e}
-            value={p.squares[e]}
+            key={index.toString()}
+            index={index}
+            value={p.squares[index]}
         />
     )}
 </div>
