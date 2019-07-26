@@ -8,11 +8,11 @@ import Row from "../../Row";
 export default (p) =>
 
 <div className={`board ${(p.disabled ? "disabled" : "")}`}>
-    {p.rows.map((e, i) =>
+    {p.squares.map((row, index) =>
         <Row
-            key={i.toString()}
-            squares={p.squares}
-            rowSquares={e}
+            key={index.toString()}
+            index={index}
+            row={row}
         />
     )}
 </div>

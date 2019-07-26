@@ -1,5 +1,7 @@
 // Import React library
 import React, { Component } from "react";
+// Import react redux
+// import { connect } from "react-redux";
 // Import Jsx templates
 import RowJsx from "./templates/Row";
 
@@ -20,8 +22,8 @@ export default class Row extends Component {
     render() {
         return (
             <RowJsx
-                squares={this.props.squares}
-                rowSquares={this.props.rowSquares}
+                index={this.props.index}
+                row={this.props.row}
             />
         );
     }

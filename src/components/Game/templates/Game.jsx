@@ -10,7 +10,7 @@ export default (p) =>
 <div className="container">
     <div className="row">
         <div className="col-6">
-            <Board squares={p.squares}/>
+            <Board/>
 
             {(!p.draw && !p.won) ?
                 <div className="status">

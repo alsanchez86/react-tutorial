@@ -76,28 +76,12 @@ class Game extends Component {
         return "secondary";
     }
 
-    /**
-     * Calculate if there is a winner combination on current squares state
-     *
-     * @param {Array} squares
-     * @returns {String | Null}
-     */
-    calculateWinner(squares = []) {
-        return [
-            [0, 1, 2],
-            [3, 4, 5],
-            [6, 7, 8],
-            [0, 3, 6],
-            [1, 4, 7],
-            [2, 5, 8],
-            [0, 4, 8],
-            [2, 4, 6]
-        ].filter(e => {
-            let map = e.map(a => squares[a]);
-            let notNull = (map.indexOf("") === -1);
-            let equals = map.every((e, i, a) => e === a[0]);
-            return (notNull && equals);
-        }).map(e => e.map(a => squares[a]).reduce(e => e))[0] || "";
+    checkDraw(){
+        return (this.props.squares.filter(row => row.filter(square => square !== "").length === row.length).length === this.props.squares.length) && (this.props.winner === "");
+    }
+
+    checkWon(){
+        return (this.props.winner !== "");
     }
 
     /**
@@ -107,8 +91,8 @@ class Game extends Component {
      * @memberof Game
      */
     render() {
-        const draw = (this.props.squares.filter(e => e === "").length === 0) && (this.props.winner === "");
-        const won = (this.props.winner !== "");
+        const draw = this.checkDraw();
+        const won = this.checkWon();
         const status = draw ? "Draw" : (won ? ('Winner: ' + this.props.winner) : ('Next player: ' + this.getNextMark(this.props.xIsNext)));
 
         return (
@@ -116,7 +100,6 @@ class Game extends Component {
                 draw={draw}
                 won={won}
                 status={status}
-                squares={this.props.squares}
                 // resetButtonClick={() => this.restart()}
                 // history={this.history.get()}
                 // getButtonColor={(id) => this.getButtonColor(id)}

@@ -1,8 +1,24 @@
-export default (state = Array(9).fill(""), {type, value}) => {
+/**
+ * [
+ *   [0, 1, 2],
+ *   [3, 4, 5],
+ *   [6, 7, 8]
+ * ]
+ *
+ * @param {number} [rows=0]
+ * @param {number} [columns=0]
+ * @returns {array}
+ */
+function initState(rows = 0, columns = 0){
+    return Array(rows).fill(Array(columns).fill(""));
+}
+
+export default (state = initState(3, 3), {type, value}) => {
     switch(type){
         case "MARK_SQUARE":
-            return state.map((e, j) => e = (e !== "") ? e : ((value.index === j) ? value.mark : ""));
+            return state.map((row, i) => row.map((square, o) => square = (square !== "") ? square : (((value.row === i) && (value.column === o)) ? value.mark : "")));
         default:
+            console.log(state);
             return state;
     }
 };

@@ -15,36 +15,9 @@ import SquareJsx from "./templates/Square";
  * @extends {Component}
  */
 class Square extends Component {
-    /**
-     * Handle click on square component
-     *
-     * @param {number} [i=0]
-     * @memberof Square
-     */
-    // TODO: esto va al reducer
-    // onClick(i = 0) {
-    //     const notWinnerYet = (this.props.squares.filter(e => e === "").length > 0) && (this.state.winner === "");
-    //     const notOcupped = (this.props.squares[i] === "");
-    //     const notDisabled = !this.props.disabled;
-    //     let squares;
-    //     let winner;
-    //     let state;
-
-    //     if (notDisabled && notOcupped && notWinnerYet) {
-    //         squares = this.state.squares.map((e, j) => e = (e !== "") ? e : ((i === j) ? this.getNextMark(this.state.xIsNext) : ""));
-    //         winner = this.calculateWinner(squares);
-    //         state = new StateClass(squares, !this.state.xIsNext, winner);
-    //         if (this.history.get().length === 0) {
-    //             this.history.add();
-    //         }
-    //         this.setState(state);
-    //         this.history.add(state);
-    //     }
-    // }
-
-    onClick(index = 0){
+    onClick(y = 0, x = 0){
         const mark = this.props.xIsNext ? "X" : "O";
-        this.props.onClick(index, mark);
+        this.props.onClick(y, x, mark);
     }
 
     /**
@@ -56,9 +29,10 @@ class Square extends Component {
     render() {
         return (
             <SquareJsx
-                index={this.props.index}
+                y={this.props.y}
+                x={this.props.x}
                 value={this.props.value}
-                onClick={(index) => this.onClick(index)}
+                onClick={(y, x) => this.onClick(y, x)}
             />
         );
     }
@@ -71,6 +45,6 @@ export default connect(
     }),
     // mapDispatchToProps
     dispatch => ({
-        onClick: (index, mark) => dispatch(markSquare(index, mark))
+        onClick: (y, x, mark) => dispatch(markSquare(y, x, mark))
     })
 )(Square);

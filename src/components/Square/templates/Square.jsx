@@ -11,6 +11,6 @@ export default (p) =>
     color="primary"
     className="square"
     active={p.value !== ""}
-    onClick={() => p.onClick(p.index)}>
+    onClick={() => p.onClick(p.y, p.x)}>
         {p.value}
 </Button>

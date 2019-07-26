@@ -14,18 +14,6 @@ import BoardJsx from "./templates/Board";
  */
 class Board extends Component {
     /**
-     * Return an array with "from" and "to" values in ASC order
-     *
-     * @param {number} [from=0]
-     * @param {number} [to=0]
-     * @returns
-     * @memberof Board
-     */
-    getRowArray(from = 0, to = 0){
-        return Array.from(Array(((to - from) + 1)), (e, i) => (from + i));
-    }
-
-    /**
      *
      *
      * @returns
@@ -36,11 +24,6 @@ class Board extends Component {
             <BoardJsx
                 disabled={this.props.disabled}
                 squares={this.props.squares}
-                rows={[
-                    this.getRowArray(0, 2),
-                    this.getRowArray(3, 5),
-                    this.getRowArray(6, 8)
-                ]}
             />
         );
     }
@@ -49,6 +32,7 @@ class Board extends Component {
 export default connect(
     // mapStateToProps
     state => ({
-        disabled: state.disabled
+        disabled: state.disabled,
+        squares: state.squares
     })
 )(Board);
