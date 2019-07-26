@@ -77,7 +77,7 @@ class Game extends Component {
     }
 
     checkDraw(){
-        return (this.props.squares.filter(row => row.filter(square => square !== "").length === row.length).length === this.props.squares.length) && (this.props.winner === "");
+        return (this.props.board.filter(row => row.filter(square => square !== "").length === row.length).length === this.props.board.length) && (this.props.winner === "");
     }
 
     checkWon(){
@@ -113,7 +113,7 @@ class Game extends Component {
 export default connect(
     // mapStateToProps
     state => ({
-        squares: state.squares,
+        board: state.board,
         xIsNext: state.xIsNext,
         winner: state.winner
     }),

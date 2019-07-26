@@ -23,7 +23,7 @@ class Board extends Component {
         return (
             <BoardJsx
                 disabled={this.props.disabled}
-                squares={this.props.squares}
+                board={this.props.board}
             />
         );
     }
@@ -33,6 +33,6 @@ export default connect(
     // mapStateToProps
     state => ({
         disabled: state.disabled,
-        squares: state.squares
+        board: state.board
     })
 )(Board);
