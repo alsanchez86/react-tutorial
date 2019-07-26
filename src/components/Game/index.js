@@ -82,6 +82,8 @@ class Game extends Component {
 
     /**
      * Calculate if there is a winner combination on current squares state
+     * TODO: Creo que podemos llevarnos esto al reducer de board.js, de forma que el estado de dicho reducer sea del tipo {winner: "", cells: []}, teniendo así el winner
+     * en el propio estado del store y no teniendo que pasar el winner por parámetros a componentes hijos como el <board/>
      *
      * @returns {string}
      */
