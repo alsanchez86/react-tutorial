@@ -86,42 +86,22 @@ class Game extends Component {
      * @returns {string}
      */
     checkWinner(){
-        // Horizontals
-        const horizontals = [
-            [0, 0], [0, 1], [0, 2],
-            [1, 0], [1, 1], [1, 2],
-            [2, 0], [2, 1], [2, 2]
-        ];
-        // Verticals
-        const verticals = [
-            [0, 0], [1, 0], [2, 0],
-            [0, 1], [1, 1], [2, 1],
-            [0, 2], [1, 2], [2, 2]
-        ];
-        // Diagonals
-        const diagonals = [
-            [0, 0], [1, 1], [2, 2],
-            [0, 2], [1, 1], [2, 0]
-        ];
-
-        // this.props.board
-
-        // return [
-        //     [0, 1, 2],
-        //     [3, 4, 5],
-        //     [6, 7, 8],
-        //     [0, 3, 6],
-        //     [1, 4, 7],
-        //     [2, 5, 8],
-        //     [0, 4, 8],
-        //     [2, 4, 6]
-        // ].filter(e => {
-        //     let map = e.map(a => squares[a]);
-        //     let notNull = (map.indexOf("") === -1);
-        //     let equals = map.every((e, i, a) => e === a[0]);
-        //     return (notNull && equals);
-        // }).map(e => e.map(a => squares[a]).reduce(e => e))[0] || "";
-        // return (this.props.winner !== "");
+        const squares = this.props.board.reduce((ant, act) => ant.concat(act));
+        return [
+            [0, 1, 2],
+            [3, 4, 5],
+            [6, 7, 8],
+            [0, 3, 6],
+            [1, 4, 7],
+            [2, 5, 8],
+            [0, 4, 8],
+            [2, 4, 6]
+        ].filter(e => {
+            let map = e.map(a => squares[a]);
+            let notNull = (map.indexOf("") === -1);
+            let equals = map.every((e, i, a) => e === a[0]);
+            return (notNull && equals);
+        }).map(e => e.map(a => squares[a]).reduce(e => e))[0] || "";
     }
 
     /**

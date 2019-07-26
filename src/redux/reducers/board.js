@@ -18,7 +18,6 @@ export default (state = initState(3, 3), {type, value}) => {
         case "MARK_SQUARE":
             return state.map((row, i) => row.map((square, o) => square = (square !== "") ? square : (((value.row === i) && (value.column === o)) ? value.mark : "")));
         default:
-            console.log(state);
             return state;
     }
 };
