@@ -45,7 +45,7 @@ export default connect(
     // mapStateToProps
     state => ({
         xIsNext: state.xIsNext,
-        disabled: (state.board.winner !== "") || (state.board.step < (state.board.history.length - 1))
+        disabled: (state.board.draw || (state.board.winner !== "") || (state.board.step < (state.board.history.length - 1)))
     }),
     // mapDispatchToProps
     dispatch => ({

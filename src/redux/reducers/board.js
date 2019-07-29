@@ -8,9 +8,10 @@
  * @param {string} [cells=Array(3).fill(Array(3).fill(""))]
  * @param {string} [winner=""]
  */
-function State(cells = Array(3).fill(Array(3).fill("")), winner = "", history = [], step = 0){
+function State(cells = Array(3).fill(Array(3).fill("")), winner = "", draw = false, history = [], step = 0){
     this.cells = cells;
     this.winner = winner;
+    this.draw = draw;
     this.history = history;
     this.step = step;
 }
@@ -39,19 +40,30 @@ function checkWinner(cells = []){
     }).map(e => e.map(a => concatCells[a]).reduce(e => e))[0] || "";
 }
 
+/**
+ *
+ *
+ * @returns
+ * @memberof Game
+ */
+function checkDraw(cells = []){
+    return (cells.filter(row => row.filter(square => square !== "").length === row.length).length === cells.length);
+}
+
 export default (state = new State(), {type, value}) => {
     switch(type){
         case "MARK_SQUARE":
             const cells = state.cells.map((row, i) => row.map((square, o) => square = (square !== "") ? square : (((value.row === i) && (value.column === o)) ? value.mark : "")));
             const winner = checkWinner(cells);
+            const draw = (checkDraw(cells) && (winner === ""));
             state.history.push([...cells]);
-            return new State(cells, winner, state.history, state.history.length);
-
-        case "RESTART_BOARD":
-            return new State();
+            return new State(cells, winner, draw, state.history, state.history.length);
 
         case "JUMP":
-            return new State(state.history[value.index], state.winner, state.history, value.index);
+            return new State(state.history[value.index], state.winner, state.draw, state.history, value.index);
+
+        case "RESTART_BOARD":
+                return new State();
 
         default:
             return state;

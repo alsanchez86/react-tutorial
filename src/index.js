@@ -3,7 +3,8 @@
  * - Probar componentes de https://github.com/reactstrap/reactstrap. -> OK
  * - Probar un router de reactjs para el manejo de rutas en la SPA. -> https://es.redux.js.org/docs/avanzado/uso-con-react-router.html, https://medium.com/@dvenegas/empezando-con-react-router-v4-2b8c31c7eb11 -> OK
  * - https://medium.com/devschile/c%C3%B3mo-estructurar-proyectos-react-ba6fac658ac5 -> OK
- * - Meter Redux(flux) para el control de estado de la APP. -> https://www.youtube.com/watch?v=OXWn4XiDUmw -> En curso
+ * - Meter Redux(flux) para el control de estado de la APP. -> https://www.youtube.com/watch?v=OXWn4XiDUmw -> OK
+ *
  * - Usar inmutable.js para mantener la inmutabilidad del estado.
  * - Mirar lo de "Action creators"
  *

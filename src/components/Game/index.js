@@ -44,24 +44,13 @@ class Game extends Component {
      * @returns
      * @memberof Game
      */
-    checkDraw(){
-        return (this.props.cells.filter(row => row.filter(square => square !== "").length === row.length).length === this.props.cells.length);
-    }
-
-    /**
-     *
-     *
-     * @returns
-     * @memberof Game
-     */
     render() {
         const won = (this.props.winner !== "");
-        const draw = this.checkDraw() && !won;
-        const status = draw ? "Draw" : (won ? ('Winner: ' + this.props.winner) : ('Next player: ' + this.getNextMark(this.props.xIsNext)));
+        const status = this.props.draw ? "Draw" : (won ? ('Winner: ' + this.props.winner) : ('Next player: ' + this.getNextMark(this.props.xIsNext)));
 
         return (
             <GameJsx
-                draw={draw}
+                draw={this.props.draw}
                 won={won}
                 status={status}
                 restartClick={() => this.props.restart()}
@@ -78,6 +67,7 @@ export default connect(
     state => ({
         cells: state.board.cells,
         winner: state.board.winner,
+        draw: state.board.draw,
         history: state.board.history,
         xIsNext: state.xIsNext
     }),
