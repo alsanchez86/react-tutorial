@@ -1,9 +1,11 @@
+// Import component style
+import "./style/Game.scss";
 // Import React library
 import React from "react";
 // Import components
 import Board from "../../Board";
 // Import reactstrap components
-import { Alert, Button, ButtonGroup } from "reactstrap";
+import { Alert, Button, ButtonGroup, Progress } from "reactstrap";
 
 export default (p) =>
 
@@ -23,6 +25,8 @@ export default (p) =>
                     {p.status}
                 </Alert>
             : null}
+
+            <Progress value={p.progress} />
         </div>
 
         <div className="col-6">

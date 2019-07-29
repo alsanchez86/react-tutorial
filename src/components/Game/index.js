@@ -38,6 +38,10 @@ class Game extends Component {
         return ((this.props.history.length - 1) === i) ? "success" : "secondary";
     }
 
+    getProgress(){
+        return Math.round((this.props.step * 100) / 9);
+    }
+
     /**
      *
      *
@@ -57,6 +61,7 @@ class Game extends Component {
                 history={this.props.history}
                 getButtonColor={(i) => this.getButtonColor(i)}
                 jump={(i) => this.props.jump(i)}
+                progress={this.getProgress()}
             />
         );
     }
@@ -69,6 +74,7 @@ export default connect(
         winner: state.get("board").winner,
         draw: state.get("board").draw,
         history: state.get("board").history,
+        step: state.get("board").step,
         xIsNext: state.get("xIsNext")
     }),
     // mapDispatchToProps
