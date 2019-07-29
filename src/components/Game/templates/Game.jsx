@@ -39,17 +39,19 @@ export default (p) =>
                 </Button>
             : null}
 
-            <ButtonGroup vertical size="sm">
-                {p.history.map((e, i) =>
-                    <Button
-                        size="sm"
-                        key={i.toString()}
-                        color={p.getButtonColor(i)}
-                        onClick={() => p.jump(i)}>
-                            {i}
-                    </Button>
-                )}
-            </ButtonGroup>
+            {(p.history.length > 1) ?
+                <ButtonGroup vertical size="sm">
+                    {p.history.map((e, i) =>
+                        <Button
+                            size="sm"
+                            key={i.toString()}
+                            color={p.getButtonColor(i)}
+                            onClick={() => p.jump(i)}>
+                                {i}
+                        </Button>
+                    )}
+                </ButtonGroup>
+            : null}
         </div>
     </div>
 </div>
