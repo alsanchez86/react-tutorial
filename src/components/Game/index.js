@@ -59,13 +59,12 @@ class Game extends Component {
      * @returns {string}
      * @memberof Game
      */
-    getButtonColor(id = "") {
-        // return (this.history.getLastHistoryId() === id) ? "success" : "secondary";
-        return "secondary";
+    getButtonColor(i = "") {
+        return ((this.props.history.length - 1) === i) ? "success" : "secondary";
     }
 
     checkDraw(){
-        return (this.props.board.cells.filter(row => row.filter(square => square !== "").length === row.length).length === this.props.board.cells.length);
+        return (this.props.cells.filter(row => row.filter(square => square !== "").length === row.length).length === this.props.cells.length);
     }
 
     /**
@@ -75,9 +74,9 @@ class Game extends Component {
      * @memberof Game
      */
     render() {
-        const won = (this.props.board.winner !== "");
+        const won = (this.props.winner !== "");
         const draw = this.checkDraw() && !won;
-        const status = draw ? "Draw" : (won ? ('Winner: ' + this.props.board.winner) : ('Next player: ' + this.getNextMark(this.props.xIsNext)));
+        const status = draw ? "Draw" : (won ? ('Winner: ' + this.props.winner) : ('Next player: ' + this.getNextMark(this.props.xIsNext)));
 
         return (
             <GameJsx
@@ -85,8 +84,8 @@ class Game extends Component {
                 won={won}
                 status={status}
                 restartClick={() => this.props.restart()}
-                // history={this.history.get()}
-                // getButtonColor={(id) => this.getButtonColor(id)}
+                history={this.props.history}
+                getButtonColor={(i) => this.getButtonColor(i)}
                 // jumpTo={(id) => this.jumpTo(id)}
                 // disableClick={() => this.props.disableGame()}
             />
@@ -97,7 +96,9 @@ class Game extends Component {
 export default connect(
     // mapStateToProps
     state => ({
-        board: state.board,
+        cells: state.board.cells,
+        winner: state.board.winner,
+        history: state.board.history,
         xIsNext: state.xIsNext
     }),
     // mapDispatchToProps

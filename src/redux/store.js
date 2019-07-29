@@ -9,6 +9,6 @@ import xIsNext from "./reducers/xIsNext";
 // Export store
 export default createStore(combineReducers({
     board,
-    xIsNext,
+    xIsNext
     // disabled
 }), composeWithDevTools());

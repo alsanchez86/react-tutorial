@@ -26,37 +26,30 @@ export default (p) =>
         </div>
 
         <div className="col-6">
-            <Button
-                color="danger"
-                size="sm"
-                onClick={p.restartClick}>
-                    Restart
-            </Button>
-
-            {/* {(p.history.length > 0) ?
+            {(p.history.length > 0) ?
                 <Button
                     color="danger"
                     size="sm"
                     onClick={p.restartClick}>
                         Restart
                 </Button>
-            : null} */}
+            : null}
 
             {/* <Button onClick={() => p.disableClick()}>
                 xxxx
             </Button> */}
 
-            {/* <ButtonGroup vertical size="sm">
-                {p.history.map(e =>
+            <ButtonGroup vertical size="sm">
+                {p.history.map((e, i) =>
                     <Button
                         size="sm"
-                        key={e.id.toString()}
-                        color={p.getButtonColor(e.id)}
-                        onClick={() => p.jumpTo(e.id)}>
-                            {e.text}
+                        key={i.toString()}
+                        color={p.getButtonColor(i)}
+                        onClick={() => p.jumpTo(i)}>
+                            {i}
                     </Button>
                 )}
-            </ButtonGroup> */}
+            </ButtonGroup>
         </div>
     </div>
 </div>
