@@ -19,7 +19,7 @@
 
 // Import styles
 import "bootstrap/dist/css/bootstrap.css";
-import "./style/index.scss"; // https://getbootstrap.com/docs/4.0/examples/cover/
+import "./style/index.scss";
 // Import React library and plugins
 import React from "react";
 import { render } from "react-dom";
