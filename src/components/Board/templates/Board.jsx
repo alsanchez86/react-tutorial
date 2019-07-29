@@ -8,7 +8,7 @@ import Row from "../../Row";
 export default (p) =>
 
 <div className={`board ${(p.disabled ? "disabled" : "")}`}>
-    {p.board.map((row, index) =>
+    {p.cells.map((row, index) =>
         <Row
             key={index.toString()}
             index={index}

@@ -22,8 +22,8 @@ class Board extends Component {
     render() {
         return (
             <BoardJsx
-                disabled={this.props.disabled}
-                board={this.props.board}
+                cells={this.props.board.cells}
+                disabled={this.props.board.winner !== ""}
             />
         );
     }
@@ -32,7 +32,7 @@ class Board extends Component {
 export default connect(
     // mapStateToProps
     state => ({
-        disabled: state.disabled,
         board: state.board
+        // disabled: state.disabled,
     })
 )(Board);

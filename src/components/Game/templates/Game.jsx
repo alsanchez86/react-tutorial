@@ -35,9 +35,9 @@ export default (p) =>
                 </Button>
             : null} */}
 
-            <Button onClick={() => p.disableClick()}>
+            {/* <Button onClick={() => p.disableClick()}>
                 xxxx
-            </Button>
+            </Button> */}
 
             {/* <ButtonGroup vertical size="sm">
                 {p.history.map(e =>

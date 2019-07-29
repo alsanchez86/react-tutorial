@@ -3,7 +3,7 @@ import React, { Component } from "react";
 // Import react redux
 import { connect } from "react-redux";
 // Import redux actions
-import { toggleDisabled } from "../../redux/actions/toggleDisabled";
+// import { toggleDisabled } from "../../redux/actions/toggleDisabled";
 // Import classes used on Game component
 // import StateClass from "./class/StateClass";
 // import GameHistoryClass from "./class/GameHistoryClass";
@@ -77,33 +77,7 @@ class Game extends Component {
     }
 
     checkDraw(){
-        return (this.props.board.filter(row => row.filter(square => square !== "").length === row.length).length === this.props.board.length);
-    }
-
-    /**
-     * Calculate if there is a winner combination on current squares state
-     * TODO: Creo que podemos llevarnos esto al reducer de board.js, de forma que el estado de dicho reducer sea del tipo {winner: "", cells: []}, teniendo así el winner
-     * en el propio estado del store y no teniendo que pasar el winner por parámetros a componentes hijos como el <board/>
-     *
-     * @returns {string}
-     */
-    checkWinner(){
-        const squares = this.props.board.reduce((ant, act) => ant.concat(act));
-        return [
-            [0, 1, 2],
-            [3, 4, 5],
-            [6, 7, 8],
-            [0, 3, 6],
-            [1, 4, 7],
-            [2, 5, 8],
-            [0, 4, 8],
-            [2, 4, 6]
-        ].filter(e => {
-            let map = e.map(a => squares[a]);
-            let notNull = (map.indexOf("") === -1);
-            let equals = map.every((e, i, a) => e === a[0]);
-            return (notNull && equals);
-        }).map(e => e.map(a => squares[a]).reduce(e => e))[0] || "";
+        return (this.props.board.cells.filter(row => row.filter(square => square !== "").length === row.length).length === this.props.board.cells.length);
     }
 
     /**
@@ -113,10 +87,9 @@ class Game extends Component {
      * @memberof Game
      */
     render() {
-        const winner = this.checkWinner();
-        const won = (winner !== "");
+        const won = (this.props.board.winner !== "");
         const draw = this.checkDraw() && !won;
-        const status = draw ? "Draw" : (won ? ('Winner: ' + winner) : ('Next player: ' + this.getNextMark(this.props.xIsNext)));
+        const status = draw ? "Draw" : (won ? ('Winner: ' + this.props.board.winner) : ('Next player: ' + this.getNextMark(this.props.xIsNext)));
 
         return (
             <GameJsx
@@ -127,7 +100,7 @@ class Game extends Component {
                 // history={this.history.get()}
                 // getButtonColor={(id) => this.getButtonColor(id)}
                 // jumpTo={(id) => this.jumpTo(id)}
-                disableClick={() => this.props.disableGame()}
+                // disableClick={() => this.props.disableGame()}
             />
         );
     }
@@ -140,7 +113,7 @@ export default connect(
         xIsNext: state.xIsNext
     }),
     // mapDispatchToProps
-    dispatch => ({
-        disableGame: () => dispatch(toggleDisabled())
-    })
+    // dispatch => ({
+    //     disableGame: () => dispatch(toggleDisabled())
+    // })
 )(Game);
