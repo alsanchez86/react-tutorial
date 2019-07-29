@@ -8,10 +8,11 @@
  * @param {string} [cells=Array(3).fill(Array(3).fill(""))]
  * @param {string} [winner=""]
  */
-function State(cells = Array(3).fill(Array(3).fill("")), winner = "", history = []){
+function State(cells = Array(3).fill(Array(3).fill("")), winner = "", history = [], step = 0){
     this.cells = cells;
     this.winner = winner;
     this.history = history;
+    this.step = step;
 }
 
 /**
@@ -44,15 +45,15 @@ export default (state = new State(), {type, value}) => {
             const cells = state.cells.map((row, i) => row.map((square, o) => square = (square !== "") ? square : (((value.row === i) && (value.column === o)) ? value.mark : "")));
             const winner = checkWinner(cells);
             state.history.push([...cells]);
-            return new State(cells, winner, state.history);
+            return new State(cells, winner, state.history, state.history.length);
 
         case "RESTART_BOARD":
             return new State();
 
         case "JUMP":
-            return new State(state.history[value.index], state.winner, state.history);
+            return new State(state.history[value.index], state.winner, state.history, value.index);
 
         default:
             return state;
     }
-};
+}
