@@ -5,15 +5,12 @@
  *   [6, 7, 8]
  * ]
  *
- * @param {number} [rows=0]
- * @param {number} [columns=0]
- * @returns {array}
+ * @param {string} [cells=Array(3).fill(Array(3).fill(""))]
+ * @param {string} [winner=""]
  */
-function initState(rows = 0, columns = 0){
-    return {
-        winner: "",
-        cells: Array(rows).fill(Array(columns).fill(""))
-    };
+function State(cells = Array(3).fill(Array(3).fill("")), winner = ""){
+    this.cells = cells;
+    this.winner = winner;
 }
 
 /**
@@ -40,15 +37,12 @@ function checkWinner(cells = []){
     }).map(e => e.map(a => concatCells[a]).reduce(e => e))[0] || "";
 }
 
-export default (state = initState(3, 3), {type, value}) => {
+export default (state = new State(), {type, value}) => {
     switch(type){
         case "MARK_SQUARE":
             const cells = state.cells.map((row, i) => row.map((square, o) => square = (square !== "") ? square : (((value.row === i) && (value.column === o)) ? value.mark : "")));
             const winner = checkWinner(cells);
-            return {
-                winner,
-                cells
-            };
+            return new State(cells, winner);
         default:
             return state;
     }
