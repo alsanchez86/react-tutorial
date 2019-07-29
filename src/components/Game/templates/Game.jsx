@@ -35,17 +35,13 @@ export default (p) =>
                 </Button>
             : null}
 
-            {/* <Button onClick={() => p.disableClick()}>
-                xxxx
-            </Button> */}
-
             <ButtonGroup vertical size="sm">
                 {p.history.map((e, i) =>
                     <Button
                         size="sm"
                         key={i.toString()}
                         color={p.getButtonColor(i)}
-                        onClick={() => p.jumpTo(i)}>
+                        onClick={() => p.jump(i)}>
                             {i}
                     </Button>
                 )}

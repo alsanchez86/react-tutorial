@@ -4,10 +4,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 // Import redux actions
 import { restartBoard } from "../../redux/actions/restartBoard";
-// import { toggleDisabled } from "../../redux/actions/toggleDisabled";
-// Import classes used on Game component
-// import StateClass from "./class/StateClass";
-// import GameHistoryClass from "./class/GameHistoryClass";
+import { jump } from "../../redux/actions/jump";
 // Import Jsx template
 import GameJsx from "./templates/Game";
 
@@ -31,28 +28,6 @@ class Game extends Component {
     }
 
     /**
-     * Set a StateClass existing on history private array
-     *
-     * @param {string} [id=""]
-     * @memberof Game
-     */
-    jumpTo(id = "") {
-        // this.disabled = (this.history.getLastHistoryId() !== id);
-        // this.setState(this.history.get().filter(e => id === e.id)[0].state);
-    }
-
-    /**
-     * Restart game (all private neccesary properties)
-     *
-     * @memberof Game
-     */
-    restart() {
-        // this.disabled = false;
-        // this.history.clean();
-        // this.setState(new StateClass());
-    }
-
-    /**
      *
      *
      * @param {number} [i=0]
@@ -63,6 +38,12 @@ class Game extends Component {
         return ((this.props.history.length - 1) === i) ? "success" : "secondary";
     }
 
+    /**
+     *
+     *
+     * @returns
+     * @memberof Game
+     */
     checkDraw(){
         return (this.props.cells.filter(row => row.filter(square => square !== "").length === row.length).length === this.props.cells.length);
     }
@@ -86,8 +67,7 @@ class Game extends Component {
                 restartClick={() => this.props.restart()}
                 history={this.props.history}
                 getButtonColor={(i) => this.getButtonColor(i)}
-                // jumpTo={(id) => this.jumpTo(id)}
-                // disableClick={() => this.props.disableGame()}
+                jump={(i) => this.props.jump(i)}
             />
         );
     }
@@ -103,7 +83,7 @@ export default connect(
     }),
     // mapDispatchToProps
     dispatch => ({
-        restart: () => dispatch(restartBoard())
-        // disableGame: () => dispatch(toggleDisabled())
+        restart: () => dispatch(restartBoard()),
+        jump: (i) => dispatch(jump(i))
     })
 )(Game);

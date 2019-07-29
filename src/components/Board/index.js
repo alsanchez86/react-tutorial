@@ -33,6 +33,5 @@ export default connect(
     // mapStateToProps
     state => ({
         board: state.board
-        // disabled: state.disabled,
     })
 )(Board);

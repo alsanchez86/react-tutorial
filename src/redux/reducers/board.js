@@ -45,36 +45,14 @@ export default (state = new State(), {type, value}) => {
             const winner = checkWinner(cells);
             state.history.push([...cells]);
             return new State(cells, winner, state.history);
+
         case "RESTART_BOARD":
             return new State();
+
+        case "JUMP":
+            return new State(state.history[value.index], state.winner, state.history);
+
         default:
             return state;
     }
 };
-
-/**
-     * Handle click on square component
-     * TODO: Ver si este método nos lo podemos llevar al componente Square para no tener que ir propagándolo componente a componente en la jerarquía.
-     *
-     * @param {number} i
-     * @memberof Game
-     */
-    // squareClick(i = 0) {
-        // const notWinnerYet = (this.props.squares.filter(e => e === "").length > 0) && (this.state.winner === "");
-        // const notOcupped = (this.props.squares[i] === "");
-        // const notDisabled = !this.props.disabled;
-        // let squares;
-        // let winner;
-        // let state;
-
-        // if (notDisabled && notOcupped && notWinnerYet) {
-            // squares = this.state.squares.map((e, j) => e = (e !== "") ? e : ((i === j) ? this.getNextMark(this.state.xIsNext) : ""));
-            // winner = this.calculateWinner(squares);
-            // state = new StateClass(squares, !this.state.xIsNext, winner);
-            // if (this.history.get().length === 0) {
-            //     this.history.add();
-            // }
-            // this.setState(state);
-            // this.history.add(state);
-        // }
-    // }
