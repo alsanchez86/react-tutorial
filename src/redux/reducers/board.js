@@ -43,6 +43,8 @@ export default (state = new State(), {type, value}) => {
             const cells = state.cells.map((row, i) => row.map((square, o) => square = (square !== "") ? square : (((value.row === i) && (value.column === o)) ? value.mark : "")));
             const winner = checkWinner(cells);
             return new State(cells, winner);
+        case "RESTART_BOARD":
+            return new State();
         default:
             return state;
     }

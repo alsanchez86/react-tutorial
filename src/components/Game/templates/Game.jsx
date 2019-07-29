@@ -26,11 +26,18 @@ export default (p) =>
         </div>
 
         <div className="col-6">
+            <Button
+                color="danger"
+                size="sm"
+                onClick={p.restartClick}>
+                    Restart
+            </Button>
+
             {/* {(p.history.length > 0) ?
                 <Button
                     color="danger"
                     size="sm"
-                    onClick={p.resetButtonClick}>
+                    onClick={p.restartClick}>
                         Restart
                 </Button>
             : null} */}

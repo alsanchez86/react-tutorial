@@ -3,6 +3,7 @@ import React, { Component } from "react";
 // Import react redux
 import { connect } from "react-redux";
 // Import redux actions
+import { restartBoard } from "../../redux/actions/restartBoard";
 // import { toggleDisabled } from "../../redux/actions/toggleDisabled";
 // Import classes used on Game component
 // import StateClass from "./class/StateClass";
@@ -18,19 +19,6 @@ import GameJsx from "./templates/Game";
  * @extends {Component}
  */
 class Game extends Component {
-    /**
-     * Creates an instance of Game
-     *
-     * @param {object} p
-     * @memberof Game
-     */
-    // constructor(p) {
-    //     super(p);
-    //     // this.state = new StateClass();
-    //     // this.history = new GameHistoryClass();
-    //     // this.disabled = false;
-    // }
-
     /**
      * Get the next player mark
      *
@@ -96,7 +84,7 @@ class Game extends Component {
                 draw={draw}
                 won={won}
                 status={status}
-                // resetButtonClick={() => this.restart()}
+                restartClick={() => this.props.restart()}
                 // history={this.history.get()}
                 // getButtonColor={(id) => this.getButtonColor(id)}
                 // jumpTo={(id) => this.jumpTo(id)}
@@ -113,7 +101,8 @@ export default connect(
         xIsNext: state.xIsNext
     }),
     // mapDispatchToProps
-    // dispatch => ({
-    //     disableGame: () => dispatch(toggleDisabled())
-    // })
+    dispatch => ({
+        restart: () => dispatch(restartBoard())
+        // disableGame: () => dispatch(toggleDisabled())
+    })
 )(Game);
