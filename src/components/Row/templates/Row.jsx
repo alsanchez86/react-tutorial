@@ -5,6 +5,10 @@ import Square from "../../Square";
 
 export default (p) =>
 
+/*
+ * row: array
+ * index: number
+ */
 <div className="board-row">
     {p.row.map((mark, x) =>
         <Square

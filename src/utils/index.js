@@ -1,6 +1,5 @@
 /**
- * Get random string like an id
- *
+ * Get random string for use on ids
  * @export
  * @returns {string}
  */

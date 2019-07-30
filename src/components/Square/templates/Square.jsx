@@ -7,6 +7,13 @@ import { Button } from "reactstrap";
 
 export default (p) =>
 
+/*
+ * y: number
+ * x: number
+ * value: string
+ * disabled: boolean
+ * onClick: function
+ */
 <Button
     color="primary"
     className={`square ${(p.disabled ? "disabled" : "")}`}

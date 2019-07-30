@@ -1,7 +1,5 @@
 // Import React library
 import React, { Component } from "react";
-// Import react redux
-// import { connect } from "react-redux";
 // Import Jsx templates
 import RowJsx from "./templates/Row";
 
@@ -14,9 +12,7 @@ import RowJsx from "./templates/Row";
  */
 export default class Row extends Component {
     /**
-     *
-     *
-     * @returns
+     * @returns {jsx}
      * @memberof Row
      */
     render() {

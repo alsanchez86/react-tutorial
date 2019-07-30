@@ -10,11 +10,17 @@ import SquareJsx from "./templates/Square";
 /**
  *
  *
- * @export
  * @class Square
  * @extends {Component}
  */
 class Square extends Component {
+    /**
+     *
+     *
+     * @param {number} [y=0]
+     * @param {number} [x=0]
+     * @memberof Square
+     */
     onClick(y = 0, x = 0){
         const mark = this.props.xIsNext ? "X" : "O";
         if (!this.props.disabled){
@@ -24,8 +30,7 @@ class Square extends Component {
 
     /**
      *
-     *
-     * @returns
+     * @returns {jsx}
      * @memberof Square
      */
     render() {

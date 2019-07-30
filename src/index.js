@@ -5,9 +5,9 @@
  * - https://medium.com/devschile/c%C3%B3mo-estructurar-proyectos-react-ba6fac658ac5 -> OK
  * - Meter Redux(flux) para el control de estado de la APP. -> https://www.youtube.com/watch?v=OXWn4XiDUmw -> OK
  *
- * - Usar inmutable.js para mantener la inmutabilidad del estado.
- * - Mirar lo de "Action creators"
+ * - Usar inmutable.js para mantener la inmutabilidad del estado. -> Probar bien la potencia de immutable
  *
+ * - Mirar lo de "Action creators"
  * - Iluminar la línea ganadora en el caso de que se produzca.
  * - Hacer una request a una API pública para probar los services de react: https://github.com/axios/axios
  * - Usar Rambda o Lodash para la programación funcional.
