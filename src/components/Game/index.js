@@ -70,11 +70,11 @@ class Game extends Component {
 export default connect(
     // mapStateToProps
     state => ({
-        cells: state.get("board").cells,
-        winner: state.get("board").winner,
-        draw: state.get("board").draw,
-        history: state.get("board").history,
-        step: state.get("board").step,
+        cells: state.getIn(["board", "cells"]),
+        winner: state.getIn(["board", "winner"]),
+        draw: state.getIn(["board", "draw"]),
+        history: state.getIn(["board", "history"]),
+        step: state.getIn(["board", "step"]),
         xIsNext: state.get("xIsNext")
     }),
     // mapDispatchToProps
