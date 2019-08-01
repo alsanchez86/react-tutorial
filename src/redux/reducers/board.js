@@ -26,7 +26,7 @@ function State(cells = Array(3).fill(Array(3).fill("")), winner = [], draw = fal
  * TODO: Retornar, además del símbolo del ganador, la fila ganadora para poder iluminarla en la UI
  * @returns {string}
  */
-function checkWinner(cells = []){
+function checkWinnerCombination(cells = []){
     const concatCells = cells.reduce((ant, act) => ant.concat(act));
     return [
         [0, 1, 2],
@@ -81,7 +81,7 @@ export default (state = Map(new State()), {type, value}) => {
         // Mark a square and return the new state
         case "MARK_SQUARE":
             const cells = state.get("cells").map((row, i) => row.map((square, o) => square = (square !== "") ? square : (((value.row === i) && (value.column === o)) ? value.mark : "")));
-            const winner = checkWinner(cells);
+            const winner = checkWinnerCombination(cells);
             const draw = (checkDraw(cells) && (winner.length > 0));
             return state
                 .update("cells", () => cells)
