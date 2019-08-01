@@ -1,3 +1,5 @@
+import { Map } from "immutable";
+
 /**
  * [
  *   [0, 1, 2],
@@ -14,8 +16,8 @@ function State(cells = Array(3).fill(Array(3).fill("")), winner = "", draw = fal
     this.cells = cells;
     this.winner = winner;
     this.draw = draw;
-    this.history = history;
     this.step = step;
+    this.history = history;
 }
 
 /**
@@ -51,26 +53,37 @@ function checkDraw(cells = []){
     return (cells.filter(row => row.filter(square => square !== "").length === row.length).length === cells.length);
 }
 
-/*
+/**
  * Export reducer function
+ * @param {Immutable.Map} state
+ * @param {object} action
 */
-export default (state = new State(), {type, value}) => {
+export default (state = Map(new State()), {type, value}) => {
     switch(type){
         // Mark a square and return the new state
         case "MARK_SQUARE":
-            const cells = state.cells.map((row, i) => row.map((square, o) => square = (square !== "") ? square : (((value.row === i) && (value.column === o)) ? value.mark : "")));
+            const cells = state.get("cells").map((row, i) => row.map((square, o) => square = (square !== "") ? square : (((value.row === i) && (value.column === o)) ? value.mark : "")));
             const winner = checkWinner(cells);
             const draw = (checkDraw(cells) && (winner === ""));
-            state.history.push([...cells]);
-            return new State(cells, winner, draw, state.history, state.history.length);
+            return state
+                .update("cells", () => cells)
+                .update("winner", () => winner)
+                .update("draw", () => draw)
+                .update("step", (step) => ++step)
+                .update("history", history => {
+                    history.push([...cells]);
+                    return history;
+                });
 
         // Jump to another cells state saved on history array
         case "JUMP":
-            return new State(state.history[value.index], state.winner, state.draw, state.history, value.index);
+            return state
+                .update("cells", () => state.get("history")[value.index])
+                .update("step", () => value.index);
 
         // Restart state
         case "RESTART_BOARD":
-            return new State();
+            return state;
 
         // Default
         default:
