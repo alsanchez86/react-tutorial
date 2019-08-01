@@ -33,6 +33,6 @@ export default connect(
     // mapStateToProps
     state => ({
         cells: state.getIn(["board", "cells"]),
-        disabled: (state.getIn(["board", "winner"]) !== "")
+        disabled: (state.getIn(["board", "winner"]).length > 0)
     })
 )(Board);

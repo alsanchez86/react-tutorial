@@ -49,7 +49,7 @@ class Game extends Component {
      * @memberof Game
      */
     render() {
-        const won = (this.props.winner !== "");
+        const won = (this.props.winner.length > 0);
         const status = this.props.draw ? "Draw" : (won ? ('Winner: ' + this.props.winner) : ('Next player: ' + this.getNextMark(this.props.xIsNext)));
 
         return (

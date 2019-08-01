@@ -50,7 +50,7 @@ export default connect(
     // mapStateToProps
     state => ({
         xIsNext: state.get("xIsNext"),
-        disabled: (state.getIn(["board", "draw"]) || (state.getIn(["board", "winner"]) !== "") || (state.getIn(["board", "step"]) < (state.getIn(["board", "history"]).length - 1)))
+        disabled: (state.getIn(["board", "draw"]) || (state.getIn(["board", "winner"]).length > 0) || (state.getIn(["board", "step"]) < (state.getIn(["board", "history"]).length - 1)))
     }),
     // mapDispatchToProps
     dispatch => ({
