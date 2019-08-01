@@ -43,8 +43,6 @@ function checkWinnerCombination(cells = []){
         let equals = map.every((e, i, a) => e === a[0]);
         return (notNull && equals);
     });
-
-    debugger;
     // .map(e => e.map(a => concatCells[a]).reduce(e => e)) || [];
     // return [
     //     [0, 1, 2],
