@@ -69,7 +69,7 @@ export default (state = Map(new State()), {type, value}) => {
                 .update("cells", () => cells)
                 .update("winner", () => winner)
                 .update("draw", () => draw)
-                .update("step", (step) => ++step)
+                .update("step", step => ++step)
                 .update("history", history => {
                     history.push([...cells]);
                     return history;
