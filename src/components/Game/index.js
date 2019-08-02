@@ -38,6 +38,12 @@ class Game extends Component {
         return ((this.props.history.length - 1) === i) ? "success" : "secondary";
     }
 
+    /**
+     *
+     *
+     * @returns
+     * @memberof Game
+     */
     getProgress(){
         return Math.round((this.props.step * 100) / 9);
     }
