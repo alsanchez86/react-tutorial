@@ -42,23 +42,7 @@ function checkWinnerCombination(cells = []){
         let notNull = (map.indexOf("") === -1);
         let equals = map.every((e, i, a) => e === a[0]);
         return (notNull && equals);
-    });
-    // .map(e => e.map(a => concatCells[a]).reduce(e => e)) || [];
-    // return [
-    //     [0, 1, 2],
-    //     [3, 4, 5],
-    //     [6, 7, 8],
-    //     [0, 3, 6],
-    //     [1, 4, 7],
-    //     [2, 5, 8],
-    //     [0, 4, 8],
-    //     [2, 4, 6]
-    // ].filter(e => {
-    //     let map = e.map(a => concatCells[a]);
-    //     let notNull = (map.indexOf("") === -1);
-    //     let equals = map.every((e, i, a) => e === a[0]);
-    //     return (notNull && equals);
-    // }).map(e => e.map(a => concatCells[a]).reduce(e => e))[0] || "";
+    }).shift() || [];
 }
 
 /**
@@ -80,7 +64,7 @@ export default (state = Map(new State()), {type, value}) => {
         case "MARK_SQUARE":
             const cells = state.get("cells").map((row, i) => row.map((square, o) => square = (square !== "") ? square : (((value.row === i) && (value.column === o)) ? value.mark : "")));
             const winner = checkWinnerCombination(cells);
-            const draw = (checkDraw(cells) && (winner.length > 0));
+            const draw = (checkDraw(cells) && (winner.length === 0));
             return state
                 .update("cells", () => cells)
                 .update("winner", () => winner)
@@ -99,7 +83,7 @@ export default (state = Map(new State()), {type, value}) => {
 
         // Restart state
         case "RESTART_BOARD":
-            return state;
+            return Map(new State());
 
         // Default
         default:

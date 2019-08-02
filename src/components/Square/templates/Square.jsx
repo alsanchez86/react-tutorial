@@ -15,7 +15,7 @@ export default (p) =>
  * onClick: function
  */
 <Button
-    color="primary"
+    color={(p.success ? "success" : "primary")}
     className={`square ${(p.disabled ? "disabled" : "")}`}
     active={p.value !== ""}
     onClick={() => p.onClick(p.y, p.x)}>

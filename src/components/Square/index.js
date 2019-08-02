@@ -30,6 +30,26 @@ class Square extends Component {
 
     /**
      *
+     *
+     * @returns
+     * @memberof Square
+     */
+    getSeatWeight(){
+        return ((this.props.y * 3) + this.props.x);
+    }
+
+    /**
+     *
+     *
+     * @returns
+     * @memberof Square
+     */
+    isSuccess(){
+        return (this.props.winner.filter(e => (e === this.getSeatWeight())).length > 0);
+    }
+
+    /**
+     *
      * @returns {jsx}
      * @memberof Square
      */
@@ -40,6 +60,7 @@ class Square extends Component {
                 x={this.props.x}
                 value={this.props.value}
                 disabled={this.props.disabled}
+                success={this.isSuccess()}
                 onClick={(y, x) => this.onClick(y, x)}
             />
         );
@@ -50,6 +71,7 @@ export default connect(
     // mapStateToProps
     state => ({
         xIsNext: state.get("xIsNext"),
+        winner: state.getIn(["board", "winner"]),
         disabled: (state.getIn(["board", "draw"]) || (state.getIn(["board", "winner"]).length > 0) || (state.getIn(["board", "step"]) < (state.getIn(["board", "history"]).length - 1)))
     }),
     // mapDispatchToProps
