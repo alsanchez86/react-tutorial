@@ -49,6 +49,16 @@ class Game extends Component {
     }
 
     /**
+     * Get the winner symbol from combination array
+     *
+     * @param {array} combination
+     * @memberof Game
+     */
+    getWinnerSymbol(){
+        return this.props.cells.reduce((ant, act) => ant.concat(act))[(this.props.winner[0])];
+    }
+
+    /**
      *
      *
      * @returns
@@ -56,7 +66,7 @@ class Game extends Component {
      */
     render() {
         const won = (this.props.winner.length > 0);
-        const status = this.props.draw ? "Draw" : (won ? ('Winner: ' + this.props.winner) : ('Next player: ' + this.getNextMark(this.props.xIsNext)));
+        const status = this.props.draw ? "Draw" : (won ? ('Winner: ' + this.getWinnerSymbol()) : ('Next player: ' + this.getNextMark(this.props.xIsNext)));
 
         return (
             <GameJsx

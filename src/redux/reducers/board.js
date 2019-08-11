@@ -23,7 +23,6 @@ function State(cells = Array(3).fill(Array(3).fill("")), winner = [], draw = fal
 /**
  * Calculate if there is a winner combination on current board state
  * Returns the symbol of the winner or a empty string
- * TODO: Retornar, además del símbolo del ganador, la fila ganadora para poder iluminarla en la UI
  * @returns {string}
  */
 function checkWinnerCombination(cells = []){
