@@ -7,11 +7,11 @@
  * - Usar inmutable.js para mantener la inmutabilidad del estado. -> Probar bien la potencia de immutable
  * - Iluminar la línea ganadora en el caso de que se produzca. -> OK
  *
- * - Hacer una request a una API pública para probar los services de react: https://github.com/axios/axios https://github.com/reduxjs/redux-thunk
+ * - Probar Typescript para ver que nos aporta. https://medium.com/@rossbulat/how-to-use-typescript-with-react-and-redux-a118b1e02b76
  *
+ * - Hacer una request a una API pública para probar los services de react: https://github.com/axios/axios https://github.com/reduxjs/redux-thunk
  * - Mirar lo de "Action creators" *
  * - Usar Rambda o Lodash para la programación funcional.
- * - Probar Typescript para ver que nos aporta. https://medium.com/@rossbulat/how-to-use-typescript-with-react-and-redux-a118b1e02b76
  * - https://es.redux.js.org/docs/introduccion/herencia.html#rx
  * - Ver testing con reactjs.
  * - https://medium.com/@jorgeucano/30-d%C3%ADas-con-rxjs-d%C3%ADa-1-e911e68f6063
