@@ -1,5 +1,5 @@
 // Import component style
-import "./style/Board.scss";
+import "./style/default.scss";
 // Import React library
 import React from "react";
 // Import components

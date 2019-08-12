@@ -1,5 +1,5 @@
 // Import component style
-import "./style/Header.scss";
+import "./style/default.scss";
 // Import React library
 import React from "react";
 // Import react router
