@@ -7,7 +7,7 @@
  * - Usar inmutable.js para mantener la inmutabilidad del estado. -> Probar bien la potencia de immutable
  * - Iluminar la línea ganadora en el caso de que se produzca. -> OK
  *
- * - Probar Typescript para ver que nos aporta. https://medium.com/@rossbulat/how-to-use-typescript-with-react-and-redux-a118b1e02b76
+ * - Probar Typescript para ver que nos aporta. https://medium.com/@rossbulat/how-to-use-typescript-with-react-and-redux-a118b1e02b76 https://codesandbox.io/s/w02m7jm3q7
  *
  * - Hacer una request a una API pública para probar los services de react: https://github.com/axios/axios https://github.com/reduxjs/redux-thunk
  * - Mirar lo de "Action creators" *
@@ -29,7 +29,7 @@ import { Provider } from "react-redux";
 // Import store
 import store from "./redux/store";
 // Import root component
-import App from "./components/App/";
+import App from "./components/App";
 // Render APP
 render(
     <Provider store={store}>
