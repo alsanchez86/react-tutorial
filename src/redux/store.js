@@ -1,7 +1,5 @@
 // Import redux
-import { createStore } from "redux";
-// Import redux immutable
-import { combineReducers } from 'redux-immutable';
+import { createStore, combineReducers } from "redux";
 // Import redux tool extension
 import { composeWithDevTools } from 'redux-devtools-extension';
 // Import reducers

@@ -32,7 +32,7 @@ class Board extends Component {
 export default connect(
     // mapStateToProps
     state => ({
-        cells: state.getIn(["board", "cells"]),
-        disabled: (state.getIn(["board", "winner"]).length > 0)
+        cells: state.board.cells,
+        disabled: (state.board.winner.length > 0)
     })
 )(Board);

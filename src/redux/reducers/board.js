@@ -1,5 +1,3 @@
-import { Map } from "immutable";
-
 /**
  * [
  *   [0, 1, 2],
@@ -54,35 +52,26 @@ function checkDraw(cells = []){
 
 /**
  * Export reducer function
- * @param {Immutable.Map} state
+ * @param {object} state
  * @param {object} action
 */
-export default (state = Map(new State()), {type, value}) => {
+export default (state = new State(), {type, value}) => {
     switch(type){
         // Mark a square and return the new state
         case "MARK_SQUARE":
-            const cells = state.get("cells").map((row, i) => row.map((square, o) => square = (square !== "") ? square : (((value.row === i) && (value.column === o)) ? value.mark : "")));
+            const cells = state.cells.map((row, i) => row.map((square, o) => square = (square !== "") ? square : (((value.row === i) && (value.column === o)) ? value.mark : "")));
             const winner = checkWinnerCombination(cells);
             const draw = (checkDraw(cells) && (winner.length === 0));
-            return state
-                .update("cells", () => cells)
-                .update("winner", () => winner)
-                .update("draw", () => draw)
-                .update("step", step => ++step)
-                .update("history", history => {
-                    history.push([...cells]);
-                    return history;
-                });
+            state.history.push([...cells]);
+            return new State(cells, winner, draw, state.history, ++state.step);
 
         // Jump to another cells state saved on history array
         case "JUMP":
-            return state
-                .update("cells", () => state.get("history")[value.index])
-                .update("step", () => value.index);
+            return new State(state.history[value.index], state.winner, state.draw, state.history, value.index);
 
         // Restart state
         case "RESTART_BOARD":
-            return Map(new State());
+            return new State();
 
         // Default
         default:

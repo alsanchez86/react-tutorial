@@ -70,9 +70,9 @@ class Square extends Component {
 export default connect(
     // mapStateToProps
     state => ({
-        xIsNext: state.get("xIsNext"),
-        winner: state.getIn(["board", "winner"]),
-        disabled: (state.getIn(["board", "draw"]) || (state.getIn(["board", "winner"]).length > 0) || (state.getIn(["board", "step"]) < (state.getIn(["board", "history"]).length - 1)))
+        xIsNext: state.xIsNext,
+        winner: state.board.winner,
+        disabled: state.board.draw || (state.board.winner.length > 0) || (state.board.step < (state.board.history.length - 1))
     }),
     // mapDispatchToProps
     dispatch => ({
