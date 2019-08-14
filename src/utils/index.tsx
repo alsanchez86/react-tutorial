@@ -1,8 +1,8 @@
 /**
  * Get random string for use on ids
  * @export
- * @returns {string}
+ * @returns {String}
  */
-export function getRamdonId() {
+export function getRandomId(): String {
     return (Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15));
 }
