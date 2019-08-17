@@ -1,5 +1,5 @@
 // Import component style
-import "./style/default.scss";
+import "./style/index.scss";
 // Import React library
 import React from "react";
 // Import react router
@@ -12,13 +12,13 @@ import {
     NavLink
 } from 'reactstrap';
 
-export default (p) =>
+export default (): any =>
 
 <header>
     <Navbar color="light" light expand="md">
         <Nav navbar>
             <NavItem>
-                <NavLink tag={() =>
+                <NavLink tag={(): any =>
                     <Link to="/" className="nav-link">
                         Game
                     </Link>
@@ -26,7 +26,7 @@ export default (p) =>
             </NavItem>
 
              <NavItem>
-                <NavLink tag={() =>
+                <NavLink tag={(): any =>
                     <Link to="/dummy" className="nav-link">
                         Dummy
                     </Link>

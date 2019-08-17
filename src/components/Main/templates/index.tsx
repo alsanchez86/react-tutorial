@@ -6,7 +6,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import Game from "../../Game/";
 import Dummy from "../../Dummy/";
 
-export default (p) =>
+export default () =>
 
 <Switch>
     <Route path="/game" component={Game} />

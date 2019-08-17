@@ -1,27 +1,34 @@
+// Import types
 import { BoardState } from "./types";
 
 /**
  * Get initial reducer state
- *
- * @param {Array} [cells=Array(3).fill(Array(3).fill(""))] [["", "", ""], ["", "", ""], ["", "", ""]]
- * @param {Array} [winner=[]] winner combination
- * @param {Array} [history=[]] Cells states pushed on history array
- * @param {Boolean} [draw=false] true when game end on draw *
- * @param {Number} [step=0] Current step of the game. Max 9
+ * @param {BoardState} state
+ * @return {BoardState}
  */
-export const initialState = (cells: String[][] = Array(3).fill(Array(3).fill("")), winner: String[] = [], history: String[][][] = [], draw: Boolean = false, step: Number = 0): BoardState => ({
-    cells: cells,
-    winner: winner,
-    history: history,
-    draw: draw,
-    step: step
-});
+export function generateState (state: BoardState = {
+    cells: Array(3).fill(Array(3).fill("")),
+    winner: [],
+    history: [],
+    draw: false,
+    step: 0
+}): BoardState {
+    return {
+        cells: state.cells,
+        winner: state.winner,
+        history: state.history,
+        draw: state.draw,
+        step: state.step
+    }
+};
 
 /**
  * Calculate if there is a winner combination on current board state
  * Returns the symbol of the winner or a empty string
  */
-export function checkWinnerCombination(cells: String[][] = []): Number[] {
+export function checkWinnerCombination(
+    cells: String[][] = []
+): Number[] {
     const concatCells = cells.reduce((ant, act) => ant.concat(act));
     return [
         [0, 1, 2],
@@ -43,6 +50,8 @@ export function checkWinnerCombination(cells: String[][] = []): Number[] {
 /**
  * Check if draw on current board state
  */
-export function checkDraw(cells: String[][] = []): Boolean {
+export function checkDraw(
+    cells: String[][] = []
+): Boolean {
     return (cells.filter(row => row.filter(square => square !== "").length === row.length).length === cells.length);
 }

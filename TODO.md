@@ -13,6 +13,8 @@ https://medium.com/@rossbulat/how-to-use-typescript-with-react-and-redux-a118b1e
 https://codesandbox.io/s/w02m7jm3q7
 https://stackoverflow.com/questions/52249390/property-xyz-does-not-exist-on-type-readonly-children-reactnode-rea
 https://redux.js.org/recipes/usage-with-typescript
+https://medium.com/@martin_hotell/10-typescript-pro-tips-patterns-with-or-without-react-5799488d6680
+https://stackoverflow.com/questions/53851828/ts2740-type-is-missing-the-following-properties-from-readonlymyinterface-error
 
 - Hacer una request a una API pública para probar los services de react: https://github.com/axios/axios
 https://github.com/reduxjs/redux-thunk

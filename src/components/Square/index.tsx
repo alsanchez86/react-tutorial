@@ -3,9 +3,13 @@ import React, { Component } from "react";
 // Import react redux
 import { connect } from "react-redux";
 // Import redux actions
-import { markSquare } from "../../redux/actions/markSquare";
+import { markSquare } from "../../redux/board/actions";
 // Import Jsx template
-import SquareJsx from "./templates/Square";
+import Template from "./templates/";
+
+const onClick = Symbol();
+const getSeatWeight = Symbol();
+const isSuccess = Symbol();
 
 /**
  *
@@ -13,7 +17,7 @@ import SquareJsx from "./templates/Square";
  * @class Square
  * @extends {Component}
  */
-class Square extends Component {
+class Square extends Component<any> {
     /**
      *
      *
@@ -21,8 +25,8 @@ class Square extends Component {
      * @param {number} [x=0]
      * @memberof Square
      */
-    onClick(y = 0, x = 0){
-        const mark = this.props.xIsNext ? "X" : "O";
+    [onClick] = (y: number = 0, x: number = 0): void => {
+        const mark: string = this.props.xIsNext ? "X" : "O";
         if (!this.props.disabled){
             this.props.onClick(y, x, mark);
         }
@@ -34,9 +38,7 @@ class Square extends Component {
      * @returns
      * @memberof Square
      */
-    getSeatWeight(){
-        return ((this.props.y * 3) + this.props.x);
-    }
+    [getSeatWeight] = (): number => ((this.props.y * 3) + this.props.x);
 
     /**
      *
@@ -44,24 +46,22 @@ class Square extends Component {
      * @returns
      * @memberof Square
      */
-    isSuccess(){
-        return (this.props.winner.filter(e => (e === this.getSeatWeight())).length > 0);
-    }
+    [isSuccess] = (): boolean => (this.props.winner.filter((e: number) => (e === this[getSeatWeight]())).length > 0);
 
     /**
      *
-     * @returns {jsx}
+     * @returns {any}
      * @memberof Square
      */
-    render() {
+    render(): object {
         return (
-            <SquareJsx
+            <Template
                 y={this.props.y}
                 x={this.props.x}
                 value={this.props.value}
                 disabled={this.props.disabled}
-                success={this.isSuccess()}
-                onClick={(y, x) => this.onClick(y, x)}
+                success={this[isSuccess]()}
+                onClick={(y: number, x: number) => this[onClick](y, x)}
             />
         );
     }
@@ -69,13 +69,13 @@ class Square extends Component {
 
 export default connect(
     // mapStateToProps
-    state => ({
+    (state: any): object => ({
         xIsNext: state.xIsNext,
         winner: state.board.winner,
         disabled: state.board.draw || (state.board.winner.length > 0) || (state.board.step < (state.board.history.length - 1))
     }),
     // mapDispatchToProps
-    dispatch => ({
-        onClick: (y, x, mark) => dispatch(markSquare(y, x, mark))
+    (dispatch: Function): any => ({
+        onClick: (y: number, x: number, mark: string) => dispatch(markSquare(y, x, mark))
     })
 )(Square);

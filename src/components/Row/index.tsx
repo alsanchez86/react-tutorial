@@ -1,7 +1,7 @@
 // Import React library
 import React, { Component } from "react";
 // Import Jsx templates
-import RowJsx from "./templates/Row";
+import Template from "./templates/";
 
 /**
  *
@@ -10,14 +10,14 @@ import RowJsx from "./templates/Row";
  * @class Row
  * @extends {Component}
  */
-export default class Row extends Component {
+export default class Row extends Component<any> {
     /**
-     * @returns {jsx}
+     * @returns {any}
      * @memberof Row
      */
-    render() {
+    render(): any {
         return (
-            <RowJsx
+            <Template
                 index={this.props.index}
                 row={this.props.row}
             />

@@ -1,25 +1,19 @@
 // Import React library
 import React, { Component } from "react";
 // Import Jsx template
-import DummyJsx from "./templates/Dummy";
+import Template from "./templates/";
 
 /**
  *
  *
  * @export
  * @class Dummy
- * @extends {Component}
+ * @extends {Component<any>}
  */
-export default class Dummy extends Component {
-    /**
-     *
-     *
-     * @returns
-     * @memberof Dummy
-     */
-    render() {
+export default class Dummy extends Component<any> {
+    render(): any {
         return (
-            <DummyJsx/>
+            <Template/>
         );
     }
 }

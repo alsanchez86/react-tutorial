@@ -1,11 +1,11 @@
 // Import component style
-import "./style/default.scss";
+import "./style/index.scss";
 // Import React library
 import React from "react";
 // Import reactstrap components
 import { Button } from "reactstrap";
 
-export default (p) =>
+export default (p: any): any =>
 
 /*
  * y: number

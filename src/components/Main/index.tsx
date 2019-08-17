@@ -1,7 +1,7 @@
 // Import React library
 import React, { Component } from "react";
 // Import Jsx template
-import MainJsx from "./templates/Main";
+import Template from "./templates/";
 
 /**
  *
@@ -10,16 +10,16 @@ import MainJsx from "./templates/Main";
  * @class Main
  * @extends {Component}
  */
-export default class Main extends Component {
+export default class Main extends Component<any> {
     /**
      *
      *
      * @returns
      * @memberof Main
      */
-    render() {
+    render(): any {
         return (
-            <MainJsx/>
+            <Template/>
         );
     }
 }

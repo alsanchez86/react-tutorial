@@ -3,7 +3,7 @@ import React, { Component } from "react";
 // Import react redux
 import { connect } from "react-redux";
 // Import Jsx template
-import BoardJsx from "./templates/Board";
+import Template from "./templates/";
 
 /**
  *
@@ -12,16 +12,10 @@ import BoardJsx from "./templates/Board";
  * @class Board
  * @extends {Component}
  */
-class Board extends Component {
-    /**
-     *
-     *
-     * @returns
-     * @memberof Board
-     */
-    render() {
+class Board extends Component<any> {
+    render(): object {
         return (
-            <BoardJsx
+            <Template
                 cells={this.props.cells}
                 disabled={this.props.disabled}
             />
@@ -31,7 +25,7 @@ class Board extends Component {
 
 export default connect(
     // mapStateToProps
-    state => ({
+    (state: any): object => ({
         cells: state.board.cells,
         disabled: (state.board.winner.length > 0)
     })

@@ -1,5 +1,5 @@
 // Import component style
-import "./style/default.scss";
+import "./style/index.scss";
 // Import React library
 import React from "react";
 // Import components
@@ -7,7 +7,7 @@ import Board from "../../Board";
 // Import reactstrap components
 import { Alert, Button, ButtonGroup, Progress } from "reactstrap";
 
-export default (p) =>
+export default (p: any): any =>
 
 <div className="container">
     <div className="row">
@@ -41,7 +41,7 @@ export default (p) =>
 
              {(p.history.length > 1) ?
                 <ButtonGroup vertical size="sm">
-                    {p.history.map((e, i) =>
+                    {p.history.map((ev: object, i: number) =>
                         <Button
                             size="sm"
                             key={i.toString()}

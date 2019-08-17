@@ -3,10 +3,14 @@ import React, { Component } from "react";
 // Import react redux
 import { connect } from "react-redux";
 // Import redux actions
-import { restartBoard } from "../../redux/actions/restartBoard";
-import { jump } from "../../redux/actions/jump";
+import { jump, restartBoard } from "../../redux/board/actions";
 // Import Jsx template
-import GameJsx from "./templates/Game";
+import Template from "./templates/";
+
+const getNextMark = Symbol();
+const getButtonColor = Symbol();
+const getProgress = Symbol();
+const getWinnerSymbol = Symbol();
 
 /**
  * Root React App Component
@@ -15,7 +19,7 @@ import GameJsx from "./templates/Game";
  * @class Game
  * @extends {Component}
  */
-class Game extends Component {
+class Game extends Component<any> {
     /**
      * Get the next player mark
      *
@@ -23,9 +27,7 @@ class Game extends Component {
      * @returns {string}
      * @memberof Game
      */
-    getNextMark(xIsNext = false) {
-        return xIsNext ? "X" : "O";
-    }
+    [getNextMark] = (xIsNext: boolean = false): string => xIsNext ? "X" : "O";
 
     /**
      *
@@ -34,9 +36,7 @@ class Game extends Component {
      * @returns {string}
      * @memberof Game
      */
-    getButtonColor(i = "") {
-        return ((this.props.history.length - 1) === i) ? "success" : "secondary";
-    }
+    [getButtonColor] = (i: number = 0): string => ((this.props.history.length - 1) === i) ? "success" : "secondary";
 
     /**
      *
@@ -44,19 +44,14 @@ class Game extends Component {
      * @returns
      * @memberof Game
      */
-    getProgress(){
-        return Math.round((this.props.step * 100) / 9);
-    }
+    [getProgress] = (): number => Math.round((this.props.step * 100) / 9);
 
     /**
      * Get the winner symbol from combination array
      *
-     * @param {array} combination
      * @memberof Game
      */
-    getWinnerSymbol(){
-        return this.props.cells.reduce((ant, act) => ant.concat(act))[(this.props.winner[0])];
-    }
+    [getWinnerSymbol] = (): string => this.props.cells.reduce((ant: string[], act: string[]) => ant.concat(act))[(this.props.winner[0])];
 
     /**
      *
@@ -64,20 +59,20 @@ class Game extends Component {
      * @returns
      * @memberof Game
      */
-    render() {
-        const won = (this.props.winner.length > 0);
-        const status = this.props.draw ? "Draw" : (won ? ('Winner: ' + this.getWinnerSymbol()) : ('Next player: ' + this.getNextMark(this.props.xIsNext)));
+    render(): any {
+        const won: boolean = (this.props.winner.length > 0);
+        const status: string = this.props.draw ? "Draw" : (won ? ('Winner: ' + this[getWinnerSymbol]) : ('Next player: ' + this[getNextMark](this.props.xIsNext)));
 
         return (
-            <GameJsx
+            <Template
                 draw={this.props.draw}
                 won={won}
                 status={status}
                 restartClick={() => this.props.restart()}
                 history={this.props.history}
-                getButtonColor={(i) => this.getButtonColor(i)}
-                jump={(i) => this.props.jump(i)}
-                progress={this.getProgress()}
+                getButtonColor={(i: number) => this[getButtonColor](i)}
+                jump={(i: number) => this.props.jump(i)}
+                progress={this[getProgress]()}
             />
         );
     }
@@ -85,7 +80,7 @@ class Game extends Component {
 
 export default connect(
     // mapStateToProps
-    state => ({
+    (state: any): object => ({
         cells: state.board.cells,
         winner: state.board.winner,
         draw: state.board.draw,
@@ -94,8 +89,8 @@ export default connect(
         xIsNext: state.xIsNext
     }),
     // mapDispatchToProps
-    dispatch => ({
+    (dispatch: any): object => ({
         restart: () => dispatch(restartBoard()),
-        jump: (i) => dispatch(jump(i))
+        jump: (i: Number = 0) => dispatch(jump(i))
     })
 )(Game);

@@ -1,7 +1,7 @@
 // Import types
 import { BoardState, JumpAction, MarkSquareAction, RestartBoardAction } from "./types";
 // Import utils
-import { initialState, checkWinnerCombination, checkDraw } from "./utils";
+import { generateState, checkWinnerCombination, checkDraw } from "./utils";
 
 /**
  * Export reducer function
@@ -9,7 +9,7 @@ import { initialState, checkWinnerCombination, checkDraw } from "./utils";
  * @param {object} action
 */
 // export default (state = new State(), {type, value}) => {
-export default (state: BoardState = initialState(), action: JumpAction | MarkSquareAction | RestartBoardAction): BoardState => {
+export default (state: BoardState = generateState(), action: JumpAction | MarkSquareAction | RestartBoardAction): BoardState => {
     switch(action.type){
         // Mark a square and return the new state
         case "MARK_SQUARE":
@@ -21,11 +21,11 @@ export default (state: BoardState = initialState(), action: JumpAction | MarkSqu
 
         // Jump to another cells state saved on history array
         case "JUMP":
-            return initialState(state.history[action.value.index], state.winner, state.history, state.draw, action.value.index);
+            // return initialState(state.history[action.value.index], state.winner, state.history, state.draw, action.value.index);
 
         // Restart state
         case "RESTART_BOARD":
-            return initialState();
+            return generateState();
 
         // Default
         default:
