@@ -1,5 +1,5 @@
 // Import types
-import { BoardState, JumpAction, MarkSquareAction, RestartBoardAction } from "./types";
+import { BoardState, Action } from "./types";
 // Import utils
 import { generateState, checkWinnerCombination, checkDraw } from "./utils";
 
@@ -9,7 +9,7 @@ import { generateState, checkWinnerCombination, checkDraw } from "./utils";
  * @param {object} action
 */
 // export default (state = new State(), {type, value}) => {
-export default (state: BoardState = generateState(), action: JumpAction | MarkSquareAction | RestartBoardAction): BoardState => {
+export default (state: BoardState = generateState(), action: Action): BoardState => {
     switch(action.type){
         // Mark a square and return the new state
         case "MARK_SQUARE":

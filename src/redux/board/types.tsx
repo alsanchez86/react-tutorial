@@ -6,17 +6,7 @@ export interface BoardState {
     step: Number;
 }
 
-export interface JumpAction {
-    type: String;
-    value: any;
-}
-
-export interface MarkSquareAction {
-    type: String;
-    value: any;
-}
-
-export interface RestartBoardAction {
+export interface Action {
     type: String;
     value: any;
 }

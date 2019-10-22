@@ -1,12 +1,12 @@
 // Import types
-import { JumpAction, MarkSquareAction, RestartBoardAction } from "./types";
+import { Action } from "./types";
 
 /**
  * Action to change state to another saved on history (board reducer)
  * @param {number} index
  * @return {object}
  */
-export const jump = (index: Number = 0): JumpAction => ({
+export const jump = (index: Number = 0): Action => ({
     type: "JUMP",
     value: {
         index
@@ -20,7 +20,7 @@ export const jump = (index: Number = 0): JumpAction => ({
  * @param {string} mark
  * @return {object}
  */
-export const markSquare = (row: Number = 0, column: Number = 0, mark: String = "X"): MarkSquareAction => ({
+export const markSquare = (row: Number = 0, column: Number = 0, mark: String = "X"): Action => ({
     type: "MARK_SQUARE",
     value: {
         row,
@@ -33,7 +33,7 @@ export const markSquare = (row: Number = 0, column: Number = 0, mark: String = "
  * Action for reset board state
  * @return {object}
  */
-export const restartBoard = (): RestartBoardAction => ({
+export const restartBoard = (): Action => ({
     type: "RESTART_BOARD",
     value: {}
 });
