@@ -45,8 +45,7 @@ class Square extends Component<any> {
      * @memberof Square
      */
     isSuccess(): boolean {
-        return false;
-        // return (this.props.winner.filter((e: number) => (e === this.getSeatWeight())).length > 0);
+        return (this.props.winner.filter((e: number) => (e === this.getSeatWeight())).length > 0);
     };
 
     /**
@@ -68,17 +67,17 @@ class Square extends Component<any> {
     }
 }
 
-export default Square;
+// export default Square;
 
-// export default connect(
-//     // mapStateToProps
-//     (state: any): any => ({
-//         xIsNext: state.xIsNext,
-//         winner: state.boardReducer.winner,
-//         disabled: state.boardReducer.draw || (state.boardReducer.winner.length > 0) || (state.boardReducer.step < (state.boardReducer.history.length - 1))
-//     }),
-//     // mapDispatchToProps
-//     (dispatch: Function): any => ({
-//         onClick: (y: number, x: number, mark: string) => dispatch(markSquare(y, x, mark))
-//     })
-// )(Square);
+export default connect(
+    // mapStateToProps
+    (state: any): object => ({
+        xIsNext: state.xIsNext,
+        winner: state.boardReducer.winner,
+        disabled: state.boardReducer.draw || (state.boardReducer.winner.length > 0) || (state.boardReducer.step < (state.boardReducer.history.length - 1))
+    }),
+    // mapDispatchToProps
+    // (dispatch: Function): any => ({
+    //     onClick: (y: number, x: number, mark: string) => dispatch(markSquare(y, x, mark))
+    // })
+)(Square);
