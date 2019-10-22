@@ -6,7 +6,7 @@ import { Action } from "./types";
  * @param {number} index
  * @return {object}
  */
-export const jump = (index: Number = 0): Action => ({
+export const jump: Function = (index: Number = 0): Action => ({
     type: "JUMP",
     value: {
         index
@@ -20,7 +20,7 @@ export const jump = (index: Number = 0): Action => ({
  * @param {string} mark
  * @return {object}
  */
-export const markSquare = (row: Number = 0, column: Number = 0, mark: String = "X"): Action => ({
+export const markSquare: Function = (row: Number = 0, column: Number = 0, mark: String = "X"): Action => ({
     type: "MARK_SQUARE",
     value: {
         row,
@@ -33,7 +33,7 @@ export const markSquare = (row: Number = 0, column: Number = 0, mark: String = "
  * Action for reset board state
  * @return {object}
  */
-export const restartBoard = (): Action => ({
+export const restartBoard: Function = (): Action => ({
     type: "RESTART_BOARD",
     value: {}
 });

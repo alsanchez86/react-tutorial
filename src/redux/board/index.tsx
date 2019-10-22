@@ -13,11 +13,11 @@ export default (state: BoardState = generateState(), action: Action): BoardState
     switch(action.type){
         // Mark a square and return the new state
         case "MARK_SQUARE":
-            let cells = state.cells.map((row, i) => row.map((square: String, o: Number) => square = (square !== "") ? square : (((action.value.row === i) && (action.value.column === o)) ? action.value.mark : "")));
-            let winner = checkWinnerCombination(cells);
-            let draw = (checkDraw(cells) && (winner.length === 0));
-            let history = state.history;
-            let step = +state.step + 1;
+            let cells: String[][] = state.cells.map((row, i) => row.map((square: String, o: Number) => square = (square !== "") ? square : (((action.value.row === i) && (action.value.column === o)) ? action.value.mark : "")));
+            let winner: Number[] = checkWinnerCombination(cells);
+            let draw: Boolean = (checkDraw(cells) && (winner.length === 0));
+            let history: String[][][] = state.history;
+            let step: Number = +state.step + 1;
 
             history.push([...cells]);
             return generateState({

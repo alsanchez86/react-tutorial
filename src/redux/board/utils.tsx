@@ -31,7 +31,7 @@ export function generateState (
 export function checkWinnerCombination(
     cells: String[][] = []
 ): Number[] {
-    const concatCells = cells.reduce((ant, act) => ant.concat(act));
+    const concatCells: String[] = cells.reduce((ant, act) => ant.concat(act));
     return [
         [0, 1, 2],
         [3, 4, 5],
@@ -42,9 +42,9 @@ export function checkWinnerCombination(
         [0, 4, 8],
         [2, 4, 6]
     ].filter(e => {
-        let map = e.map(a => concatCells[a]);
-        let notNull = (map.indexOf("") === -1);
-        let equals = map.every((e, i, a) => e === a[0]);
+        let map: String[] = e.map(a => concatCells[a]);
+        let notNull: Boolean = (map.indexOf("") === -1);
+        let equals: Boolean = map.every((e, i, a) => e === a[0]);
         return (notNull && equals);
     }).shift() || [];
 }
