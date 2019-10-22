@@ -14,7 +14,7 @@ You will also see any lint errors in the console.
 
 Closing ports on windows:
     netstat -ano
-    taskkill /f /im [PID of the port 8080 got from previous command]
+    taskkill -f -im [PID of the port 8080 got from previous command]
 
 ### `npm test`
 

@@ -13,7 +13,7 @@ import Template from "./templates/";
  * @extends {Component}
  */
 class Board extends Component<any> {
-    render(): object {
+    render(): any {
         return (
             <Template
                 cells={this.props.cells}
@@ -26,7 +26,7 @@ class Board extends Component<any> {
 export default connect(
     // mapStateToProps
     (state: any): object => ({
-        cells: state.board.cells,
-        disabled: (state.board.winner.length > 0)
+        cells: state.boardReducer.cells,
+        disabled: (state.boardReducer.winner.length > 0)
     })
 )(Board);

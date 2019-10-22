@@ -7,6 +7,6 @@ import Main from "../../Main";
 export default (): any =>
 
 <div>
-    {/* <Header/>
-    <Main/> */}
+    <Header/>
+    <Main/>
 </div>

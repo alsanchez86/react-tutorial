@@ -6,13 +6,15 @@ import { BoardState } from "./types";
  * @param {BoardState} state
  * @return {BoardState}
  */
-export function generateState (state: BoardState = {
-    cells: Array(3).fill(Array(3).fill("")),
-    winner: [],
-    history: [],
-    draw: false,
-    step: 0
-}): BoardState {
+export function generateState (
+    state: BoardState = {
+        cells: Array(3).fill(Array(3).fill("")),
+        winner: [],
+        history: [],
+        draw: false,
+        step: 0
+    }
+): BoardState {
     return {
         cells: state.cells,
         winner: state.winner,

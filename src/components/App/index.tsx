@@ -10,7 +10,7 @@ import Template from "./templates/";
  * @class App
  * @extends {Component}
  */
-export default class App extends Component<Component> {
+export default class App extends Component<any> {
     /**
      *
      *
