@@ -92,7 +92,7 @@ export default connect(
         xIsNext: state.xIsNext
     }),
     // mapDispatchToProps
-    (dispatch: any): object => ({
+    (dispatch: Function): object => ({
         restart: () => dispatch(restartBoard()),
         jump: (i: Number = 0) => dispatch(jump(i))
     })

@@ -1,24 +1,22 @@
 export interface BoardState {
     cells: String[][];
-    winner: String[];
+    winner: Number[];
     history: String[][][];
     draw: Boolean;
     step: Number;
 }
 
-interface Action {
+export interface JumpAction {
     type: String;
-    value: Object;
+    value: any;
 }
 
-export interface JumpAction extends Action {
-
+export interface MarkSquareAction {
+    type: String;
+    value: any;
 }
 
-export interface MarkSquareAction extends Action {
-
-}
-
-export interface RestartBoardAction extends Action {
-
+export interface RestartBoardAction {
+    type: String;
+    value: any;
 }

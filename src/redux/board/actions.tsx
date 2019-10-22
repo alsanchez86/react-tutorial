@@ -1,3 +1,4 @@
+// Import types
 import { JumpAction, MarkSquareAction, RestartBoardAction } from "./types";
 
 /**

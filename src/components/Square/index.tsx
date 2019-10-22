@@ -77,7 +77,7 @@ export default connect(
         disabled: state.boardReducer.draw || (state.boardReducer.winner.length > 0) || (state.boardReducer.step < (state.boardReducer.history.length - 1))
     }),
     // mapDispatchToProps
-    // (dispatch: Function): any => ({
-    //     onClick: (y: number, x: number, mark: string) => dispatch(markSquare(y, x, mark))
-    // })
+    (dispatch: Function): object => ({
+        onClick: (y: number, x: number, mark: string) => dispatch(markSquare(y, x, mark))
+    })
 )(Square);
