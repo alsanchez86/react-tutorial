@@ -1,0 +1,28 @@
+{
+    "files.exclude": {
+        "**/*.min.js": false,
+        "**/.vscode": true,
+        "**/.cache": true,
+        "**/.git": true,
+        "**/.DS_Store": true,
+        "**/build": true,
+        "**/public": true,
+        "**/node_modules": true,
+        "**/bower_components": true,
+        "**/temp": true,
+        "package-lock.json": true
+    },
+    "search.exclude": {
+        "**/*.min.js": true,
+        "**/.vscode": true,
+        "**/.cache": true,
+        "**/.git": true,
+        "**/.DS_Store": true,
+        "**/build": true,
+        "**/public": true,
+        "**/node_modules": true,
+        "**/bower_components": true,
+        "**/temp": true,
+        "package-lock.json": true
+    },
+}
