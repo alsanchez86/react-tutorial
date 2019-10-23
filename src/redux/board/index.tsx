@@ -16,9 +16,10 @@ export default (state: BoardState = generateState(), action: Action): BoardState
             const actionRow: number = action.value.row;
             const actionColumn: number = action.value.column;
             const actionMark: string = action.value.mark;
-            let isEmpty: boolean = checkIfEmptySquare(state.cells, actionRow, actionColumn);
+            const isEmpty: boolean = checkIfEmptySquare(state.cells, actionRow, actionColumn);
 
             if (!isEmpty){
+                // Square is not empty. Return the same state
                 return generateState({
                     cells: state.cells,
                     winner: state.winner,
@@ -37,6 +38,7 @@ export default (state: BoardState = generateState(), action: Action): BoardState
             let xIsNext: Boolean = (actionMark === "O");
 
             history.push([...cells]);
+
             return generateState({
                 cells: cells,
                 winner: winner,
