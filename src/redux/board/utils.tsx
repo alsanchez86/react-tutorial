@@ -12,7 +12,8 @@ export function generateState (
         winner: [],
         history: [],
         draw: false,
-        step: 0
+        step: 0,
+        xIsNext: false
     }
 ): BoardState {
     return {
@@ -20,7 +21,8 @@ export function generateState (
         winner: state.winner,
         history: state.history,
         draw: state.draw,
-        step: state.step
+        step: state.step,
+        xIsNext: state.xIsNext
     }
 };
 

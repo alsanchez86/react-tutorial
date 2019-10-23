@@ -13,11 +13,16 @@ export default (state: BoardState = generateState(), action: Action): BoardState
     switch(action.type){
         // Mark a square and return the new state
         case "MARK_SQUARE":
-            let cells: String[][] = state.cells.map((row, i) => row.map((square: String, o: Number) => square = (square !== "") ? square : (((action.value.row === i) && (action.value.column === o)) ? action.value.mark : "")));
+            const actionRow: number = action.value.row;
+            const actionColumn: number = action.value.column;
+            const actionMark: string = action.value.mark;
+
+            let cells: String[][] = state.cells.map((row, i) => row.map((square: String, o: Number) => square = (square !== "") ? square : (((actionRow === i) && (actionColumn === o)) ? actionMark : "")));
             let winner: Number[] = checkWinnerCombination(cells);
             let draw: Boolean = (checkDraw(cells) && (winner.length === 0));
             let history: String[][][] = state.history;
             let step: Number = +state.step + 1;
+            let xIsNext = (actionMark === "O");
 
             history.push([...cells]);
             return generateState({
@@ -25,7 +30,8 @@ export default (state: BoardState = generateState(), action: Action): BoardState
                 winner: winner,
                 history: history,
                 draw: draw,
-                step: step
+                step: step,
+                xIsNext: xIsNext
             });
 
         // Jump to another cells state saved on history array
@@ -35,7 +41,8 @@ export default (state: BoardState = generateState(), action: Action): BoardState
                 winner: state.winner,
                 history: state.history,
                 draw: state.draw,
-                step: action.value.index
+                step: action.value.index,
+                xIsNext: state.xIsNext
             });
 
         // Restart state

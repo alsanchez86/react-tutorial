@@ -72,7 +72,7 @@ class Square extends Component<any> {
 export default connect(
     // mapStateToProps
     (state: any): object => ({
-        xIsNext: state.xIsNext,
+        xIsNext: state.boardReducer.xIsNext,
         winner: state.boardReducer.winner,
         disabled: state.boardReducer.draw || (state.boardReducer.winner.length > 0) || (state.boardReducer.step < (state.boardReducer.history.length - 1))
     }),

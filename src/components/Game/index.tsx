@@ -89,7 +89,7 @@ export default connect(
         draw: state.boardReducer.draw,
         history: state.boardReducer.history,
         step: state.boardReducer.step,
-        xIsNext: state.xIsNext
+        xIsNext: state.boardReducer.xIsNext
     }),
     // mapDispatchToProps
     (dispatch: Function): object => ({

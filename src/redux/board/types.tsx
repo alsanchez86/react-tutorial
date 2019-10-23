@@ -4,6 +4,7 @@ export interface BoardState {
     history: String[][][];
     draw: Boolean;
     step: Number;
+    xIsNext: Boolean;
 }
 
 export interface Action {
