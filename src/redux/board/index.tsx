@@ -1,7 +1,7 @@
 // Import types
 import { BoardState, Action } from "./types";
 // Import utils
-import { generateState, checkWinnerCombination, checkDraw } from "./utils";
+import { generateState, checkWinnerCombination, checkDraw, checkIfEmptySquare } from "./utils";
 
 /**
  * Export reducer function
@@ -16,11 +16,7 @@ export default (state: BoardState = generateState(), action: Action): BoardState
             const actionRow: number = action.value.row;
             const actionColumn: number = action.value.column;
             const actionMark: string = action.value.mark;
-            let isEmpty = (((state.cells
-                .filter((row: String[], i: Number) => (actionRow === i))
-                .shift() || [])
-                .filter((square: String, i: Number) => (actionColumn === i))
-                .shift()) === "");
+            let isEmpty: boolean = checkIfEmptySquare(state.cells, actionRow, actionColumn);
 
             if (!isEmpty){
                 return generateState({
@@ -70,4 +66,3 @@ export default (state: BoardState = generateState(), action: Action): BoardState
             return state;
     }
 }
-

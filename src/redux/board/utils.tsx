@@ -59,3 +59,20 @@ export function checkDraw(
 ): Boolean {
     return (cells.filter(row => row.filter(square => square !== "").length === row.length).length === cells.length);
 }
+
+/**
+ * Check if a square is empty (=== "")
+ *
+ * @export
+ * @param {String[][]} cells
+ * @param {Number} row
+ * @param {Number} column
+ * @returns
+ */
+export function checkIfEmptySquare(cells: String[][], row: Number, column: Number){
+    return (((cells
+        .filter((e: String[], i: Number) => (row === i))
+        .shift() || [])
+        .filter((e: String, i: Number) => (column === i))
+        .shift()) === "");
+}
