@@ -13,8 +13,6 @@ export default (state: BoardState = generateState(), action: Action): BoardState
     switch(action.type){
         // Mark a square and return the new state
         case "MARK_SQUARE":
-            debugger;
-
             const actionRow: number = action.value.row;
             const actionColumn: number = action.value.column;
             const actionMark: string = action.value.mark;
@@ -40,7 +38,7 @@ export default (state: BoardState = generateState(), action: Action): BoardState
             let draw: Boolean = (checkDraw(cells) && (winner.length === 0));
             let history: String[][][] = state.history;
             let step: Number = +state.step + 1;
-            let xIsNext = (actionMark === "O");
+            let xIsNext: Boolean = (actionMark === "O");
 
             history.push([...cells]);
             return generateState({
@@ -72,3 +70,4 @@ export default (state: BoardState = generateState(), action: Action): BoardState
             return state;
     }
 }
+
