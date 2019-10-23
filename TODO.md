@@ -23,3 +23,14 @@
 - https://es.redux.js.org/docs/introduccion/herencia.html#rx
 - Ver testing con reactjs.
 - https://medium.com/@jorgeucano/30-d%C3%ADas-con-rxjs-d%C3%ADa-1-e911e68f6063
+
+----------------------------
+
+- Funciones
+    - Poner tipos a todos los parámetros.
+    - Poner valor por defecto a todos los parámetros.
+    - Poner tipo al valor devuelto.
+    - Poner comentarios descriptivos a todas las funciones.
+
+- Variables
+    - Poner tipo en todas las deficiones de variables,
