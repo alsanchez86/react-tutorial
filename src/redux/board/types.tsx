@@ -1,13 +1,13 @@
 export interface BoardState {
-    cells: String[][];
-    winner: Number[];
-    history: String[][][];
-    draw: Boolean;
-    step: Number;
-    xIsNext: Boolean;
+    cells: string[][];
+    winner: number[];
+    history: string[][][];
+    draw: boolean;
+    step: number;
+    xIsNext: boolean;
 }
 
 export interface Action {
-    type: String;
+    type: string;
     value: any;
 }

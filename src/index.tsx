@@ -11,6 +11,9 @@ import { Provider } from "react-redux";
 import store from "./redux";
 // Import root component
 import App from "./components/App";
+
+const elementId: string = "root";
+
 // Render APP
 render(
     <Provider store={store}>
@@ -18,5 +21,5 @@ render(
             <App/>
         </Router>
     </Provider>,
-    document.getElementById("root"), () => console.info("App rendered.")
+    document.getElementById(elementId), () => console.info("App rendered on " + elementId)
 );

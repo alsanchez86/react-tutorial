@@ -31,9 +31,9 @@ export function generateState (
  * Returns the symbol of the winner or a empty string
  */
 export function checkWinnerCombination(
-    cells: String[][] = []
-): Number[] {
-    const concatCells: String[] = cells.reduce((ant, act) => ant.concat(act));
+    cells: string[][] = []
+): number[] {
+    const concatCells: string[] = cells.reduce((ant, act) => ant.concat(act));
     return [
         [0, 1, 2],
         [3, 4, 5],
@@ -44,9 +44,9 @@ export function checkWinnerCombination(
         [0, 4, 8],
         [2, 4, 6]
     ].filter(e => {
-        let map: String[] = e.map(a => concatCells[a]);
-        let notNull: Boolean = (map.indexOf("") === -1);
-        let equals: Boolean = map.every((e, i, a) => e === a[0]);
+        let map: string[] = e.map(a => concatCells[a]);
+        let notNull: boolean = (map.indexOf("") === -1);
+        let equals: boolean = map.every((e, i, a) => e === a[0]);
         return (notNull && equals);
     }).shift() || [];
 }
@@ -55,8 +55,8 @@ export function checkWinnerCombination(
  * Check if draw on current board state
  */
 export function checkDraw(
-    cells: String[][] = []
-): Boolean {
+    cells: string[][] = []
+): boolean {
     return (cells.filter(row => row.filter(square => square !== "").length === row.length).length === cells.length);
 }
 
@@ -64,15 +64,15 @@ export function checkDraw(
  * Check if a square is empty (=== "")
  *
  * @export
- * @param {String[][]} cells
- * @param {Number} row
- * @param {Number} column
+ * @param {string[][]} cells
+ * @param {number} row
+ * @param {number} column
  * @returns
  */
-export function checkIfEmptySquare(cells: String[][], row: Number, column: Number){
+export function checkIfEmptySquare(cells: string[][], row: number, column: number){
     return (((cells
-        .filter((e: String[], i: Number) => (row === i))
+        .filter((e: string[], i: number) => (row === i))
         .shift() || [])
-        .filter((e: String, i: Number) => (column === i))
+        .filter((e: string, i: number) => (column === i))
         .shift()) === "");
 }

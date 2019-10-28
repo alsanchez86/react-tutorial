@@ -30,12 +30,12 @@ export default (state: BoardState = generateState(), action: Action): BoardState
                 });
             }
 
-            let cells: String[][] = state.cells.map((row: String[], i: Number) => row.map((square: String, o: Number) => square = (square !== "") ? square : (((actionRow === i) && (actionColumn === o)) ? actionMark : "")));
-            let winner: Number[] = checkWinnerCombination(cells);
-            let draw: Boolean = (checkDraw(cells) && (winner.length === 0));
-            let history: String[][][] = state.history;
-            let step: Number = +state.step + 1;
-            let xIsNext: Boolean = (actionMark === "O");
+            let cells: string[][] = state.cells.map((row: string[], i: number) => row.map((square: string, o: number) => square = (square !== "") ? square : (((actionRow === i) && (actionColumn === o)) ? actionMark : "")));
+            let winner: number[] = checkWinnerCombination(cells);
+            let draw: boolean = (checkDraw(cells) && (winner.length === 0));
+            let history: string[][][] = state.history;
+            let step: number = +state.step + 1;
+            let xIsNext: boolean = (actionMark === "O");
 
             history.push([...cells]);
 
