@@ -1,5 +1,9 @@
 // Import types
 import { BoardState } from "./types";
+// Import default values
+import { defaultCells, defaultWinner, defaultHistory, defaultDraw, defaultStep, defaultXIsNext } from "./default";
+// Import utils
+import { get } from "../../utils";
 
 /**
  * Get initial reducer state
@@ -17,21 +21,21 @@ import { BoardState } from "./types";
  */
 export function generateState (
     state: BoardState = {
-        cells: Array(3).fill(Array(3).fill("")),
-        winner: [],
-        history: [],
-        draw: false,
-        step: 0,
-        xIsNext: false
+        cells: defaultCells,
+        winner: defaultWinner,
+        history: defaultHistory,
+        draw: defaultDraw,
+        step: defaultStep,
+        xIsNext: defaultXIsNext
     }
 ): BoardState {
     return {
-        cells: state.cells,
-        winner: state.winner,
-        history: state.history,
-        draw: state.draw,
-        step: state.step,
-        xIsNext: state.xIsNext
+        cells: get(state, "cells", defaultCells),
+        winner: get(state, "winner", defaultWinner),
+        history: get(state, "history", defaultHistory),
+        draw: get(state, "draw", defaultDraw),
+        step: get(state, "step", defaultStep),
+        xIsNext: get(state, "xIsNext", defaultXIsNext)
     }
 };
 
@@ -43,10 +47,8 @@ export function generateState (
  * @param {string[][]} [cells=[]]
  * @returns {number[]}
  */
-export function checkWinnerCombination(
-    cells: string[][] = []
-): number[] {
-    const concatCells: string[] = cells.reduce((ant, act) => ant.concat(act));
+export function checkWinnerCombination(cells: string[][] = defaultCells): number[] {
+    const concatCells: string[] = cells.reduce((ant: string[], act: string[]) => ant.concat(act));
     return [
         [0, 1, 2],
         [3, 4, 5],
@@ -56,7 +58,7 @@ export function checkWinnerCombination(
         [2, 5, 8],
         [0, 4, 8],
         [2, 4, 6]
-    ].filter(e => {
+    ].filter((e: number[]) => {
         let map: string[] = e.map((a: number) => concatCells[a]);
         let notNull: boolean = (map.indexOf("") === -1);
         let equals: boolean = map.every((e: string, i: number, a: string[]) => e === a[0]);
@@ -71,9 +73,7 @@ export function checkWinnerCombination(
  * @param {string[][]} [cells=[]]
  * @returns {boolean}
  */
-export function checkDraw(
-    cells: string[][] = []
-): boolean {
+export function checkDraw(cells: string[][] = defaultCells): boolean {
     return (cells.filter((row: string[]) => row.filter((square: string) => square !== "").length === row.length).length === cells.length);
 }
 
@@ -81,12 +81,12 @@ export function checkDraw(
  * Check if a square is empty (=== "")
  *
  * @export
- * @param {string[][]} cells
- * @param {number} row
- * @param {number} column
- * @returns
+ * @param {string[][]} [cells=defaultCells]
+ * @param {number} [row=0]
+ * @param {number} [column=0]
+ * @returns {boolean}
  */
-export function emptySquare(cells: string[][], row: number, column: number){
+export function emptySquare(cells: string[][] = defaultCells, row: number = 0, column: number = 0): boolean{
     return (((cells
         .filter((e: string[], i: number) => (row === i))
         .shift() || [])

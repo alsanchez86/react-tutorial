@@ -3,13 +3,15 @@ import {
     BoardState,
     Action
 } from "./types";
-// Import utils
+// Import board utils
 import {
     generateState,
     checkWinnerCombination,
     checkDraw,
     emptySquare
 } from "./utils";
+// Import utils
+import { get } from "../../utils";
 
 /**
  * Export reducer function
@@ -42,23 +44,22 @@ export default (state: BoardState = generateState(), action: Action): BoardState
  * @returns {BoardState}
  */
 function markSquare(action: Action, state: BoardState): BoardState {
-    let actionRow: number = action.value.row;
-    let actionColumn: number = action.value.column;
-    let actionMark: string;
-    let cells: string[][];
+    let actionRow: number = get(action, "value.row");
+    let actionColumn: number = get(action, "value.column");
+    let actionMark: string = get(action, "value.mark");
+    let cells: string[][] = get(state, "cells", [[]]);
     let winner: number[];
     let draw: boolean;
     let history: string[][][];
     let step: number;
     let xIsNext: boolean;
 
-    if (emptySquare(state.cells, actionRow, actionColumn)) {
-        actionMark = action.value.mark;
-        cells = state.cells.map((row: string[], i: number) => row.map((square: string, o: number) => square = (square !== "") ? square : (((actionRow === i) && (actionColumn === o)) ? actionMark : "")));
+    if (emptySquare(cells, actionRow, actionColumn)) {
+        cells = cells.map((row: string[], i: number) => row.map((square: string, o: number) => square = (square !== "") ? square : (((actionRow === i) && (actionColumn === o)) ? actionMark : "")));
         winner = checkWinnerCombination(cells);
-        draw = (checkDraw(cells) && (winner.length === 0));
-        history = state.history;
-        step = +state.step + 1;
+        draw = (checkDraw(cells) && (get(winner, "length") === 0));
+        history = get(state, "history", [[[]]]);
+        step = +get(state, "step") + 1;
         xIsNext = (actionMark === "O");
         // Update history on new state
         history.push([...cells]);
@@ -74,12 +75,12 @@ function markSquare(action: Action, state: BoardState): BoardState {
     } else {
         // Square is not empty. Return the same state
         return generateState({
-            cells: state.cells,
-            winner: state.winner,
-            history: state.history,
-            draw: state.draw,
-            step: state.step,
-            xIsNext: state.xIsNext
+            cells: get(state, "cells"),
+            winner: get(state, "winner"),
+            history: get(state, "history"),
+            draw: get(state, "draw"),
+            step: get(state, "step"),
+            xIsNext: get(state, "xIsNext")
         });
     }
 }
@@ -93,11 +94,11 @@ function markSquare(action: Action, state: BoardState): BoardState {
  */
 function jump(action: Action, state: BoardState): BoardState {
     return generateState({
-        cells: state.history[action.value.index],
-        winner: state.winner,
-        history: state.history,
-        draw: state.draw,
-        step: action.value.index,
-        xIsNext: state.xIsNext
+        cells: get(state, "history[" + get(action, "value.index", 0) + "]", Array(3).fill(Array(3).fill(""))),
+        winner: get(state, "winner"),
+        history: get(state, "history"),
+        draw: get(state, "draw"),
+        step: get(action, "value.index"),
+        xIsNext: get(state, "xIsNext")
     });
 }
