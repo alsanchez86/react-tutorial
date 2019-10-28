@@ -1,3 +1,9 @@
+/**
+ *
+ *
+ * @export
+ * @interface BoardState
+ */
 export interface BoardState {
     cells: string[][];
     winner: number[];
@@ -7,6 +13,12 @@ export interface BoardState {
     xIsNext: boolean;
 }
 
+/**
+ *
+ *
+ * @export
+ * @interface Action
+ */
 export interface Action {
     type: string;
     value: any;

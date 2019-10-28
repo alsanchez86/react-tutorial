@@ -21,7 +21,7 @@ class Square extends Component<any> {
      * @param {number} [x=0]
      * @memberof Square
      */
-    onClick (y: number = 0, x: number = 0): void {
+    onClick(y: number = 0, x: number = 0): void {
         const mark: string = this.props.xIsNext ? "X" : "O";
         if (!this.props.disabled){
             this.props.onClick(y, x, mark);

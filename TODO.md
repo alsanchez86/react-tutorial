@@ -9,6 +9,7 @@
 - Iluminar la línea ganadora en el caso de que se produzca. -> OK
 
 - Probar Typescript para ver que nos aporta.
+    https://fettblog.eu/typescript-react/components/
     https://medium.com/@rossbulat/how-to-use-typescript-with-react-and-redux-a118b1e02b76
     https://codesandbox.io/s/w02m7jm3q7
     https://stackoverflow.com/questions/52249390/property-xyz-does-not-exist-on-type-readonly-children-reactnode-rea

@@ -22,7 +22,7 @@ class Game extends Component<any> {
      * @returns {string}
      * @memberof Game
      */
-    getNextMark (xIsNext: boolean = false): string {
+    getNextMark(xIsNext: boolean = false): string {
         return xIsNext ? "X" : "O";
     };
 
@@ -33,7 +33,7 @@ class Game extends Component<any> {
      * @returns {string}
      * @memberof Game
      */
-    getButtonColor (i: number = 0): string {
+    getButtonColor(i: number = 0): string {
         return ((this.props.history.length - 1) === i) ? "success" : "secondary";
     };
 
