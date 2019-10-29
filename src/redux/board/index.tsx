@@ -3,6 +3,12 @@ import {
     BoardState,
     Action
 } from "./types";
+// Import defaults
+import {
+    actionType,
+    actionValue,
+    boardStateCells
+} from "./default";
 // Import board utils
 import {
     generateState,
@@ -11,7 +17,9 @@ import {
     emptySquare
 } from "./utils";
 // Import utils
-import { get } from "../../utils";
+import {
+    get
+} from "../../utils";
 
 /**
  * Export reducer function
@@ -20,7 +28,7 @@ import { get } from "../../utils";
  * @param {Action} action
  * @returns {BoardState}
  */
-export default (state: BoardState = generateState(), action: Action): BoardState => {
+export default (state: BoardState = generateState(), action: Action = {type: actionType, value: actionValue}): BoardState => {
     switch (action.type) {
         case "MARK_SQUARE":
             return markSquare(action, state);
@@ -43,46 +51,62 @@ export default (state: BoardState = generateState(), action: Action): BoardState
  * @param {BoardState} state
  * @returns {BoardState}
  */
-function markSquare(action: Action, state: BoardState): BoardState {
+function markSquare(
+    action: Action = {type: actionType, value: actionValue},
+    state: BoardState = generateState()
+): BoardState {
+
+    return (emptySquare(action, state)) ? markEmptySquare(action, state) : generateState({
+        cells: get(state, "cells"),
+        winner: get(state, "winner"),
+        history: get(state, "history"),
+        draw: get(state, "draw"),
+        step: get(state, "step"),
+        xIsNext: get(state, "xIsNext")
+    });
+}
+
+/**
+ *
+ *
+ * @param {BoardState} [state=generateState()]
+ * @param {number} [actionRow=0]
+ * @param {number} [actionColumn=0]
+ * @param {string} [actionMark="X"]
+ * @param {string[][]} [cells=boardStateCells]
+ * @returns {BoardState}
+ */
+function markEmptySquare(
+    action: Action = {type: actionType, value: actionValue},
+    state: BoardState = generateState()
+): BoardState {
+
     let actionRow: number = get(action, "value.row");
     let actionColumn: number = get(action, "value.column");
     let actionMark: string = get(action, "value.mark");
-    let cells: string[][] = get(state, "cells", [[]]);
-    let winner: number[];
-    let draw: boolean;
-    let history: string[][][];
-    let step: number;
-    let xIsNext: boolean;
+    let cells: string[][] = get(state, "cells", [[]]).map((row: string[], i: number) => row.map((square: string, o: number) => square = (square !== "") ? square : (((actionRow === i) && (actionColumn === o)) ? actionMark : "")));
+    let winner: number[] = checkWinnerCombination(cells);
+    let draw: boolean = (checkDraw(cells) && (get(winner, "length") === 0));
+    let history: string[][][] = get(state, "history", [
+        [
+            []
+        ]
+    ]);
+    let step: number = +get(state, "step") + 1;
+    let xIsNext: boolean = (actionMark === "O");
 
-    if (emptySquare(cells, actionRow, actionColumn)) {
-        cells = cells.map((row: string[], i: number) => row.map((square: string, o: number) => square = (square !== "") ? square : (((actionRow === i) && (actionColumn === o)) ? actionMark : "")));
-        winner = checkWinnerCombination(cells);
-        draw = (checkDraw(cells) && (get(winner, "length") === 0));
-        history = get(state, "history", [[[]]]);
-        step = +get(state, "step") + 1;
-        xIsNext = (actionMark === "O");
-        // Update history on new state
-        history.push([...cells]);
-        // Return new state after mark square
-        return generateState({
-            cells: cells,
-            winner: winner,
-            history: history,
-            draw: draw,
-            step: step,
-            xIsNext: xIsNext
-        });
-    } else {
-        // Square is not empty. Return the same state
-        return generateState({
-            cells: get(state, "cells"),
-            winner: get(state, "winner"),
-            history: get(state, "history"),
-            draw: get(state, "draw"),
-            step: get(state, "step"),
-            xIsNext: get(state, "xIsNext")
-        });
-    }
+    // Update history on new state
+    history.push([...cells]);
+
+    // Return new state after mark square
+    return generateState({
+        cells: cells,
+        winner: winner,
+        history: history,
+        draw: draw,
+        step: step,
+        xIsNext: xIsNext
+    });
 }
 
 /**
@@ -92,7 +116,11 @@ function markSquare(action: Action, state: BoardState): BoardState {
  * @param {BoardState} state
  * @returns {BoardState}
  */
-function jump(action: Action, state: BoardState): BoardState {
+function jump(
+    action: Action = {type: actionType, value: actionValue},
+    state: BoardState = generateState()
+): BoardState {
+
     return generateState({
         cells: get(state, "history[" + get(action, "value.index", 0) + "]", Array(3).fill(Array(3).fill(""))),
         winner: get(state, "winner"),

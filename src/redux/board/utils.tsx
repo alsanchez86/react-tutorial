@@ -1,9 +1,23 @@
 // Import types
-import { BoardState } from "./types";
+import {
+    BoardState,
+    Action
+} from "./types";
 // Import default values
-import { defaultCells, defaultWinner, defaultHistory, defaultDraw, defaultStep, defaultXIsNext } from "./default";
+import {
+    boardStateCells,
+    boardStateWinner,
+    boardStateHistory,
+    boardStateDraw,
+    boardStateStep,
+    boardStateXIsNext,
+    actionType,
+    actionValue
+} from "./default";
 // Import utils
-import { get } from "../../utils";
+import {
+    get
+} from "../../utils";
 
 /**
  * Get initial reducer state
@@ -19,23 +33,24 @@ import { get } from "../../utils";
  *     }]
  * @returns {BoardState}
  */
-export function generateState (
+export function generateState(
     state: BoardState = {
-        cells: defaultCells,
-        winner: defaultWinner,
-        history: defaultHistory,
-        draw: defaultDraw,
-        step: defaultStep,
-        xIsNext: defaultXIsNext
+        cells: boardStateCells,
+        winner: boardStateWinner,
+        history: boardStateHistory,
+        draw: boardStateDraw,
+        step: boardStateStep,
+        xIsNext: boardStateXIsNext
     }
 ): BoardState {
+
     return {
-        cells: get(state, "cells", defaultCells),
-        winner: get(state, "winner", defaultWinner),
-        history: get(state, "history", defaultHistory),
-        draw: get(state, "draw", defaultDraw),
-        step: get(state, "step", defaultStep),
-        xIsNext: get(state, "xIsNext", defaultXIsNext)
+        cells: get(state, "cells", boardStateCells),
+        winner: get(state, "winner", boardStateWinner),
+        history: get(state, "history", boardStateHistory),
+        draw: get(state, "draw", boardStateDraw),
+        step: get(state, "step", boardStateStep),
+        xIsNext: get(state, "xIsNext", boardStateXIsNext)
     }
 };
 
@@ -44,11 +59,15 @@ export function generateState (
  * Returns the symbol of the winner or a empty string
  *
  * @export
- * @param {string[][]} [cells=[]]
+ * @param {string[][]} [cells=boardStateCells]
  * @returns {number[]}
  */
-export function checkWinnerCombination(cells: string[][] = defaultCells): number[] {
+export function checkWinnerCombination(
+    cells: string[][] = boardStateCells
+): number[] {
+
     const concatCells: string[] = cells.reduce((ant: string[], act: string[]) => ant.concat(act));
+
     return [
         [0, 1, 2],
         [3, 4, 5],
@@ -70,10 +89,13 @@ export function checkWinnerCombination(cells: string[][] = defaultCells): number
  * Check if draw on current board state
  *
  * @export
- * @param {string[][]} [cells=[]]
+ * @param {string[][]} [cells=boardStateCells]
  * @returns {boolean}
  */
-export function checkDraw(cells: string[][] = defaultCells): boolean {
+export function checkDraw(
+    cells: string[][] = boardStateCells
+): boolean {
+
     return (cells.filter((row: string[]) => row.filter((square: string) => square !== "").length === row.length).length === cells.length);
 }
 
@@ -81,15 +103,23 @@ export function checkDraw(cells: string[][] = defaultCells): boolean {
  * Check if a square is empty (=== "")
  *
  * @export
- * @param {string[][]} [cells=defaultCells]
- * @param {number} [row=0]
- * @param {number} [column=0]
+ * @param {Action} [action={type: actionType, value: actionValue}]
+ * @param {BoardState} [state=generateState()]
  * @returns {boolean}
  */
-export function emptySquare(cells: string[][] = defaultCells, row: number = 0, column: number = 0): boolean{
-    return (((cells
-        .filter((e: string[], i: number) => (row === i))
-        .shift() || [])
-        .filter((e: string, i: number) => (column === i))
-        .shift()) === "");
+export function emptySquare(
+    action: Action = {
+        type: actionType,
+        value: actionValue
+    },
+    state: BoardState = generateState()
+): boolean {
+
+    let actionRow: number = get(action, "value.row");
+    let actionColumn: number = get(action, "value.column");
+    let cells: string[][] = get(state, "cells", [
+        []
+    ]);
+
+    return (((cells.filter((e: string[], i: number) => (actionRow === i)).shift() || []).filter((e: string, i: number) => (actionColumn === i)).shift()) === "");
 }

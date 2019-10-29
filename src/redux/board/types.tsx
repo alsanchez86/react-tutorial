@@ -5,12 +5,12 @@
  * @interface BoardState
  */
 export interface BoardState {
-    cells: string[][];
-    winner: number[];
-    history: string[][][];
-    draw: boolean;
-    step: number;
-    xIsNext: boolean;
+    cells: string[][]; // const boardStateCells
+    winner: number[]; // const boardStateWinner
+    history: string[][][]; // const boardStateHistory
+    draw: boolean; // const boardStateDraw
+    step: number; // const boardStateStep
+    xIsNext: boolean; // const boardStateXIsNext
 }
 
 /**
@@ -20,6 +20,6 @@ export interface BoardState {
  * @interface Action
  */
 export interface Action {
-    type: string;
-    value: any;
+    type: string; // const actionType
+    value: any; // const actionValue
 }
