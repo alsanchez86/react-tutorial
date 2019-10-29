@@ -18,11 +18,6 @@ import {
     emptySquare
 } from "./utils";
 
-// Import utils
-import {
-    get
-} from "../../utils";
-
 /**
  * Export reducer function
  *
@@ -59,12 +54,12 @@ function markSquare(
 ): BoardState {
 
     return (emptySquare(action, state)) ? markEmptySquare(action, state) : generateState({
-        cells: get(state, "cells"),
-        winner: get(state, "winner"),
-        history: get(state, "history"),
-        draw: get(state, "draw"),
-        step: get(state, "step"),
-        xIsNext: get(state, "xIsNext")
+        cells: state.cells,
+        winner: state.winner,
+        history: state.history,
+        draw: state.draw,
+        step: state.step,
+        xIsNext: state.xIsNext
     });
 }
 
@@ -80,18 +75,14 @@ function markEmptySquare(
     state: BoardState = generateState()
 ): BoardState {
 
-    let actionRow: number = get(action, "value.row");
-    let actionColumn: number = get(action, "value.column");
-    let actionMark: string = get(action, "value.mark");
-    let cells: string[][] = get(state, "cells", [[]]).map((row: string[], i: number) => row.map((square: string, o: number) => square = (square !== "") ? square : (((actionRow === i) && (actionColumn === o)) ? actionMark : "")));
+    let actionRow: number = action.value.row;
+    let actionColumn: number = action.value.column;
+    let actionMark: string = action.value.mark;
+    let cells: string[][] = state.cells.map((row: string[], i: number) => row.map((square: string, o: number) => square = (square !== "") ? square : (((actionRow === i) && (actionColumn === o)) ? actionMark : "")));
     let winner: number[] = checkWinnerCombination(cells);
-    let draw: boolean = (checkDraw(cells) && (get(winner, "length") === 0));
-    let history: string[][][] = get(state, "history", [
-        [
-            []
-        ]
-    ]);
-    let step: number = +get(state, "step") + 1;
+    let draw: boolean = (checkDraw(cells) && winner.length === 0);
+    let history: string[][][] = state.history;
+    let step: number = +state.step + 1;
     let xIsNext: boolean = (actionMark === "O");
 
     // Update history on new state
@@ -121,11 +112,11 @@ function jump(
 ): BoardState {
 
     return generateState({
-        cells: get(state, "history[" + get(action, "value.index", 0) + "]", Array(3).fill(Array(3).fill(""))),
-        winner: get(state, "winner"),
-        history: get(state, "history"),
-        draw: get(state, "draw"),
-        step: get(action, "value.index"),
-        xIsNext: get(state, "xIsNext")
+        cells: state.history[action.value.index],
+        winner: state.winner,
+        history: state.history,
+        draw: state.draw,
+        step: action.value.index,
+        xIsNext: state.xIsNext
     });
 }

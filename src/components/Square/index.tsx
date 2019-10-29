@@ -1,13 +1,15 @@
 // Import React library
 import React, { Component } from "react";
+
 // Import react redux
 import { connect } from "react-redux";
+
 // Import redux actions
 import { markSquare } from "../../redux/board/actions";
+
 // Import Jsx template
 import Template from "./templates/";
-// Import utils
-import { get } from "../../utils/";
+
 // Import default values
 import {
     boardStateWinner,
@@ -83,11 +85,11 @@ export default connect(
     // mapStateToProps
     (state: any): object => ((
         function() {
-            let winner = get(state, "boardReducer.winner", boardStateWinner);
+            let winner = state.boardReducer.winner;
             return {
-                xIsNext: get(state, "boardReducer.xIsNext", boardStateXIsNext),
+                xIsNext: state.boardReducer.xIsNext,
                 winner: winner,
-                disabled: (get(state, "boardReducer.draw", boardStateDraw) || (winner.length > 0) || (get(state, "boardReducer.step", boardStateStep) < (get(state, "boardReducer.history", boardStateHistory).length - 1)))
+                disabled: (state.boardReducer.draw || (winner.length > 0) || (state.boardReducer.step < state.boardReducer.history.length - 1))
             }
         }
     )()),

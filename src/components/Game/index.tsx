@@ -2,30 +2,20 @@
 import React, {
     Component
 } from "react";
+
 // Import react redux
 import {
     connect
 } from "react-redux";
+
 // Import redux actions
 import {
     jump,
     restartBoard
 } from "../../redux/board/actions";
+
 // Import Jsx template
 import Template from "./templates/";
-// Import utils
-import {
-    get
-} from "../../utils/";
-// Import default values
-import {
-    boardStateCells,
-    boardStateWinner,
-    boardStateHistory,
-    boardStateDraw,
-    boardStateStep,
-    boardStateXIsNext
-} from "../../redux/board/default";
 
 /**
  * Root React App Component
@@ -104,12 +94,12 @@ class Game extends Component<any> {
 export default connect(
     // mapStateToProps
     (state: any): object => ({
-        cells: get(state, "boardReducer.cells", boardStateCells),
-        winner: get(state, "boardReducer.winner", boardStateWinner),
-        draw: get(state, "boardReducer.draw", boardStateDraw),
-        history: get(state, "boardReducer.history", boardStateHistory),
-        step: get(state, "boardReducer.step", boardStateStep),
-        xIsNext: get(state, "boardReducer.xIsNext", boardStateXIsNext)
+        cells: state.boardReducer.cells,
+        winner: state.boardReducer.winner,
+        draw: state.boardReducer.draw,
+        history: state.boardReducer.history,
+        step: state.boardReducer.step,
+        xIsNext: state.boardReducer.xIsNext
     }),
     // mapDispatchToProps
     (dispatch: Function): object => ({

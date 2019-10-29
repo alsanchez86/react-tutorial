@@ -3,6 +3,7 @@ import {
     BoardState,
     Action
 } from "./types";
+
 // Import default values
 import {
     boardStateCells,
@@ -14,10 +15,6 @@ import {
     actionType,
     actionValue
 } from "./default";
-// Import utils
-import {
-    get
-} from "../../utils";
 
 /**
  * Get initial reducer state
@@ -45,12 +42,12 @@ export function generateState(
 ): BoardState {
 
     return {
-        cells: get(state, "cells", boardStateCells),
-        winner: get(state, "winner", boardStateWinner),
-        history: get(state, "history", boardStateHistory),
-        draw: get(state, "draw", boardStateDraw),
-        step: get(state, "step", boardStateStep),
-        xIsNext: get(state, "xIsNext", boardStateXIsNext)
+        cells: state.cells,
+        winner: state.winner,
+        history: state.history,
+        draw: state.draw,
+        step: state.step,
+        xIsNext: state.xIsNext
     }
 };
 
@@ -115,11 +112,9 @@ export function emptySquare(
     state: BoardState = generateState()
 ): boolean {
 
-    let actionRow: number = get(action, "value.row");
-    let actionColumn: number = get(action, "value.column");
-    let cells: string[][] = get(state, "cells", [
-        []
-    ]);
+    let actionRow: number = action.value.row;
+    let actionColumn: number = action.value.column;
+    let cells: string[][] = state.cells;
 
     return (((cells.filter((e: string[], i: number) => (actionRow === i)).shift() || []).filter((e: string, i: number) => (actionColumn === i)).shift()) === "");
 }
