@@ -81,14 +81,16 @@ class Square extends Component<any> {
 
 export default connect(
     // mapStateToProps
-    (state: any): object => (() => {
-        let winner = get(state, "boardReducer.winner", boardStateWinner);
-        return {
-            xIsNext: get(state, "boardReducer.xIsNext", boardStateXIsNext),
-            winner: winner,
-            disabled: get(state, "boardReducer.draw", boardStateDraw) || (winner.length > 0) || (get(state, "boardReducer.step", boardStateStep) < (get(state, "boardReducer.history", boardStateHistory).length - 1))
-        };
-    }),
+    (state: any): object => ((
+        function() {
+            let winner = get(state, "boardReducer.winner", boardStateWinner);
+            return {
+                xIsNext: get(state, "boardReducer.xIsNext", boardStateXIsNext),
+                winner: winner,
+                disabled: (get(state, "boardReducer.draw", boardStateDraw) || (winner.length > 0) || (get(state, "boardReducer.step", boardStateStep) < (get(state, "boardReducer.history", boardStateHistory).length - 1)))
+            }
+        }
+    )()),
     // mapDispatchToProps
     (dispatch: Function): object => ({
         onClick: (y: number, x: number, mark: string) => dispatch(markSquare(y, x, mark))
