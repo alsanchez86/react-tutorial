@@ -1,24 +1,11 @@
 // Import types
 import {
-    cells,
     BoardState,
     Action
 } from "./types";
 
-// Import default values
-import {
-    boardStateCells,
-    boardStateWinner,
-    boardStateHistory,
-    boardStateDraw,
-    boardStateStep,
-    boardStateXIsNext,
-    actionType,
-    actionValue
-} from "./default";
-
 /**
- * Get initial reducer state
+ * Generate state
  *
  * @export
  * @param {BoardState} [state={
@@ -33,12 +20,12 @@ import {
  */
 export function generateState(
     state: BoardState = {
-        cells: boardStateCells,
-        winner: boardStateWinner,
-        history: boardStateHistory,
-        draw: boardStateDraw,
-        step: boardStateStep,
-        xIsNext: boardStateXIsNext
+        cells: Array(3).fill(Array(3).fill("")),
+        winner: [],
+        history: [],
+        draw: false,
+        step: 0,
+        xIsNext: false
     }
 ): BoardState {
     return {
@@ -56,14 +43,13 @@ export function generateState(
  * Returns the symbol of the winner or a empty string
  *
  * @export
- * @param {cells} [cells=boardStateCells]
+ * @param {string[][]} cells
  * @returns {number[]}
  */
 export function checkWinnerCombination(
-    cells: cells = boardStateCells
+    cells: string[][]
 ): number[] {
-
-    const concatCells: string[] = cells.reduce((ant: string[], act: string[]) => ant.concat(act));
+    const concatCells = cells.reduce((ant, act) => ant.concat(act));
     return [
         [0, 1, 2],
         [3, 4, 5],
@@ -74,9 +60,9 @@ export function checkWinnerCombination(
         [0, 4, 8],
         [2, 4, 6]
     ].filter((e: number[]) => {
-        let map: string[] = e.map((a: number) => concatCells[a]);
-        let notNull: boolean = (map.indexOf("") === -1);
-        let equals: boolean = map.every((e: string, i: number, a: string[]) => e === a[0]);
+        let map = e.map(a => concatCells[a]);
+        let notNull = (map.indexOf("") === -1);
+        let equals = map.every((e, i, a) => e === a[0]);
         return (notNull && equals);
     }).shift() || [];
 }
@@ -85,31 +71,26 @@ export function checkWinnerCombination(
  * Check if draw on current board state
  *
  * @export
- * @param {cells} [cells=boardStateCells]
+ * @param {string[][]} cells
  * @returns {boolean}
  */
 export function checkDraw(
-    cells: cells = boardStateCells
+    cells: string[][]
 ): boolean {
-
-    return (cells.filter((row: string[]) => row.filter((square: string) => square !== "").length === row.length).length === cells.length);
+    return (cells.filter(row => row.filter(square => square !== "").length === row.length).length === cells.length);
 }
 
 /**
  * Check if a square is empty (=== "")
  *
  * @export
- * @param {Action} [action={type: actionType, value: actionValue}]
- * @param {BoardState} [state=generateState()]
+ * @param {BoardState} state
+ * @param {Action} action
  * @returns {boolean}
  */
 export function emptySquare(
-    action: Action = {
-        type: actionType,
-        value: actionValue
-    },
-    state: BoardState = generateState()
+    state: BoardState,
+    action: Action
 ): boolean {
-
-    return (((state.cells.filter((e: string[], i: number) => (action.value.row === i)).shift() || []).filter((e: string, i: number) => (action.value.column === i)).shift()) === "");
+    return (((state.cells.filter((e, i) => (action.value.row === i)).shift() || []).filter((e, i) => (action.value.column === i)).shift()) === "");
 }

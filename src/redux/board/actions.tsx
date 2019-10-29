@@ -9,7 +9,7 @@ import {
  * @param {number} index
  * @return {Action}
  */
-export const jump: Function = (index: number = 0): Action => ({
+export const jump = (index: number = 0): Action => ({
     type: "JUMP",
     value: {
         index
@@ -24,7 +24,7 @@ export const jump: Function = (index: number = 0): Action => ({
  * @param {string} mark
  * @return {Action}
  */
-export const markSquare: Function = (row: number = 0, column: number = 0, mark: string = "X"): Action => ({
+export const markSquare = (row: number = 0, column: number = 0, mark: string = "X"): Action => ({
     type: "MARK_SQUARE",
     value: {
         row,
@@ -38,7 +38,7 @@ export const markSquare: Function = (row: number = 0, column: number = 0, mark: 
  *
  * @return {Action}
  */
-export const restartBoard: Function = (): Action => ({
+export const restartBoard = (): Action => ({
     type: "RESTART_BOARD",
     value: {}
 });

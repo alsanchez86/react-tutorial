@@ -21,10 +21,9 @@ class Square extends Component<any> {
      * @param {number} [x=0]
      * @memberof Square
      */
-    onClick(y: number = 0, x: number = 0): void {
-        const mark: string = this.props.xIsNext ? "X" : "O";
+    onClick(y: number, x: number): void {
         if (!this.props.disabled){
-            this.props.onClick(y, x, mark);
+            this.props.onClick(y, x, (this.props.xIsNext ? "X" : "O"));
         }
     }
 
@@ -83,6 +82,6 @@ export default connect(
     )()),
     // mapDispatchToProps
     (dispatch: Function): object => ({
-        onClick: (y: number = 0, x: number = 0, mark: string = "X") => dispatch(markSquare(y, x, mark))
+        onClick: (y: number, x: number, mark: string) => dispatch(markSquare(y, x, mark))
     })
 )(Square);

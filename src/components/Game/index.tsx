@@ -104,6 +104,6 @@ export default connect(
     // mapDispatchToProps
     (dispatch: Function): object => ({
         restart: () => dispatch(restartBoard()),
-        jump: (i: number = 0) => dispatch(jump(i))
+        jump: (i: number) => dispatch(jump(i))
     })
 )(Game);
