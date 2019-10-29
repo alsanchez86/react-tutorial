@@ -1,9 +1,22 @@
 // Import React library
-import React, { Component } from "react";
+import React, {
+    Component
+} from "react";
 // Import react redux
-import { connect } from "react-redux";
+import {
+    connect
+} from "react-redux";
 // Import Jsx template
 import Template from "./templates/";
+// Import utils
+import {
+    get
+} from "../../utils/";
+// Import default values
+import {
+    boardStateCells,
+    boardStateWinner
+} from "../../redux/board/default";
 
 /**
  *
@@ -26,7 +39,7 @@ class Board extends Component<any> {
 export default connect(
     // mapStateToProps
     (state: any): object => ({
-        cells: state.boardReducer.cells,
-        disabled: (state.boardReducer.winner.length > 0)
+        cells: get(state, "boardReducer.cells", boardStateCells),
+        disabled: (get(state, "boardReducer.winner", boardStateWinner).length > 0)
     })
 )(Board);

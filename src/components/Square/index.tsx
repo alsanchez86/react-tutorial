@@ -6,6 +6,16 @@ import { connect } from "react-redux";
 import { markSquare } from "../../redux/board/actions";
 // Import Jsx template
 import Template from "./templates/";
+// Import utils
+import { get } from "../../utils/";
+// Import default values
+import {
+    boardStateWinner,
+    boardStateHistory,
+    boardStateDraw,
+    boardStateStep,
+    boardStateXIsNext
+} from "../../redux/board/default";
 
 /**
  *
@@ -71,10 +81,13 @@ class Square extends Component<any> {
 
 export default connect(
     // mapStateToProps
-    (state: any): object => ({
-        xIsNext: state.boardReducer.xIsNext,
-        winner: state.boardReducer.winner,
-        disabled: state.boardReducer.draw || (state.boardReducer.winner.length > 0) || (state.boardReducer.step < (state.boardReducer.history.length - 1))
+    (state: any): object => (() => {
+        let winner = get(state, "boardReducer.winner", boardStateWinner);
+        return {
+            xIsNext: get(state, "boardReducer.xIsNext", boardStateXIsNext),
+            winner: winner,
+            disabled: get(state, "boardReducer.draw", boardStateDraw) || (winner.length > 0) || (get(state, "boardReducer.step", boardStateStep) < (get(state, "boardReducer.history", boardStateHistory).length - 1))
+        };
     }),
     // mapDispatchToProps
     (dispatch: Function): object => ({
