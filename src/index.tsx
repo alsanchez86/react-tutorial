@@ -12,7 +12,7 @@ import store from "./redux";
 // Import root component
 import App from "./components/App";
 
-const elementId: string = "root";
+const elementId = "root";
 
 // Render APP
 render(

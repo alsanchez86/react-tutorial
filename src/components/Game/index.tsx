@@ -73,8 +73,8 @@ class Game extends Component<any> {
      * @memberof Game
      */
     render(): any {
-        const won: boolean = (this.props.winner.length > 0);
-        const status: string = this.props.draw ? "Draw" : (won ? ('Winner: ' + this.getWinnerSymbol()) : ('Next player: ' + this.getNextMark(this.props.xIsNext)));
+        const won = (this.props.winner.length > 0);
+        const status = this.props.draw ? "Draw" : (won ? ('Winner: ' + this.getWinnerSymbol()) : ('Next player: ' + this.getNextMark(this.props.xIsNext)));
 
         return (
             <Template
