@@ -1,25 +1,25 @@
-/**
- *
- *
- * @export
- * @interface BoardState
- */
+// BoardState types interface
+export type cells = string[][];
+export type winner = number[];
+export type history = string[][][];
+export type draw = boolean;
+export type step = number;
+export type xIsNext = boolean;
+
 export interface BoardState {
-    cells: string[][]; // const boardStateCells
-    winner: number[]; // const boardStateWinner
-    history: string[][][]; // const boardStateHistory
-    draw: boolean; // const boardStateDraw
-    step: number; // const boardStateStep
-    xIsNext: boolean; // const boardStateXIsNext
+    cells: cells;
+    winner: winner;
+    history: history;
+    draw: draw;
+    step: step;
+    xIsNext: xIsNext;
 }
 
-/**
- *
- *
- * @export
- * @interface Action
- */
+// Action types interface
+export type type = string;
+export type value = any;
+
 export interface Action {
-    type: string; // const actionType
-    value: any; // const actionValue
+    type: type;
+    value: value;
 }

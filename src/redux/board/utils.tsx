@@ -1,5 +1,6 @@
 // Import types
 import {
+    cells,
     BoardState,
     Action
 } from "./types";
@@ -40,7 +41,6 @@ export function generateState(
         xIsNext: boardStateXIsNext
     }
 ): BoardState {
-
     return {
         cells: state.cells,
         winner: state.winner,
@@ -56,15 +56,14 @@ export function generateState(
  * Returns the symbol of the winner or a empty string
  *
  * @export
- * @param {string[][]} [cells=boardStateCells]
+ * @param {cells} [cells=boardStateCells]
  * @returns {number[]}
  */
 export function checkWinnerCombination(
-    cells: string[][] = boardStateCells
+    cells: cells = boardStateCells
 ): number[] {
 
     const concatCells: string[] = cells.reduce((ant: string[], act: string[]) => ant.concat(act));
-
     return [
         [0, 1, 2],
         [3, 4, 5],
@@ -86,11 +85,11 @@ export function checkWinnerCombination(
  * Check if draw on current board state
  *
  * @export
- * @param {string[][]} [cells=boardStateCells]
+ * @param {cells} [cells=boardStateCells]
  * @returns {boolean}
  */
 export function checkDraw(
-    cells: string[][] = boardStateCells
+    cells: cells = boardStateCells
 ): boolean {
 
     return (cells.filter((row: string[]) => row.filter((square: string) => square !== "").length === row.length).length === cells.length);
@@ -112,9 +111,5 @@ export function emptySquare(
     state: BoardState = generateState()
 ): boolean {
 
-    let actionRow: number = action.value.row;
-    let actionColumn: number = action.value.column;
-    let cells: string[][] = state.cells;
-
-    return (((cells.filter((e: string[], i: number) => (actionRow === i)).shift() || []).filter((e: string, i: number) => (actionColumn === i)).shift()) === "");
+    return (((state.cells.filter((e: string[], i: number) => (action.value.row === i)).shift() || []).filter((e: string, i: number) => (action.value.column === i)).shift()) === "");
 }

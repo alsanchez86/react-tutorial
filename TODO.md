@@ -8,9 +8,7 @@
 - Usar inmutable.js para mantener la inmutabilidad del estado. -> Probar bien la potencia de immutable
 - Iluminar la línea ganadora en el caso de que se produzca. -> OK
 
-- AQUI: Seguir con lo de default.tsx en el board reducer.
-
-- Probar Typescript para ver que nos aporta.
+- [AQUI] Probar Typescript para ver que nos aporta.
     https://fettblog.eu/typescript-react/components/
     https://medium.com/@rossbulat/how-to-use-typescript-with-react-and-redux-a118b1e02b76
     https://codesandbox.io/s/w02m7jm3q7

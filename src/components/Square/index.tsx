@@ -1,12 +1,9 @@
 // Import React library
 import React, { Component } from "react";
-
 // Import react redux
 import { connect } from "react-redux";
-
 // Import redux actions
 import { markSquare } from "../../redux/board/actions";
-
 // Import Jsx template
 import Template from "./templates/";
 
@@ -86,6 +83,6 @@ export default connect(
     )()),
     // mapDispatchToProps
     (dispatch: Function): object => ({
-        onClick: (y: number, x: number, mark: string) => dispatch(markSquare(y, x, mark))
+        onClick: (y: number = 0, x: number = 0, mark: string = "X") => dispatch(markSquare(y, x, mark))
     })
 )(Square);
