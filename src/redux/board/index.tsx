@@ -3,12 +3,13 @@ import {
     BoardState,
     Action
 } from "./types";
+
 // Import defaults
 import {
     actionType,
-    actionValue,
-    boardStateCells
+    actionValue
 } from "./default";
+
 // Import board utils
 import {
     generateState,
@@ -16,6 +17,7 @@ import {
     checkDraw,
     emptySquare
 } from "./utils";
+
 // Import utils
 import {
     get
@@ -69,11 +71,8 @@ function markSquare(
 /**
  *
  *
+ * @param {Action} [action={type: actionType, value: actionValue}]
  * @param {BoardState} [state=generateState()]
- * @param {number} [actionRow=0]
- * @param {number} [actionColumn=0]
- * @param {string} [actionMark="X"]
- * @param {string[][]} [cells=boardStateCells]
  * @returns {BoardState}
  */
 function markEmptySquare(
