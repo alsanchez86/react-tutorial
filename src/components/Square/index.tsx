@@ -10,15 +10,6 @@ import { markSquare } from "../../redux/board/actions";
 // Import Jsx template
 import Template from "./templates/";
 
-// Import default values
-import {
-    boardStateWinner,
-    boardStateHistory,
-    boardStateDraw,
-    boardStateStep,
-    boardStateXIsNext
-} from "../../redux/board/default";
-
 /**
  *
  *
