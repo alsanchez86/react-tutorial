@@ -57,18 +57,11 @@ export default (p: any): any =>
                 </div>
 
                 <div className="col-6">
-                    {/*
-                        Try thunk button:
-                        https://github.com/reduxjs/redux-thunk
-                        https://daveceddia.com/what-is-a-thunk/
-                        https://redux.js.org/advanced/async-actions
-                    */}
-
                     <Button
                         color="info"
                         size="sm"
-                        onClick={p.tryThunk}>
-                            Try Thunk
+                        onClick={p.loadGame}>
+                            Load game saved
                     </Button>
                 </div>
             </div>

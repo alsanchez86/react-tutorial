@@ -21,6 +21,9 @@ export default (state: BoardState = generateState(), action: Action): BoardState
         case "RESTART_BOARD":
             return generateState();
 
+        case "LOAD_GAME":
+            return loadGame(action);
+
         default:
             return state;
     }
@@ -100,5 +103,18 @@ function jump(
         draw: state.draw,
         step: action.value.index,
         xIsNext: state.xIsNext
+    });
+}
+
+function loadGame(
+    action: Action
+): BoardState {
+    return generateState({
+        cells: action.value.cells,
+        winner: action.value.winner,
+        history: action.value.history,
+        draw: action.value.draw,
+        step: action.value.step,
+        xIsNext: action.value.xIsNext
     });
 }

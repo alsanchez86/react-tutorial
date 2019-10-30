@@ -1,5 +1,5 @@
 // Import types
-import { Action } from "./types";
+import { BoardState, Action } from "./types";
 
 /**
  * Action to change state to another saved on history (board reducer)
@@ -42,15 +42,22 @@ export const restartBoard = (): Action => ({
 });
 
 /**
- *
+ * https://github.com/reduxjs/redux-thunk
+ * https://daveceddia.com/what-is-a-thunk/
+ * https://redux.js.org/advanced/async-actions
  *
  * @return {Function}
  */
-export const tryThunk = (): Function => (
+export const loadGame = (): Function => (
     (dispatch: Function) => {
-        fetch("http://localhost:8080/dummy.json").then(
-            (data) => dispatch(restartBoard()),
-            // (error) => dispatch(apologize()),
-        )
+        fetch("http://localhost:8080/saved.json")
+            .then(response => response.json())
+            .then(
+                data => dispatch({
+                    type: "LOAD_GAME",
+                    value: data
+                }),
+                // (error) => dispatch(apologize(error)),
+            )
     }
 );

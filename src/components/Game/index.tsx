@@ -3,7 +3,7 @@ import React, { Component } from "react";
 // Import react redux
 import { connect } from "react-redux";
 // Import redux actions
-import { jump, restartBoard, tryThunk } from "../../redux/board/actions";
+import { jump, restartBoard, loadGame } from "../../redux/board/actions";
 // Import Jsx template
 import Template from "./templates/";
 
@@ -76,7 +76,7 @@ class Game extends Component<any> {
                 getButtonColor={(i: number) => this.getButtonColor(i)}
                 jump={(i: number) => this.props.jump(i)}
                 progress={this.getProgress()}
-                tryThunk={() => this.props.tryThunk()}
+                loadGame={() => this.props.loadGame()}
             />
         );
     }
@@ -96,6 +96,6 @@ export default connect(
     (dispatch: Function): object => ({
         restart: () => dispatch(restartBoard()),
         jump: (i: number) => dispatch(jump(i)),
-        tryThunk: () => dispatch(tryThunk())
+        loadGame: () => dispatch(loadGame())
     })
 )(Game);
