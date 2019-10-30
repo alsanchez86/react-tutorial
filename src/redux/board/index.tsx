@@ -1,16 +1,7 @@
 // Import types
-import {
-    BoardState,
-    Action
-} from "./types";
-
+import { BoardState, Action } from "./types";
 // Import board utils
-import {
-    generateState,
-    checkWinnerCombination,
-    checkDraw,
-    emptySquare
-} from "./utils";
+import { generateState, checkWinnerCombination, checkDraw, emptySquare } from "./utils";
 
 /**
  * Export reducer function
@@ -46,7 +37,7 @@ function markSquare(
     state: BoardState,
     action: Action
 ): BoardState {
-    return (emptySquare(state, action)) ? markEmptySquare(state, action) : generateState({
+    return emptySquare(state, action) ? markEmptySquare(state, action) : generateState({
         cells: state.cells,
         winner: state.winner,
         history: state.history,

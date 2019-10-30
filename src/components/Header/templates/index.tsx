@@ -5,12 +5,7 @@ import React from "react";
 // Import react router
 import { Link } from "react-router-dom";
 // Import reactstrap components
-import {
-    Navbar,
-    Nav,
-    NavItem,
-    NavLink
-} from 'reactstrap';
+import { Navbar, Nav, NavItem, NavLink} from 'reactstrap';
 
 export default (): any =>
 

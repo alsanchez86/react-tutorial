@@ -11,15 +11,15 @@ export function getRandomId(): string {
  * https://github.com/you-dont-need/You-Dont-Need-Lodash-Underscore#_get
  *
  * @export
- * @param {*} obj
+ * @param {any} obj
  * @param {string} path
- * @param {*} defaultValue
- * @returns {*}
+ * @param {any} defaultValue
+ * @returns {any}
  */
-// export function get(obj: any = {}, path: string = "", defaultValue: any = undefined): any {
-//     const result = String.prototype.split
-//         .call(path, /[,[\].]+?/)
-//         .filter(Boolean)
-//         .reduce((res, key) => (res !== null && res !== undefined) ? res[key] : res, obj);
-//     return (result === undefined || result === obj) ? defaultValue : result;
-// }
+export function get(obj: any = {}, path: string = "", defaultValue: any = undefined): any {
+    const result = String.prototype.split
+        .call(path, /[,[\].]+?/)
+        .filter(Boolean)
+        .reduce((res, key) => (res !== null && res !== undefined) ? res[key] : res, obj);
+    return (result === undefined || result === obj) ? defaultValue : result;
+}

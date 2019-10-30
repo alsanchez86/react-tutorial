@@ -1,13 +1,7 @@
 // Import React library
-import React, {
-    Component
-} from "react";
-
+import React, { Component } from "react";
 // Import react redux
-import {
-    connect
-} from "react-redux";
-
+import { connect } from "react-redux";
 // Import Jsx template
 import Template from "./templates/";
 

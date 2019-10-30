@@ -1,19 +1,9 @@
 // Import React library
-import React, {
-    Component
-} from "react";
-
+import React, { Component } from "react";
 // Import react redux
-import {
-    connect
-} from "react-redux";
-
+import { connect } from "react-redux";
 // Import redux actions
-import {
-    jump,
-    restartBoard
-} from "../../redux/board/actions";
-
+import { jump, restartBoard } from "../../redux/board/actions";
 // Import Jsx template
 import Template from "./templates/";
 
