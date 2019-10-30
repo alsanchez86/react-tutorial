@@ -19,19 +19,9 @@
 
 - Hacer una request a una API pública para probar los services de react: https://github.com/axios/axios
     https://github.com/reduxjs/redux-thunk
+
 - Mirar lo de "Action creators"
 - Usar Rambda o Lodash para la programación funcional. -> NOPE
 - https://es.redux.js.org/docs/introduccion/herencia.html#rx
 - Ver testing con reactjs.
 - https://medium.com/@jorgeucano/30-d%C3%ADas-con-rxjs-d%C3%ADa-1-e911e68f6063
-
-----------------------------
-
-- Funciones
-    - Poner tipos a todos los parámetros.
-    - Poner valor por defecto a todos los parámetros.
-    - Poner tipo al valor devuelto.
-    - Poner comentarios descriptivos a todas las funciones.
-
-- Variables
-    - Poner tipo en todas las deficiones de variables,
