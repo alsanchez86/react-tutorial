@@ -30,28 +30,48 @@ export default (p: any): any =>
         </div>
 
          <div className="col-6">
-            {(p.history.length > 0) ?
-                <Button
-                    color="danger"
-                    size="sm"
-                    onClick={p.restartClick}>
-                        Restart
-                </Button>
-            : null}
-
-             {(p.history.length > 1) ?
-                <ButtonGroup vertical size="sm">
-                    {p.history.map((ev: object, i: number) =>
+            <div className="row">
+                <div className="col-6">
+                    {(p.history.length > 0) ?
                         <Button
+                            color="danger"
                             size="sm"
-                            key={i.toString()}
-                            color={p.getButtonColor(i)}
-                            onClick={() => p.jump(i)}>
-                                {i}
+                            onClick={p.restartClick}>
+                                Restart
                         </Button>
-                    )}
-                </ButtonGroup>
-            : null}
+                    : null}
+
+                    {(p.history.length > 1) ?
+                        <ButtonGroup vertical size="sm">
+                            {p.history.map((ev: object, i: number) =>
+                                <Button
+                                    size="sm"
+                                    key={i.toString()}
+                                    color={p.getButtonColor(i)}
+                                    onClick={() => p.jump(i)}>
+                                        {i}
+                                </Button>
+                            )}
+                        </ButtonGroup>
+                    : null}
+                </div>
+
+                <div className="col-6">
+                    {/*
+                        Try thunk button:
+                        https://github.com/reduxjs/redux-thunk
+                        https://daveceddia.com/what-is-a-thunk/
+                        https://redux.js.org/advanced/async-actions
+                    */}
+
+                    <Button
+                        color="info"
+                        size="sm"
+                        onClick={p.tryThunk}>
+                            Try Thunk
+                    </Button>
+                </div>
+            </div>
         </div>
     </div>
 </div>

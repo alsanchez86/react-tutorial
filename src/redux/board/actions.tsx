@@ -40,3 +40,17 @@ export const restartBoard = (): Action => ({
     type: "RESTART_BOARD",
     value: {}
 });
+
+/**
+ *
+ *
+ * @return {Function}
+ */
+export const tryThunk = (): Function => (
+    (dispatch: Function) => {
+        fetch("http://localhost:8080/dummy.json").then(
+            (data) => dispatch(restartBoard()),
+            // (error) => dispatch(apologize()),
+        )
+    }
+);

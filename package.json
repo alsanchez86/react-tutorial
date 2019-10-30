@@ -11,6 +11,7 @@
     "@types/react-router-dom": "^4.3.4",
     "@types/reactstrap": "^8.0.1",
     "bootstrap": "^4.3.1",
+    "http-server": "^0.11.1",
     "node-sass": "^4.12.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -26,7 +27,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "server": "http-server ./http --cors --port 8080"
   },
   "eslintConfig": {
     "extends": "react-app"
