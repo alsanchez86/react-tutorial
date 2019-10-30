@@ -1,3 +1,5 @@
+// Import component style
+import "./style/index.scss";
 // Import React library
 import React from "react";
 // Import Jsx template

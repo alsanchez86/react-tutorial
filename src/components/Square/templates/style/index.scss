@@ -1,15 +1,15 @@
 @import "variables";
 
 button.square {
-    height: $square;
-    width: $square;
+    height: 100%;
+    width: 33.3%;
     padding: 0;
-    line-height: $square - $squareDiff;
+    line-height: 100%;
 
     background: none;
     border: 1px solid blue;
     border-radius: 0;
-    font-size: $square - $squareDiff;
+    font-size: 24px;
     text-align: center;
 
     &:focus {

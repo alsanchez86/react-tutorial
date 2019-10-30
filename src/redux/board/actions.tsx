@@ -51,13 +51,13 @@ export const restartBoard = (): Action => ({
 export const loadGame = (): Function => (
     (dispatch: Function) => {
         fetch("http://localhost:8080/saved.json")
-            .then(response => response.json())
+            .then((response: Response) => response.json())
             .then(
-                data => dispatch({
+                (data: BoardState) => dispatch({
                     type: "LOAD_GAME",
                     value: data
                 }),
-                // (error) => dispatch(apologize(error)),
+                // (error: Error) => dispatch(showOnConsole()), // TODO: show error on UX console
             )
     }
 );
