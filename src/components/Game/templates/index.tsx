@@ -4,12 +4,15 @@ import "./style/index.scss";
 import React from "react";
 // Import components
 import Board from "../../Board";
+import ModalExample from "../../ModalExample";
 // Import reactstrap components
 import { Alert, Button, ButtonGroup, Progress } from "reactstrap";
 
 export default (p: any): any =>
 
 <div className="container">
+    <ModalExample />
+
     <div className="row">
         <div className="col-6">
             <Board/>
@@ -61,7 +64,7 @@ export default (p: any): any =>
                         color="info"
                         size="sm"
                         onClick={p.loadGame}>
-                            Load game saved
+                            Load saved game
                     </Button>
                 </div>
             </div>
