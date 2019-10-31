@@ -4,7 +4,7 @@ import "./style/index.scss";
 import React from "react";
 // Import components
 import Board from "../../Board";
-import ModalExample from "../../ModalExample";
+import LoadGameModal from "../../LoadGameModal";
 // Import reactstrap components
 import { Alert, Button, ButtonGroup, Progress } from "reactstrap";
 
@@ -16,32 +16,29 @@ type Props = {
     history: string[][][],
     getButtonColor: Function,
     jump: Function,
-    progress: number,
-    loadGame: Function,
+    progress: number
 };
 
 export default (p: Props) =>
 
 <div className="container">
-    <ModalExample />
-
     <div className="row">
         <div className="col-6">
             <Board/>
 
-             {(!p.draw && !p.won) ?
+            {(!p.draw && !p.won) ?
                 <div className="status">
                     {p.status}
                 </div>
             : null}
 
-             {(p.draw || p.won) ?
+            {(p.draw || p.won) ?
                 <Alert color="success">
                     {p.status}
                 </Alert>
             : null}
 
-             <Progress value={p.progress} />
+            <Progress value={p.progress} />
         </div>
 
          <div className="col-6">
@@ -72,12 +69,7 @@ export default (p: Props) =>
                 </div>
 
                 <div className="col-6">
-                    <Button
-                        color="info"
-                        size="sm"
-                        onClick={() => p.loadGame()}>
-                            Load saved game
-                    </Button>
+                    <LoadGameModal />
                 </div>
             </div>
         </div>

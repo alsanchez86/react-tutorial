@@ -3,7 +3,7 @@ import React, { Component } from "react";
 // Import react redux
 import { connect } from "react-redux";
 // Import redux actions
-import { jump, restartBoard, loadGame } from "../../redux/board/actions";
+import { jump, restartBoard } from "../../redux/board/actions";
 // Import Jsx template
 import Template from "./templates/";
 
@@ -15,8 +15,7 @@ type Props = {
     step: number,
     xIsNext: boolean,
     restart: Function,
-    jump: Function,
-    loadGame: Function
+    jump: Function
 };
 
 /**
@@ -88,7 +87,6 @@ class Game extends Component<Props> {
                 getButtonColor={(i: number) => this.getButtonColor(i)}
                 jump={(i: number) => this.props.jump(i)}
                 progress={this.getProgress()}
-                loadGame={() => this.props.loadGame()}
             />
         );
     }
@@ -107,7 +105,6 @@ export default connect(
     // mapDispatchToProps
     (dispatch: Function) => ({
         restart: () => dispatch(restartBoard()),
-        jump: (i: number) => dispatch(jump(i)),
-        loadGame: () => dispatch(loadGame())
+        jump: (i: number) => dispatch(jump(i))
     })
 )(Game);

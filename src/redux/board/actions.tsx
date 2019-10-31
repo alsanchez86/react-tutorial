@@ -49,15 +49,12 @@ export const restartBoard = (): Action => ({
  * @return {Function}
  */
 export const loadGame = (): Function => (
-    (dispatch: Function) => {
-        fetch("http://localhost:8080/saved.json")
-            .then((response: Response) => response.json())
-            .then(
-                (data: BoardState) => dispatch({
-                    type: "LOAD_GAME",
-                    value: data
-                }),
-                // (error: Error) => dispatch(showOnConsole()), // TODO: show error on UX console
-            )
+    async (dispatch: Function) => {
+        const response = await fetch("http://localhost:8080/saved.json");
+        const data = await response.json();
+        return dispatch({
+            type: "LOAD_GAME",
+            value: data
+        });
     }
 );
