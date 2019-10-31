@@ -13,7 +13,12 @@
 - [AQUI]
     - Seguir probando thunks
     - Mirar bien como funciona fetch
+    - Mirar async / await
     - https://stackoverflow.com/questions/35855781/having-services-in-react-application
+
+- Hacer una request a una API pública para probar los services de react:
+    https://github.com/axios/axios
+    https://github.com/reduxjs/redux-thunk
 
 - Probar Typescript para ver que nos aporta.
     https://fettblog.eu/typescript-react/components/
@@ -23,10 +28,6 @@
     https://redux.js.org/recipes/usage-with-typescript
     https://medium.com/@martin_hotell/10-typescript-pro-tips-patterns-with-or-without-react-5799488d6680
     https://stackoverflow.com/questions/53851828/ts2740-type-is-missing-the-following-properties-from-readonlymyinterface-error
-
-- Hacer una request a una API pública para probar los services de react:
-    https://github.com/axios/axios
-    https://github.com/reduxjs/redux-thunk
 
 - https://es.redux.js.org/docs/introduccion/herencia.html#rx
 - Ver testing con reactjs.

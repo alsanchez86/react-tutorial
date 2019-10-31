@@ -9,13 +9,21 @@ import Template from "./templates/";
 
 // Types
 type Props = {
-    loadGame: Function
+    loadGame: Function,
+    history: string[][][]
 };
 type State = {
     isOpen: boolean,
     text: string,
-    confirmButtonText: string
+    confirmButtonText: string,
+    disabled: boolean
 };
+
+// Const
+const DEFAULT_TEXT = "Current game will be lost. ¿Are you sure to load saved game?";
+const LOADING_TEXT = "Loading...";
+const CONFIRM_BUTTON_DEFAULT_TEXT = "Load";
+const CONFIRM_BUTTON_TRY_TEXT = "Try again";
 
 /**
  *
@@ -29,9 +37,34 @@ class LoadGameModal extends Component<Props, State> {
         super(props);
         this.state = {
             isOpen: false,
-            text: "Current game will be lost. ¿Are you sure to load saved game?",
-            confirmButtonText: "Load"
+            text: DEFAULT_TEXT,
+            confirmButtonText: CONFIRM_BUTTON_DEFAULT_TEXT,
+            disabled: false
         };
+    }
+
+    /**
+     *
+     *
+     * @memberof LoadGameModal
+     */
+    load(): void {
+        if (this.props.history.length === 0){
+            this.setState({
+                disabled: true
+            });
+            this.props.loadGame()
+                .catch((error: Error) => {
+                    this.setState({
+                        text: error.message,
+                        confirmButtonText: CONFIRM_BUTTON_TRY_TEXT,
+                        disabled: false
+                    });
+                    this.toggle();
+                });
+        }else{
+            this.toggle();
+        }
     }
 
     /**
@@ -52,14 +85,14 @@ class LoadGameModal extends Component<Props, State> {
      */
     confirm(): void {
         this.setState({
-            text: "Loading..."
+            text: LOADING_TEXT
         });
         this.props.loadGame()
             .then(() => this.toggle())
             .catch((error: Error) => {
                 this.setState({
                     text: error.message,
-                    confirmButtonText: "Try again"
+                    confirmButtonText: CONFIRM_BUTTON_TRY_TEXT
                 })
             });
     }
@@ -76,6 +109,18 @@ class LoadGameModal extends Component<Props, State> {
     /**
      *
      *
+     * @memberof LoadGameModal
+     */
+    onClose(){
+        this.setState({
+            text: DEFAULT_TEXT,
+            confirmButtonText: CONFIRM_BUTTON_DEFAULT_TEXT
+        });
+    }
+
+    /**
+     *
+     *
      * @returns
      * @memberof LoadGameModal
      */
@@ -85,9 +130,12 @@ class LoadGameModal extends Component<Props, State> {
                 isOpen={this.state.isOpen}
                 text={this.state.text}
                 confirmButtonText={this.state.confirmButtonText}
+                disabled={this.state.disabled}
                 toggle={() => this.toggle()}
                 confirm={() => this.confirm()}
                 cancel={() => this.cancel()}
+                load={() => this.load()}
+                onClose={() => this.onClose()}
             />
         );
     }
@@ -95,7 +143,9 @@ class LoadGameModal extends Component<Props, State> {
 
 export default connect(
     // mapStateToProps
-    (state: any) => ({}),
+    (state: any) => ({
+        history: state.boardReducer.history
+    }),
     // mapDispatchToProps
     (dispatch: Function) => ({
         loadGame: () => dispatch(loadGame())
