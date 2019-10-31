@@ -5,7 +5,12 @@ import React from "react";
 // Import components
 import Row from "../../Row";
 
-export default (p: any): any =>
+type Props = {
+    cells: string[][],
+    disabled: boolean
+};
+
+export default (p: Props) =>
 
 <div className={`board ${(p.disabled ? "disabled" : "")}`}>
     {p.cells.map((row: string[], index: number) =>

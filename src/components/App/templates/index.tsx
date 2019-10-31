@@ -4,7 +4,7 @@ import React from "react";
 import Header from "../../Header";
 import Main from "../../Main";
 
-export default (): any =>
+export default () =>
 
 <div>
     <Header/>

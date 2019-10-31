@@ -55,9 +55,9 @@ export default class ModalExample extends Component<Props, State> {
      *
      *
      * @returns
-     * @memberof Main
+     * @memberof ModalExample
      */
-    render(): any {
+    render() {
         return (
             <Template
                 isOpen={this.state.isOpen}

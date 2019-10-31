@@ -17,7 +17,7 @@ export default class App extends Component {
      * @returns
      * @memberof App
      */
-    render(): any {
+    render() {
         return (
             <Template/>
         );

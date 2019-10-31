@@ -8,10 +8,17 @@ import Template from "./templates/";
  *
  * @export
  * @class Dummy
- * @extends {Component<any>}
+ * @extends {Component}
  */
-export default class Dummy extends Component<any> {
-    render(): any {
+export default class Dummy extends Component {
+
+    /**
+     *
+     *
+     * @returns
+     * @memberof Dummy
+     */
+    render() {
         return (
             <Template/>
         );

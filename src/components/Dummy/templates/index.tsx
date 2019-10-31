@@ -1,7 +1,7 @@
 // Import React library
 import React from "react";
 
- export default (): any =>
+ export default () =>
 
  <div>
     Dummy component

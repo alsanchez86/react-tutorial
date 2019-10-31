@@ -5,7 +5,12 @@ import React from "react";
 // Import Jsx template
 import Square from "../../Square";
 
-export default (p: any): any =>
+type Props = {
+    row: string[],
+    index: number
+};
+
+export default (p: Props) =>
 
 /*
  * row: array

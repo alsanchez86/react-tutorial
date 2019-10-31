@@ -7,6 +7,18 @@ import { jump, restartBoard, loadGame } from "../../redux/board/actions";
 // Import Jsx template
 import Template from "./templates/";
 
+type Props = {
+    cells: string[][],
+    winner: number[],
+    history: string[][][],
+    draw: boolean,
+    step: number,
+    xIsNext: boolean,
+    restart: Function,
+    jump: Function,
+    loadGame: Function
+};
+
 /**
  * Root React App Component
  *
@@ -14,7 +26,7 @@ import Template from "./templates/";
  * @class Game
  * @extends {Component}
  */
-class Game extends Component<any> {
+class Game extends Component<Props> {
     /**
      * Get the next player mark
      *
@@ -62,7 +74,7 @@ class Game extends Component<any> {
      * @returns
      * @memberof Game
      */
-    render(): any {
+    render() {
         const won = (this.props.winner.length > 0);
         const status = this.props.draw ? "Draw" : (won ? ('Winner: ' + this.getWinnerSymbol()) : ('Next player: ' + this.getNextMark(this.props.xIsNext)));
 
@@ -84,7 +96,7 @@ class Game extends Component<any> {
 
 export default connect(
     // mapStateToProps
-    (state: any): object => ({
+    (state: any) => ({
         cells: state.boardReducer.cells,
         winner: state.boardReducer.winner,
         draw: state.boardReducer.draw,
@@ -93,7 +105,7 @@ export default connect(
         xIsNext: state.boardReducer.xIsNext
     }),
     // mapDispatchToProps
-    (dispatch: Function): object => ({
+    (dispatch: Function) => ({
         restart: () => dispatch(restartBoard()),
         jump: (i: number) => dispatch(jump(i)),
         loadGame: () => dispatch(loadGame())

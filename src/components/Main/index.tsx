@@ -10,14 +10,14 @@ import Template from "./templates/";
  * @class Main
  * @extends {Component}
  */
-export default class Main extends Component<any> {
+export default class Main extends Component {
     /**
      *
      *
      * @returns
      * @memberof Main
      */
-    render(): any {
+    render() {
         return (
             <Template/>
         );

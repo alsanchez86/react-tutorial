@@ -8,7 +8,19 @@ import ModalExample from "../../ModalExample";
 // Import reactstrap components
 import { Alert, Button, ButtonGroup, Progress } from "reactstrap";
 
-export default (p: any): any =>
+type Props = {
+    draw: boolean,
+    won: boolean,
+    status: string,
+    restartClick: Function,
+    history: string[][][],
+    getButtonColor: Function,
+    jump: Function,
+    progress: number,
+    loadGame: Function,
+};
+
+export default (p: Props) =>
 
 <div className="container">
     <ModalExample />
@@ -39,7 +51,7 @@ export default (p: any): any =>
                         <Button
                             color="danger"
                             size="sm"
-                            onClick={p.restartClick}>
+                            onClick={() => p.restartClick()}>
                                 Restart
                         </Button>
                     : null}
@@ -63,7 +75,7 @@ export default (p: any): any =>
                     <Button
                         color="info"
                         size="sm"
-                        onClick={p.loadGame}>
+                        onClick={() => p.loadGame()}>
                             Load saved game
                     </Button>
                 </div>

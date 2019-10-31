@@ -5,7 +5,16 @@ import React from "react";
 // Import reactstrap components
 import { Button } from "reactstrap";
 
-export default (p: any): any =>
+type Props = {
+    success: boolean,
+    disabled: boolean,
+    value: string,
+    onClick: Function,
+    x: number,
+    y: number
+};
+
+export default (p: Props) =>
 
 /*
  * y: number

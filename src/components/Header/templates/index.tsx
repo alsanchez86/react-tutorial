@@ -7,13 +7,13 @@ import { Link } from "react-router-dom";
 // Import reactstrap components
 import { Navbar, Nav, NavItem, NavLink} from 'reactstrap';
 
-export default (): any =>
+export default () =>
 
 <header>
     <Navbar color="light" light expand="md">
         <Nav navbar>
             <NavItem>
-                <NavLink tag={(): any =>
+                <NavLink tag={() =>
                     <Link to="/" className="nav-link">
                         Game
                     </Link>
@@ -21,7 +21,7 @@ export default (): any =>
             </NavItem>
 
              <NavItem>
-                <NavLink tag={(): any =>
+                <NavLink tag={() =>
                     <Link to="/dummy" className="nav-link">
                         Dummy
                     </Link>

@@ -7,13 +7,23 @@ import { markSquare } from "../../redux/board/actions";
 // Import Jsx template
 import Template from "./templates/";
 
+type Props = {
+    disabled: boolean,
+    onClick: Function,
+    xIsNext: boolean,
+    winner: number[],
+    x: number,
+    y: number,
+    value: string,
+};
+
 /**
  *
  *
  * @class Square
  * @extends {Component}
  */
-class Square extends Component<any> {
+class Square extends Component<Props> {
     /**
      *
      *
@@ -49,10 +59,11 @@ class Square extends Component<any> {
 
     /**
      *
-     * @returns {any}
+     *
+     * @returns
      * @memberof Square
      */
-    render(): any {
+    render() {
         return (
             <Template
                 y={this.props.y}
@@ -70,7 +81,7 @@ class Square extends Component<any> {
 
 export default connect(
     // mapStateToProps
-    (state: any): object => ((
+    (state: any) => ((
         function() {
             let winner = state.boardReducer.winner;
             return {
@@ -81,7 +92,7 @@ export default connect(
         }
     )()),
     // mapDispatchToProps
-    (dispatch: Function): object => ({
+    (dispatch: Function) => ({
         onClick: (y: number, x: number, mark: string) => dispatch(markSquare(y, x, mark))
     })
 )(Square);

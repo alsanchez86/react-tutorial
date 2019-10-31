@@ -5,6 +5,11 @@ import { connect } from "react-redux";
 // Import Jsx template
 import Template from "./templates/";
 
+type Props = {
+    cells?: string[][],
+    disabled?: boolean
+};
+
 /**
  *
  *
@@ -12,12 +17,19 @@ import Template from "./templates/";
  * @class Board
  * @extends {Component}
  */
-class Board extends Component<any> {
-    render(): any {
+class Board extends Component<Props> {
+
+    /**
+     *
+     *
+     * @returns
+     * @memberof Board
+     */
+    render() {
         return (
             <Template
-                cells={this.props.cells}
-                disabled={this.props.disabled}
+                cells={this.props.cells!}
+                disabled={this.props.disabled!}
             />
         );
     }

@@ -3,6 +3,11 @@ import React, { Component } from "react";
 // Import Jsx templates
 import Template from "./templates/";
 
+type Props = {
+    index: number,
+    row: string[]
+};
+
 /**
  *
  *
@@ -10,12 +15,15 @@ import Template from "./templates/";
  * @class Row
  * @extends {Component}
  */
-export default class Row extends Component<any> {
+export default class Row extends Component<Props> {
+
     /**
-     * @returns {any}
+     *
+     *
+     * @returns
      * @memberof Row
      */
-    render(): any {
+    render() {
         return (
             <Template
                 index={this.props.index}

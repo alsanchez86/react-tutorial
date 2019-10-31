@@ -10,14 +10,14 @@ import Template from "./templates/";
  * @class Header
  * @extends {Component}
  */
-export default class Header extends Component<any> {
+export default class Header extends Component {
     /**
      *
      *
      * @returns {*}
      * @memberof Header
      */
-    render(): any {
+    render() {
         return (
             <Template/>
         );
