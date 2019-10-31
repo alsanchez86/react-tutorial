@@ -37,9 +37,9 @@ class LoadGameModal extends Component<Props, State> {
         super(props);
         this.state = {
             isOpen: false,
+            disabled: false,
             text: DEFAULT_TEXT,
-            confirmButtonText: CONFIRM_BUTTON_DEFAULT_TEXT,
-            disabled: false
+            confirmButtonText: CONFIRM_BUTTON_DEFAULT_TEXT
         };
     }
 
@@ -57,25 +57,18 @@ class LoadGameModal extends Component<Props, State> {
                 .catch((error: Error) => {
                     this.setState({
                         text: error.message,
-                        confirmButtonText: CONFIRM_BUTTON_TRY_TEXT,
-                        disabled: false
+                        confirmButtonText: CONFIRM_BUTTON_TRY_TEXT
                     });
                     this.toggle();
+                })
+                .finally(() => {
+                    this.setState({
+                        disabled: false
+                    })
                 });
         }else{
             this.toggle();
         }
-    }
-
-    /**
-     *
-     *
-     * @memberof LoadGameModal
-     */
-    toggle(): void {
-        this.setState({
-            isOpen: !this.state.isOpen
-        });
     }
 
     /**
@@ -102,8 +95,10 @@ class LoadGameModal extends Component<Props, State> {
      *
      * @memberof LoadGameModal
      */
-    cancel(): void {
-        this.toggle();
+    toggle(): void {
+        this.setState({
+            isOpen: !this.state.isOpen
+        });
     }
 
     /**
@@ -133,7 +128,7 @@ class LoadGameModal extends Component<Props, State> {
                 disabled={this.state.disabled}
                 toggle={() => this.toggle()}
                 confirm={() => this.confirm()}
-                cancel={() => this.cancel()}
+                cancel={() => this.toggle()}
                 load={() => this.load()}
                 onClose={() => this.onClose()}
             />
