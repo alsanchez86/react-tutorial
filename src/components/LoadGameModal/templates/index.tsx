@@ -1,13 +1,15 @@
 // Import React library
 import React from "react";
 // Import reactstrap components
-import { Button, Modal, ModalBody, ModalFooter } from "reactstrap";
+import { Button, ButtonGroup, Modal, ModalBody, ModalFooter } from "reactstrap";
 
 type Props = {
     toggle: Function,
     isOpen: boolean,
     confirm: Function,
-    cancel: Function
+    cancel: Function,
+    text: string,
+    confirmButtonText: string
 };
 
 export default (p: Props) =>
@@ -17,19 +19,23 @@ export default (p: Props) =>
         Load saved game
     </Button>
 
-    <Modal isOpen={p.isOpen} toggle={() => p.toggle()}>
+    <Modal isOpen={p.isOpen} toggle={() => p.toggle()} size={"sm"}>
         <ModalBody>
-            Current game will be lost. ¿Are you sure to load saved game?
+            <p className="text-center">
+                {p.text}
+            </p>
         </ModalBody>
 
         <ModalFooter>
-            <Button color="primary" onClick={() => p.confirm()}>
-                Confirm
-            </Button>
+            <ButtonGroup className="mx-auto">
+                <Button color="primary" onClick={()=> p.confirm()}>
+                    {p.confirmButtonText}
+                </Button>
 
-            <Button color="secondary" onClick={() => p.cancel()}>
-                Cancel
-            </Button>
+                <Button color="secondary" onClick={()=> p.cancel()}>
+                    Cancel
+                </Button>
+            </ButtonGroup>
         </ModalFooter>
     </Modal>
 </div>

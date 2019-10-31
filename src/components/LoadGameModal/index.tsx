@@ -11,7 +11,11 @@ import Template from "./templates/";
 type Props = {
     loadGame: Function
 };
-type State = {isOpen: boolean};
+type State = {
+    isOpen: boolean,
+    text: string,
+    confirmButtonText: string
+};
 
 /**
  *
@@ -24,7 +28,9 @@ class LoadGameModal extends Component<Props, State> {
     constructor(props: any) {
         super(props);
         this.state = {
-            isOpen: false
+            isOpen: false,
+            text: "Current game will be lost. ¿Are you sure to load saved game?",
+            confirmButtonText: "Load"
         };
     }
 
@@ -45,9 +51,17 @@ class LoadGameModal extends Component<Props, State> {
      * @memberof LoadGameModal
      */
     confirm(): void {
+        this.setState({
+            text: "Loading..."
+        });
         this.props.loadGame()
             .then(() => this.toggle())
-            .catch(() => this.toggle());
+            .catch((error: Error) => {
+                this.setState({
+                    text: error.message,
+                    confirmButtonText: "Try again"
+                })
+            });
     }
 
     /**
@@ -69,6 +83,8 @@ class LoadGameModal extends Component<Props, State> {
         return (
             <Template
                 isOpen={this.state.isOpen}
+                text={this.state.text}
+                confirmButtonText={this.state.confirmButtonText}
                 toggle={() => this.toggle()}
                 confirm={() => this.confirm()}
                 cancel={() => this.cancel()}

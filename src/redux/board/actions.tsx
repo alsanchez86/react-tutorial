@@ -1,5 +1,5 @@
 // Import types
-import { BoardState, Action } from "./types";
+import { Action } from "./types";
 
 /**
  * Action to change state to another saved on history (board reducer)

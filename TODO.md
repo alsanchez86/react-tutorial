@@ -7,10 +7,13 @@
 - Meter Redux(flux) para el control de estado de la APP. -> https://www.youtube.com/watch?v=OXWn4XiDUmw -> OK
 - Usar inmutable.js para mantener la inmutabilidad del estado. -> Probar bien la potencia de immutable
 - Iluminar la línea ganadora en el caso de que se produzca. -> OK
+- Mirar lo de "Action creators" -> OK
+- Usar Rambda o Lodash para la programación funcional. -> NOPE
 
 - [AQUI]
     - Seguir probando thunks
     - Mirar bien como funciona fetch
+    - https://stackoverflow.com/questions/35855781/having-services-in-react-application
 
 - Probar Typescript para ver que nos aporta.
     https://fettblog.eu/typescript-react/components/
@@ -21,11 +24,10 @@
     https://medium.com/@martin_hotell/10-typescript-pro-tips-patterns-with-or-without-react-5799488d6680
     https://stackoverflow.com/questions/53851828/ts2740-type-is-missing-the-following-properties-from-readonlymyinterface-error
 
-- Hacer una request a una API pública para probar los services de react: https://github.com/axios/axios
+- Hacer una request a una API pública para probar los services de react:
+    https://github.com/axios/axios
     https://github.com/reduxjs/redux-thunk
 
-- Mirar lo de "Action creators"
-- Usar Rambda o Lodash para la programación funcional. -> NOPE
 - https://es.redux.js.org/docs/introduccion/herencia.html#rx
 - Ver testing con reactjs.
 - https://medium.com/@jorgeucano/30-d%C3%ADas-con-rxjs-d%C3%ADa-1-e911e68f6063

@@ -106,6 +106,12 @@ function jump(
     });
 }
 
+/**
+ *
+ *
+ * @param {Action} action
+ * @returns {BoardState}
+ */
 function loadGame(
     action: Action
 ): BoardState {
