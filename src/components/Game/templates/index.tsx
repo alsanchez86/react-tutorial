@@ -4,7 +4,7 @@ import "./style/index.scss";
 import React from "react";
 // Import components
 import Board from "../../Board";
-import LoadGameModal from "../../LoadGameModal";
+import LoadGame from "../../LoadGame";
 // Import reactstrap components
 import { Alert, Button, ButtonGroup, Progress } from "reactstrap";
 
@@ -69,7 +69,7 @@ export default (p: Props) =>
                 </div>
 
                 <div className="col-6">
-                    <LoadGameModal />
+                    <LoadGame />
                 </div>
             </div>
         </div>

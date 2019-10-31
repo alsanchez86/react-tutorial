@@ -6,6 +6,9 @@ import { connect } from "react-redux";
 import { loadGame } from "../../redux/board/actions";
 // Import Jsx template
 import Template from "./templates/";
+// Import HTML parser
+import ReactHtmlParser from "react-html-parser";
+
 
 // Types
 type Props = {
@@ -20,7 +23,7 @@ type State = {
 };
 
 // Const
-const DEFAULT_TEXT = "Current game will be lost. ¿Are you sure to load saved game?";
+const DEFAULT_TEXT = "Current game will be lost.<br>¿Are you sure to load saved game?";
 const LOADING_TEXT = "Loading...";
 const CONFIRM_BUTTON_DEFAULT_TEXT = "Load";
 const CONFIRM_BUTTON_TRY_TEXT = "Try again";
@@ -32,7 +35,7 @@ const CONFIRM_BUTTON_TRY_TEXT = "Try again";
  * @class Main
  * @extends {Component}
  */
-class LoadGameModal extends Component<Props, State> {
+class LoadGame extends Component<Props, State> {
     constructor(props: any) {
         super(props);
         this.state = {
@@ -46,7 +49,7 @@ class LoadGameModal extends Component<Props, State> {
     /**
      *
      *
-     * @memberof LoadGameModal
+     * @memberof LoadGame
      */
     load(): void {
         if (this.props.history.length === 0){
@@ -74,7 +77,7 @@ class LoadGameModal extends Component<Props, State> {
     /**
      *
      *
-     * @memberof LoadGameModal
+     * @memberof LoadGame
      */
     confirm(): void {
         this.setState({
@@ -93,7 +96,7 @@ class LoadGameModal extends Component<Props, State> {
     /**
      *
      *
-     * @memberof LoadGameModal
+     * @memberof LoadGame
      */
     toggle(): void {
         this.setState({
@@ -104,7 +107,7 @@ class LoadGameModal extends Component<Props, State> {
     /**
      *
      *
-     * @memberof LoadGameModal
+     * @memberof LoadGame
      */
     onClose(){
         this.setState({
@@ -117,13 +120,13 @@ class LoadGameModal extends Component<Props, State> {
      *
      *
      * @returns
-     * @memberof LoadGameModal
+     * @memberof LoadGame
      */
     render() {
         return (
             <Template
                 isOpen={this.state.isOpen}
-                text={this.state.text}
+                text={ReactHtmlParser(this.state.text)}
                 confirmButtonText={this.state.confirmButtonText}
                 disabled={this.state.disabled}
                 toggle={() => this.toggle()}
@@ -145,4 +148,4 @@ export default connect(
     (dispatch: Function) => ({
         loadGame: () => dispatch(loadGame())
     })
-)(LoadGameModal);
+)(LoadGame);

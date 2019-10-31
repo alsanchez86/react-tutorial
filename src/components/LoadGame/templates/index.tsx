@@ -9,7 +9,7 @@ type Props = {
     isOpen: boolean,
     confirm: Function,
     cancel: Function,
-    text: string,
+    text: any,
     confirmButtonText: string,
     disabled: boolean,
     onClose: Function
