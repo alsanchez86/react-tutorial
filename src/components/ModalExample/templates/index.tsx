@@ -1,16 +1,23 @@
 // Import React library
 import React from "react";
 // Import reactstrap components
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import { Button, Modal, ModalBody, ModalFooter } from "reactstrap";
 
-export default (p: any): any =>
+type Props = {
+    toggle: Function,
+    isOpen: boolean,
+    confirm: Function,
+    cancel: Function
+};
+
+export default (p: Props) =>
 
 <div>
-    <Button color="danger" onClick={p.toggle}>
+    <Button color="danger" onClick={() => p.toggle()}>
         Open Modal
     </Button>
 
-    <Modal isOpen={p.isOpen} toggle={p.toggle}>
+    <Modal isOpen={p.isOpen} toggle={() => p.toggle()}>
         <ModalBody>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
             dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
@@ -18,5 +25,15 @@ export default (p: any): any =>
             nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
             anim id est laborum.
         </ModalBody>
+
+        <ModalFooter>
+            <Button color="primary" onClick={() => p.confirm()}>
+                Confirm
+            </Button>
+
+            <Button color="secondary" onClick={() => p.cancel()}>
+                Cancel
+            </Button>
+        </ModalFooter>
     </Modal>
 </div>
