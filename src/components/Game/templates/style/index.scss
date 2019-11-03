@@ -1,5 +1,12 @@
 @import "variables";
 
 .progress {
+    margin: $space;
     background-color: #FFF;
+}
+
+.status,
+.history,
+.controls {
+    margin: $space;
 }

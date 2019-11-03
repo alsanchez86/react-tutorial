@@ -9,14 +9,14 @@ import LoadGame from "../../LoadGame";
 import { Alert, Button, ButtonGroup, Progress } from "reactstrap";
 
 type Props = {
-    draw: boolean,
-    won: boolean,
-    status: string,
-    restartClick: Function,
-    history: string[][][],
-    getButtonColor: Function,
-    jump: Function,
-    progress: number
+draw: boolean,
+won: boolean,
+status: string,
+restartClick: Function,
+history: string[][][],
+getButtonColor: Function,
+jump: Function,
+progress: number
 };
 
 export default (p: Props) =>
@@ -24,53 +24,48 @@ export default (p: Props) =>
 <div className="container">
     <div className="row">
         <div className="col-6">
-            <Board/>
+            <Board />
+        </div>
 
+        <div className="col-6">
             {(!p.draw && !p.won) ?
-                <div className="status">
-                    {p.status}
-                </div>
+            <div className="status">
+                {p.status}
+            </div>
             : null}
 
             {(p.draw || p.won) ?
-                <Alert color="success">
-                    {p.status}
-                </Alert>
+            <Alert color="success">
+                {p.status}
+            </Alert>
             : null}
 
             <Progress value={p.progress} />
-        </div>
 
-         <div className="col-6">
-            <div className="row">
-                <div className="col-6">
+            {(p.history.length > 1) ?
+            <div className="history">
+                <p>History steps:</p>
+
+                <ButtonGroup size="sm">
+                    {p.history.map((ev: object, i: number) =>
+                    <Button size="sm" key={i.toString()} color={p.getButtonColor(i)} onClick={()=> p.jump(i)}>
+                        {i}
+                    </Button>
+                    )}
+                </ButtonGroup>
+            </div>
+            : null}
+
+            <div className="controls">
+                <ButtonGroup size="sm">
                     {(p.history.length > 0) ?
-                        <Button
-                            color="danger"
-                            size="sm"
-                            onClick={() => p.restartClick()}>
-                                Restart
-                        </Button>
+                    <Button color="info" size="sm" onClick={()=> p.restartClick()}>
+                        Restart
+                    </Button>
                     : null}
 
-                    {(p.history.length > 1) ?
-                        <ButtonGroup vertical size="sm">
-                            {p.history.map((ev: object, i: number) =>
-                                <Button
-                                    size="sm"
-                                    key={i.toString()}
-                                    color={p.getButtonColor(i)}
-                                    onClick={() => p.jump(i)}>
-                                        {i}
-                                </Button>
-                            )}
-                        </ButtonGroup>
-                    : null}
-                </div>
-
-                <div className="col-6">
                     <LoadGame />
-                </div>
+                </ButtonGroup>
             </div>
         </div>
     </div>
