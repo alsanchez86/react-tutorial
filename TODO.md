@@ -11,6 +11,9 @@
 - Usar Rambda o Lodash para la programación funcional. -> NOPE
 
 - [AQUI]
+    - Que el componente loadGame carge la plantilla modal.tsx cuando p.load().
+
+- [AQUI]
     - Seguir probando thunks
     - Mirar bien como funciona fetch
     - Mirar async / await

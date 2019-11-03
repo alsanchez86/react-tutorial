@@ -1,11 +1,13 @@
 // Import React library
 import React, { Component } from "react";
+import ReactDOM from 'react-dom';
 // Import react redux
 import { connect } from "react-redux";
 // Import redux actions
 import { loadGame } from "../../redux/board/actions";
 // Import Jsx template
 import Template from "./templates/";
+import ModalTemplate from "./templates/modal";
 // Import HTML parser
 import ReactHtmlParser from "react-html-parser";
 
@@ -62,7 +64,7 @@ class LoadGame extends Component<Props, State> {
                         text: error.message,
                         confirmButtonText: CONFIRM_BUTTON_TRY_TEXT
                     });
-                    this.toggle();
+                    this.toggleModal();
                 })
                 .finally(() => {
                     this.setState({
@@ -70,7 +72,7 @@ class LoadGame extends Component<Props, State> {
                     })
                 });
         }else{
-            this.toggle();
+            this.toggleModal();
         }
     }
 
@@ -84,7 +86,7 @@ class LoadGame extends Component<Props, State> {
             text: LOADING_TEXT
         });
         this.props.loadGame()
-            .then(() => this.toggle())
+            .then(() => this.toggleModal())
             .catch((error: Error) => {
                 this.setState({
                     text: error.message,
@@ -98,10 +100,22 @@ class LoadGame extends Component<Props, State> {
      *
      * @memberof LoadGame
      */
-    toggle(): void {
+    toggleModal(): void {
         this.setState({
             isOpen: !this.state.isOpen
         });
+        ReactDOM.render(
+            <ModalTemplate
+                isOpen={this.state.isOpen}
+                text={ReactHtmlParser(this.state.text)}
+                confirmButtonText={this.state.confirmButtonText}
+                confirm={() => this.confirm()}
+                cancel={() => this.toggleModal()}
+                onClose={() => this.onClose()}
+                toggle={() => this.toggleModal()}
+            />,
+            document.getElementById('root')
+        );
     }
 
     /**
