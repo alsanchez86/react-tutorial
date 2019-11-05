@@ -7,7 +7,6 @@ import { connect } from "react-redux";
 import { loadGame } from "../../redux/board/actions";
 // Import Jsx template
 import Template from "./templates/";
-import ModalTemplate from "./templates/modal";
 // Import HTML parser
 import ReactHtmlParser from "react-html-parser";
 
@@ -104,18 +103,6 @@ class LoadGame extends Component<Props, State> {
         this.setState({
             isOpen: !this.state.isOpen
         });
-        ReactDOM.render(
-            <ModalTemplate
-                isOpen={this.state.isOpen}
-                text={ReactHtmlParser(this.state.text)}
-                confirmButtonText={this.state.confirmButtonText}
-                confirm={() => this.confirm()}
-                cancel={() => this.toggleModal()}
-                onClose={() => this.onClose()}
-                toggle={() => this.toggleModal()}
-            />,
-            document.getElementById('root')
-        );
     }
 
     /**
@@ -139,20 +126,16 @@ class LoadGame extends Component<Props, State> {
     render() {
         return (
             <Template
+                isOpen={this.state.isOpen}
+                text={ReactHtmlParser(this.state.text)}
+                confirmButtonText={this.state.confirmButtonText}
                 disabled={this.state.disabled}
+                toggle={() => this.toggleModal()}
+                confirm={() => this.confirm()}
+                cancel={() => this.toggleModal()}
                 load={() => this.load()}
+                onClose={() => this.onClose()}
             />
-            // <Template
-            //     isOpen={this.state.isOpen}
-            //     text={ReactHtmlParser(this.state.text)}
-            //     confirmButtonText={this.state.confirmButtonText}
-            //     disabled={this.state.disabled}
-            //     toggle={() => this.toggle()}
-            //     confirm={() => this.confirm()}
-            //     cancel={() => this.toggle()}
-            //     load={() => this.load()}
-            //     onClose={() => this.onClose()}
-            // />
         );
     }
 }
