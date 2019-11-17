@@ -4,15 +4,15 @@ import React from "react";
 import { Button, ButtonGroup, Modal, ModalBody, ModalFooter } from "reactstrap";
 
 type Props = {
-load: Function,
-disabled: boolean,
-toggle: Function,
-isOpen: boolean,
-confirm: Function,
-cancel: Function,
-text: any,
-confirmButtonText: string,
-onClose: Function
+    load: Function,
+    disabled: boolean,
+    toggle: Function,
+    isOpen: boolean,
+    confirm: Function,
+    cancel: Function,
+    text: any,
+    confirmButtonText: string,
+    onClose: Function
 };
 
 export default (p: Props) =>

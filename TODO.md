@@ -10,8 +10,7 @@
 - Mirar lo de "Action creators" -> OK
 - Usar Rambda o Lodash para la programación funcional. -> NOPE
 
-- [AQUI]
-    - Que el componente loadGame carge la plantilla modal.tsx cuando p.load().
+- Usar el localstorage del navegador para guardar las partidas. Que también se puedan cargar las almacenadas.
 
 - [AQUI]
     - Seguir probando thunks
