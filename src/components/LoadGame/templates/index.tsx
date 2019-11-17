@@ -4,23 +4,21 @@ import React from "react";
 import { Button, ButtonGroup, Modal, ModalBody, ModalFooter } from "reactstrap";
 
 type Props = {
-    load: Function,
-    disabled: boolean,
-    toggle: Function,
-    isOpen: boolean,
-    confirm: Function,
-    cancel: Function,
-    text: any,
-    confirmButtonText: string,
-    onClose: Function
+load: Function,
+disabled: boolean,
+toggle: Function,
+isOpen: boolean,
+confirm: Function,
+cancel: Function,
+text: any,
+confirmButtonText: string,
+onClose: Function
 };
 
 export default (p: Props) =>
 
-<div>
-    <Button color="info" onClick={() => p.load()} disabled={p.disabled}>
-        {p.disabled ? "Loading..." : "Load saved game"}
-    </Button>
+<Button color="info" onClick={()=> p.load()} disabled={p.disabled}>
+    {p.disabled ? "Loading..." : "Load saved game"}
 
     <Modal isOpen={p.isOpen} toggle={()=> p.toggle()} size={"sm"} onClosed={() => p.onClose()}>
         <ModalBody>
@@ -41,4 +39,4 @@ export default (p: Props) =>
             </ButtonGroup>
         </ModalFooter>
     </Modal>
-</div>
+</Button>
