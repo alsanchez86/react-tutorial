@@ -13,6 +13,9 @@
 - Usar el localstorage del navegador para guardar las partidas. Que también se puedan cargar las almacenadas.
     - Mostrar modal con mensaje de "Game saved" cuando se haya guardado en el localStorage
     - https://www.robinwieruch.de/local-storage-react
+    - 0.- Click en save se comprueba si state.boardReducer.history.length > 0.
+    - 1.- Se abre un modal con un input text para poner un nombre a la partida, más un botón para confirmar y otro para cancelar.
+    - 2.- Click en confirmar guarda todo el histórico de la partida en el localStorage del navegador.
 
 - [AQUI]
     - Seguir probando thunks
