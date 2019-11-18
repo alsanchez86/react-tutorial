@@ -11,6 +11,8 @@
 - Usar Rambda o Lodash para la programación funcional. -> NOPE
 
 - Usar el localstorage del navegador para guardar las partidas. Que también se puedan cargar las almacenadas.
+    - Mostrar modal con mensaje de "Game saved" cuando se haya guardado en el localStorage
+    - https://www.robinwieruch.de/local-storage-react
 
 - [AQUI]
     - Seguir probando thunks

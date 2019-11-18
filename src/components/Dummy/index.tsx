@@ -3,6 +3,14 @@ import React, { Component } from "react";
 // Import Jsx template
 import Template from "./templates/";
 
+// Types
+type Props = {
+
+};
+type State = {
+
+};
+
 /**
  *
  *
@@ -10,7 +18,7 @@ import Template from "./templates/";
  * @class Dummy
  * @extends {Component}
  */
-export default class Dummy extends Component {
+export default class Dummy extends Component<Props, State> {
 
     /**
      *

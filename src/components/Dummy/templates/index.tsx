@@ -1,8 +1,13 @@
 // Import React library
 import React from "react";
 
- export default () =>
+// Types
+type Props = {
 
- <div>
+};
+
+export default (p: Props) =>
+
+<div>
     Dummy component
 </div>

@@ -1,6 +1,5 @@
 // Import React library
 import React, { Component } from "react";
-import ReactDOM from 'react-dom';
 // Import react redux
 import { connect } from "react-redux";
 // Import redux actions

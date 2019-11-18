@@ -1,26 +1,18 @@
 // Import React library
 import React from "react";
 // Import reactstrap components
-import { Button, ButtonGroup, Modal, ModalBody, ModalFooter } from "reactstrap";
+import { Button } from "reactstrap";
 
 type Props = {
-    load: Function,
-    disabled: boolean,
-    toggle: Function,
-    isOpen: boolean,
-    confirm: Function,
-    cancel: Function,
-    text: any,
-    confirmButtonText: string,
-    onClose: Function
+    saveGameClick: Function
 };
 
 export default (p: Props) =>
 
-<Button color="info" onClick={()=> p.load()} disabled={p.disabled}>
-    {p.disabled ? "Loading..." : "Load example game"}
+<Button color="success" size="sm" onClick={()=> p.saveGameClick()}>
+    Save
 
-    <Modal isOpen={p.isOpen} toggle={()=> p.toggle()} size={"sm"} onClosed={() => p.onClose()}>
+    {/* <Modal isOpen={p.isOpen} toggle={()=> p.toggle()} size={"sm"} onClosed={() => p.onClose()}>
         <ModalBody>
             <p className="text-center">
                 {p.text}
@@ -38,5 +30,5 @@ export default (p: Props) =>
                 </Button>
             </ButtonGroup>
         </ModalFooter>
-    </Modal>
+    </Modal> */}
 </Button>

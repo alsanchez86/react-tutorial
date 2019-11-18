@@ -5,18 +5,19 @@ import React from "react";
 // Import components
 import Board from "../../Board";
 import LoadGame from "../../LoadGame";
+import SaveGame from "../../SaveGame";
 // Import reactstrap components
 import { Alert, Button, ButtonGroup, Progress } from "reactstrap";
 
 type Props = {
-draw: boolean,
-won: boolean,
-status: string,
-restartClick: Function,
-history: string[][][],
-getButtonColor: Function,
-jump: Function,
-progress: number
+    draw: boolean,
+    won: boolean,
+    status: string,
+    restartClick: Function,
+    history: string[][][],
+    getButtonColor: Function,
+    jump: Function,
+    progress: number
 };
 
 export default (p: Props) =>
@@ -59,9 +60,12 @@ export default (p: Props) =>
             <div className="controls">
                 <ButtonGroup size="sm">
                     {(p.history.length > 0) ?
-                    <Button color="info" size="sm" onClick={()=> p.restartClick()}>
-                        Restart
-                    </Button>
+                        [
+                            <Button key="0" color="secondary" size="sm" onClick={()=> p.restartClick()}>
+                                Restart
+                            </Button>,
+                            <SaveGame key="1" />
+                        ]
                     : null}
 
                     <LoadGame />

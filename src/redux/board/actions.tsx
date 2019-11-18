@@ -58,3 +58,20 @@ export const loadGame = (): Function => (
         });
     }
 );
+
+
+/**
+ * Action for save game board state on localStorage
+ *
+ * @return {Action}
+ */
+export const saveGame = (): Function => (
+    async (dispatch: Function) => {
+        const response = await fetch("http://localhost:8080/saved.json");
+        const data = await response.json();
+        return dispatch({
+            type: "SAVE_GAME",
+            value: data
+        });
+    }
+);
