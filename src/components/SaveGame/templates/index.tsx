@@ -1,34 +1,44 @@
 // Import React library
 import React from "react";
 // Import reactstrap components
-import { Button } from "reactstrap";
+import { Button, ButtonGroup, Modal, ModalHeader, ModalBody, ModalFooter, Input } from "reactstrap";
 
 type Props = {
-    saveGameClick: Function
+    isOpen: boolean,
+    toggle: Function,
+    confirm: Function,
+    cancel: Function
 };
 
 export default (p: Props) =>
 
-<Button color="success" size="sm" onClick={()=> p.saveGameClick()}>
+<Button color="success" size="sm" onClick={()=> p.toggle()}>
     Save
 
-    {/* <Modal isOpen={p.isOpen} toggle={()=> p.toggle()} size={"sm"} onClosed={() => p.onClose()}>
-        <ModalBody>
-            <p className="text-center">
-                {p.text}
-            </p>
-        </ModalBody>
+    <Modal
+        size={"md"}
+        isOpen={p.isOpen}
+        toggle={()=> p.toggle()}>
+            <ModalHeader toggle={()=> p.toggle()} charCode="X">
+                <p className="text-center">
+                    Save current game?
+                </p>
+            </ModalHeader>
 
-        <ModalFooter>
-            <ButtonGroup className="mx-auto">
-                <Button color="primary" onClick={()=> p.confirm()}>
-                    {p.confirmButtonText}
-                </Button>
+            <ModalBody>
+                <Input type="text" placeholder="Name"/>
+            </ModalBody>
 
-                <Button color="secondary" onClick={()=> p.cancel()}>
-                    Cancel
-                </Button>
-            </ButtonGroup>
-        </ModalFooter>
-    </Modal> */}
+            <ModalFooter>
+                <ButtonGroup className="mx-auto">
+                    <Button color="primary" onClick={()=> p.confirm()}>
+                        Confirm
+                    </Button>
+
+                    <Button color="secondary" onClick={()=> p.cancel()}>
+                        Cancel
+                    </Button>
+                </ButtonGroup>
+            </ModalFooter>
+    </Modal>
 </Button>

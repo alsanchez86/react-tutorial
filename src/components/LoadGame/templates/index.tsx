@@ -6,13 +6,13 @@ import { Button, ButtonGroup, Modal, ModalBody, ModalFooter } from "reactstrap";
 type Props = {
     load: Function,
     disabled: boolean,
-    toggle: Function,
     isOpen: boolean,
+    toggle: Function,
     confirm: Function,
+    onClose: Function,
     cancel: Function,
     text: any,
-    confirmButtonText: string,
-    onClose: Function
+    confirmButtonText: string
 };
 
 export default (p: Props) =>
@@ -20,23 +20,27 @@ export default (p: Props) =>
 <Button color="info" onClick={()=> p.load()} disabled={p.disabled}>
     {p.disabled ? "Loading..." : "Load example game"}
 
-    <Modal isOpen={p.isOpen} toggle={()=> p.toggle()} size={"sm"} onClosed={() => p.onClose()}>
-        <ModalBody>
-            <p className="text-center">
-                {p.text}
-            </p>
-        </ModalBody>
+    <Modal
+        size={"sm"}
+        isOpen={p.isOpen}
+        toggle={()=> p.toggle()}
+        onClosed={() => p.onClose()}>
+            <ModalBody>
+                <p className="text-center">
+                    {p.text}
+                </p>
+            </ModalBody>
 
-        <ModalFooter>
-            <ButtonGroup className="mx-auto">
-                <Button color="primary" onClick={()=> p.confirm()}>
-                    {p.confirmButtonText}
-                </Button>
+            <ModalFooter>
+                <ButtonGroup className="mx-auto">
+                    <Button color="primary" onClick={()=> p.confirm()}>
+                        {p.confirmButtonText}
+                    </Button>
 
-                <Button color="secondary" onClick={()=> p.cancel()}>
-                    Cancel
-                </Button>
-            </ButtonGroup>
-        </ModalFooter>
+                    <Button color="secondary" onClick={()=> p.cancel()}>
+                        Cancel
+                    </Button>
+                </ButtonGroup>
+            </ModalFooter>
     </Modal>
 </Button>

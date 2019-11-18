@@ -125,15 +125,15 @@ class LoadGame extends Component<Props, State> {
     render() {
         return (
             <Template
-                isOpen={this.state.isOpen}
-                text={ReactHtmlParser(this.state.text)}
-                confirmButtonText={this.state.confirmButtonText}
                 disabled={this.state.disabled}
+                isOpen={this.state.isOpen}
                 toggle={() => this.toggleModal()}
                 confirm={() => this.confirm()}
                 cancel={() => this.toggleModal()}
                 load={() => this.load()}
                 onClose={() => this.onClose()}
+                text={ReactHtmlParser(this.state.text)}
+                confirmButtonText={this.state.confirmButtonText}
             />
         );
     }

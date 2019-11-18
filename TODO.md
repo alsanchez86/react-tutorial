@@ -17,6 +17,8 @@
     - 1.- Se abre un modal con un input text para poner un nombre a la partida, más un botón para confirmar y otro para cancelar.
     - 2.- Click en confirmar guarda todo el histórico de la partida en el localStorage del navegador.
 
+- Hacer un sistema de carga de partidas guardadas en el localStorage mediante un <select>
+
 - [AQUI]
     - Seguir probando thunks
     - Mirar bien como funciona fetch
