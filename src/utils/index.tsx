@@ -23,3 +23,16 @@ export function get(obj: any = {}, path: string = "", defaultValue: any = undefi
         .reduce((res, key) => (res !== null && res !== undefined) ? res[key] : res, obj);
     return (result === undefined || result === obj) ? defaultValue : result;
 }
+
+/**
+ * Validate name string.
+ * Returns true or false.
+ *
+ * @export
+ * @param {string} [value=""]
+ * @returns {boolean}
+ */
+export function validateName (value: string = ""){
+    const regex = /^[a-zA-Z ]{2,30}$/;
+    return regex.test(value);
+}

@@ -22,12 +22,6 @@ type State = {
     disabled: boolean
 };
 
-// Const
-const DEFAULT_TEXT = "Current game will be lost.<br>¿Are you sure to load saved game?";
-const LOADING_TEXT = "Loading...";
-const CONFIRM_BUTTON_DEFAULT_TEXT = "Load";
-const CONFIRM_BUTTON_TRY_TEXT = "Try again";
-
 /**
  *
  *
@@ -41,10 +35,16 @@ class LoadGame extends Component<Props, State> {
         this.state = {
             isOpen: false,
             disabled: false,
-            text: DEFAULT_TEXT,
-            confirmButtonText: CONFIRM_BUTTON_DEFAULT_TEXT
+            text: this.DEFAULT_TEXT,
+            confirmButtonText: this.CONFIRM_BUTTON_DEFAULT_TEXT
         };
     }
+
+    // Const
+    DEFAULT_TEXT = "Current game will be lost.<br>¿Are you sure to load saved game?";
+    LOADING_TEXT = "Loading...";
+    CONFIRM_BUTTON_DEFAULT_TEXT = "Load";
+    CONFIRM_BUTTON_TRY_TEXT = "Try again";
 
     /**
      *
@@ -60,7 +60,7 @@ class LoadGame extends Component<Props, State> {
                 .catch((error: Error) => {
                     this.setState({
                         text: error.message,
-                        confirmButtonText: CONFIRM_BUTTON_TRY_TEXT
+                        confirmButtonText: this.CONFIRM_BUTTON_TRY_TEXT
                     });
                     this.toggleModal();
                 })
@@ -81,14 +81,14 @@ class LoadGame extends Component<Props, State> {
      */
     confirm(): void {
         this.setState({
-            text: LOADING_TEXT
+            text: this.LOADING_TEXT
         });
         this.props.loadGame()
             .then(() => this.toggleModal())
             .catch((error: Error) => {
                 this.setState({
                     text: error.message,
-                    confirmButtonText: CONFIRM_BUTTON_TRY_TEXT
+                    confirmButtonText: this.CONFIRM_BUTTON_TRY_TEXT
                 })
             });
     }
@@ -111,8 +111,8 @@ class LoadGame extends Component<Props, State> {
      */
     onClose(){
         this.setState({
-            text: DEFAULT_TEXT,
-            confirmButtonText: CONFIRM_BUTTON_DEFAULT_TEXT
+            text: this.DEFAULT_TEXT,
+            confirmButtonText: this.CONFIRM_BUTTON_DEFAULT_TEXT
         });
     }
 
