@@ -6,8 +6,8 @@ import { connect } from "react-redux";
 import Template from "./templates/";
 
 type Props = {
-    cells?: string[][],
-    disabled?: boolean
+    cells: string[][],
+    disabled: boolean
 };
 
 /**
