@@ -1,5 +1,5 @@
 // Import component style
-import "./style/index.scss";
+import "./style.scss";
 // Import React library
 import React from "react";
 // Import reactstrap components

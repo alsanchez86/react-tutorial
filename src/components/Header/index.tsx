@@ -1,7 +1,7 @@
 // Import React library
 import React, { Component } from "react";
 // Import Jsx template
-import Template from "./templates/";
+import Template from "./template";
 
 /**
  *

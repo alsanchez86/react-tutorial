@@ -1,9 +1,9 @@
 // Import component style
-import "./style/index.scss";
+import "./style.scss";
 // Import React library
 import React from "react";
 // Import Jsx template
-import Square from "../../Square";
+import Square from "../Square";
 
 type Props = {
     row: string[],

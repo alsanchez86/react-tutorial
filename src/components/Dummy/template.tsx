@@ -1,3 +1,5 @@
+// Import component style
+import "./style.scss";
 // Import React library
 import React from "react";
 

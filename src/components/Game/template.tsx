@@ -1,11 +1,11 @@
 // Import component style
-import "./style/index.scss";
+import "./style.scss";
 // Import React library
 import React from "react";
 // Import components
-import Board from "../../Board";
-import LoadGame from "../../LoadGame";
-import SaveGame from "../../SaveGame";
+import Board from "../Board";
+import LoadGame from "../LoadGame";
+import SaveGame from "../SaveGame";
 // Import reactstrap components
 import { Alert, Button, ButtonGroup, Progress } from "reactstrap";
 

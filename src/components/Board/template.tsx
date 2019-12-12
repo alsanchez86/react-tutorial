@@ -1,9 +1,9 @@
 // Import component style
-import "./style/index.scss";
+import "./style.scss";
 // Import React library
 import React from "react";
 // Import components
-import Row from "../../Row";
+import Row from "../Row";
 
 type Props = {
     cells: string[][],

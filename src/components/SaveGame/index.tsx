@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 // Import redux actions
 import { saveGame } from "../../redux/board/actions";
 // Import Jsx template
-import Template from "./templates/";
+import Template from "./template";
 // Import utils
 import { validateName } from "../../utils/";
 
