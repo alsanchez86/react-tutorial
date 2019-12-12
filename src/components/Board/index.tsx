@@ -37,7 +37,7 @@ class Board extends Component<Props> {
 
 export default connect(
     // mapStateToProps
-    (state: any): object => ({
+    (state: any) => ({
         cells: state.boardReducer.cells,
         disabled: (state.boardReducer.winner.length > 0)
     })

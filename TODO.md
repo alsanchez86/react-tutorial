@@ -18,7 +18,7 @@
 
 - Hacer un sistema de carga de partidas guardadas en el localStorage mediante un <select>
 
-- [AQUI]
+- [ .. ]
     - Seguir probando thunks
     - Mirar bien como funciona fetch
     - Mirar async / await
