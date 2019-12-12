@@ -8,7 +8,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 // Import react-redux
 import { Provider } from "react-redux";
 // Import store
-import store from "./redux";
+import store from "./redux/store";
 // Import root component
 import App from "./components/App";
 

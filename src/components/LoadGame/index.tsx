@@ -12,8 +12,8 @@ import ReactHtmlParser from "react-html-parser";
 
 // Types
 type Props = {
-    loadGame: Function,
-    history: string[][][]
+    history: string[][][],
+    loadGame: Function
 };
 type State = {
     isOpen: boolean,
@@ -127,13 +127,13 @@ class LoadGame extends Component<Props, State> {
             <Template
                 disabled={this.state.disabled}
                 isOpen={this.state.isOpen}
+                text={ReactHtmlParser(this.state.text)}
+                confirmButtonText={this.state.confirmButtonText}
                 toggle={() => this.toggleModal()}
                 confirm={() => this.confirm()}
                 cancel={() => this.toggleModal()}
                 load={() => this.load()}
                 onClose={() => this.onClose()}
-                text={ReactHtmlParser(this.state.text)}
-                confirmButtonText={this.state.confirmButtonText}
             />
         );
     }
