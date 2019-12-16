@@ -24,6 +24,8 @@
     - Mirar async / await
     - https://stackoverflow.com/questions/35855781/having-services-in-react-application
 
+- https://medium.com/@siddharthac6/getting-started-with-react-js-using-webpack-and-babel-66549f8fbcb8
+
 - Hacer una request a una API pública para probar los services de react:
     https://github.com/axios/axios
     https://github.com/reduxjs/redux-thunk
