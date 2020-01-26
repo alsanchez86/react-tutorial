@@ -3,7 +3,7 @@
  * @export
  * @returns {string}
  */
-export function getRandomId(): string {
+export const getRandomId = (): string => {
     return (Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15));
 }
 
@@ -16,7 +16,7 @@ export function getRandomId(): string {
  * @param {any} defaultValue
  * @returns {any}
  */
-export function get(obj: any = {}, path: string = "", defaultValue: any = undefined): any {
+export const get = (obj: any = {}, path: string = "", defaultValue: any = undefined): any => {
     const result = String.prototype.split
         .call(path, /[,[\].]+?/)
         .filter(Boolean)
@@ -32,7 +32,7 @@ export function get(obj: any = {}, path: string = "", defaultValue: any = undefi
  * @param {string} [value=""]
  * @returns {boolean}
  */
-export function validateName (value: string = ""){
+export const validateName = (value: string = ""): boolean => {
     const regex = /^[a-zA-Z ]{2,30}$/;
     return regex.test(value);
 }

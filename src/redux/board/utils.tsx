@@ -18,7 +18,7 @@ import {
  *     }]
  * @returns {BoardState}
  */
-export function generateState(
+export const generateState = (
     state: BoardState = {
         cells: Array(3).fill(Array(3).fill("")),
         winner: [],
@@ -27,7 +27,7 @@ export function generateState(
         step: 0,
         xIsNext: false
     }
-): BoardState {
+): BoardState => {
     return {
         cells: state.cells,
         winner: state.winner,
@@ -46,9 +46,9 @@ export function generateState(
  * @param {string[][]} cells
  * @returns {number[]}
  */
-export function checkWinnerCombination(
+export const checkWinnerCombination = (
     cells: string[][]
-): number[] {
+): number[] => {
     const concatCells = cells.reduce((ant, act) => ant.concat(act));
     return [
         [0, 1, 2],
@@ -74,9 +74,9 @@ export function checkWinnerCombination(
  * @param {string[][]} cells
  * @returns {boolean}
  */
-export function checkDraw(
+export const checkDraw = (
     cells: string[][]
-): boolean {
+): boolean => {
     return (cells.filter(row => row.filter(square => square !== "").length === row.length).length === cells.length);
 }
 
@@ -88,9 +88,9 @@ export function checkDraw(
  * @param {Action} action
  * @returns {boolean}
  */
-export function emptySquare(
+export const emptySquare = (
     state: BoardState,
     action: Action
-): boolean {
+): boolean => {
     return (((state.cells.filter((e, i) => (action.value.row === i)).shift() || []).filter((e, i) => (action.value.column === i)).shift()) === "");
 }

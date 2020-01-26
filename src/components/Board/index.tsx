@@ -18,7 +18,6 @@ type Props = {
  * @extends {Component}
  */
 class Board extends Component<Props> {
-
     /**
      *
      *

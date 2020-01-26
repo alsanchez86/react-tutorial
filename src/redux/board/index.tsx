@@ -36,10 +36,10 @@ export default (state: BoardState = generateState(), action: Action): BoardState
  * @param {Action} action
  * @returns {BoardState}
  */
-function markSquare(
+const markSquare = (
     state: BoardState,
     action: Action
-): BoardState {
+): BoardState => {
     return emptySquare(state, action) ? markEmptySquare(state, action) : generateState({
         cells: state.cells,
         winner: state.winner,
@@ -57,10 +57,10 @@ function markSquare(
  * @param {Action} action
  * @returns {BoardState}
  */
-function markEmptySquare(
+const markEmptySquare = (
     state: BoardState,
     action: Action
-): BoardState {
+): BoardState => {
     let actionRow = action.value.row;
     let actionColumn = action.value.column;
     let actionMark = action.value.mark;
@@ -92,10 +92,10 @@ function markEmptySquare(
  * @param {Action} action
  * @returns {BoardState}
  */
-function jump(
+const jump = (
     state: BoardState,
     action: Action
-): BoardState {
+): BoardState => {
     return generateState({
         cells: state.history[action.value.index],
         winner: state.winner,
@@ -112,9 +112,9 @@ function jump(
  * @param {Action} action
  * @returns {BoardState}
  */
-function loadGame(
+const loadGame = (
     action: Action
-): BoardState {
+): BoardState => {
     return generateState({
         cells: action.value.cells,
         winner: action.value.winner,

@@ -82,7 +82,7 @@ class Square extends Component<Props> {
 export default connect(
     // mapStateToProps
     (state: any) => ((
-        function() {
+        () => {
             let winner = state.boardReducer.winner;
             return {
                 xIsNext: state.boardReducer.xIsNext,
